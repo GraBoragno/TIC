@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
 
 @SpringBootApplication
 @Component
-public class ProyectoTicApplication {
+public class TicApplicationProyect {
 
 	public static void main(String[] args)
 	{
-		ApplicationContext ctx = SpringApplication.run(ProyectoTicApplication.class, args);
-		ProyectoTicApplication app = ctx.getBean(ProyectoTicApplication.class);
+		ApplicationContext ctx = SpringApplication.run(TicApplicationProyect.class, args);
+		TicApplicationProyect app = ctx.getBean(TicApplicationProyect.class);
 		app.runInCommandLine();
 	}
 
