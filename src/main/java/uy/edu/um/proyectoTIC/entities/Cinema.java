@@ -19,7 +19,7 @@ public class Cinema implements Serializable {
     @Id
     private Long centralId;
 
-    private Integer theaterNbr;
+    private Integer theaterQty;
 
     private String neighborhood;
 
