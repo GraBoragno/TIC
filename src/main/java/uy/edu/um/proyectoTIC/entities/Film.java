@@ -36,7 +36,7 @@ public class Film {
 
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "cinema_film", joinColumns = @JoinColumn(name = "filmCode"), inverseJoinColumns = @JoinColumn(name = "IdSucursal"))
+    @JoinTable(name = "cinemaFilm", joinColumns = @JoinColumn(name = "filmCode"), inverseJoinColumns = @JoinColumn(name = "IdSucursal"))
     @Builder.Default
     private List<Cinema> cinemaAppearance = new LinkedList<>();
 }
