@@ -24,7 +24,7 @@ public class Cinema implements Serializable {
     private String neighborhood;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "cinema_food", joinColumns = @JoinColumn(name = "centralId"), inverseJoinColumns = @JoinColumn(name = "foodName"))
+    @JoinTable(name = "cinemaFood", joinColumns = @JoinColumn(name = "centralId"), inverseJoinColumns = @JoinColumn(name = "foodName"))
     @Builder.Default
     private List<Food> foods = new LinkedList<>();
 
