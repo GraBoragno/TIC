@@ -1,10 +1,10 @@
 package uy.edu.um.proyectoTIC.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 import lombok.*;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,25 +14,16 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cinema implements Serializable {
+public class Cinema {
 
     @Id
     private Long centralId;
 
-    private Integer theaterQty;
+    private Integer roomQty;
 
     private String neighborhood;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "cinemaFood", joinColumns = @JoinColumn(name = "centralId"), inverseJoinColumns = @JoinColumn(name = "foodName"))
-    @Builder.Default
-    private List<Food> foods = new LinkedList<>();
-
-    @OneToMany(mappedBy = "cinemaTheater", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @Builder.Default
-    private List<Theater> theaters = new ArrayList<>();
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @Builder.Default
-    private List<Film> films = new LinkedList<>(); //Cambiar a Hash o algo
+    @Transient
+    @Builder.Default//Capaz esto no va, ya veremos
+    private List<Snack> cinemaSnacks = new LinkedList<>(); //Usar un findAll() de Snack al crear la lista
 }

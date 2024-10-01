@@ -6,30 +6,26 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Film {
+public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long filmCode;
+    private Long ticketCode;
 
-    private String filmName;
+    private String cTName;
 
-    private String directorName;
+    private Long tCentralId;
 
-    private Long duration; //En minutos
+    private Integer tRoomNbr;
 
-    private LocalDate releaseYear;
+    private int tRow;
+    private int tColumn;
 
-    @Builder.Default
-    private List<String> genres = new ArrayList<>();
+
 }
