@@ -1,9 +1,6 @@
 package uy.edu.um.proyectoTIC.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -30,6 +27,7 @@ public class Film {
 
     private LocalDate releaseYear;
 
+    @Transient
     @Builder.Default
     private List<String> genres = new ArrayList<>();
 }
