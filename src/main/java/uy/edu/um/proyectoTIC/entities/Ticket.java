@@ -22,10 +22,7 @@ public class Ticket {
 
     private Long tCentralId;
 
-    private Integer tRoomNbr;
-
-    private int tRow;
-    private int tColumn;
+    private Long ticketPrice;
 
 
 }

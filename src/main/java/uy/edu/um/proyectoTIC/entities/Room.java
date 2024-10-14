@@ -16,7 +16,5 @@ public class Room {
     @Id
     private Integer roomNbr;
 
-    @Transient  //No lo mapea en la base de datos
-    @Builder.Default
-    private int[][] seats = new int[15][10];
+
 }

@@ -27,7 +27,7 @@ public class Film {
 
     private LocalDate releaseYear;
 
-    @Transient
+    @ElementCollection
     @Builder.Default
     private List<String> genres = new ArrayList<>();
 }
