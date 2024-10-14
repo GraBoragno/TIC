@@ -1,10 +1,9 @@
 package uy.edu.um.proyectoTIC.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,4 +25,8 @@ public class Cinema {
     @Transient
     @Builder.Default//Capaz esto no va, ya veremos
     private List<Snack> cinemaSnacks = new LinkedList<>(); //Usar un findAll() de Snack al crear la lista
+
+    @OneToMany(mappedBy = "cinemaRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<Room> roomsCollection = new ArrayList<>();
 }
