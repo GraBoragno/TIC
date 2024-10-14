@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://wtfcinemadb.cvi8sq8myesa.us-east-2.rds.amazonaws.com:5432/wtfcinemadb
+    username: proyectotic
+    password: proyectotic2024
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
