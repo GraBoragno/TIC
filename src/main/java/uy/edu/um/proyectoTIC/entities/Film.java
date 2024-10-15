@@ -30,4 +30,7 @@ public class Film {
     @ElementCollection
     @Builder.Default
     private List<String> genres = new ArrayList<>();
+
+    @OneToMany(mappedBy = "broadcastFilm", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Broadcast> screening = new ArrayList<>();
 }

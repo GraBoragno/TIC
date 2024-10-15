@@ -1,10 +1,11 @@
 package uy.edu.um.proyectoTIC.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import uy.edu.um.proyectoTIC.entities.users.Client;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,7 +23,28 @@ public class Ticket {
 
     private Long tCentralId;
 
-    private Long ticketPrice;
+    private Long ticketPrice; //se calcula
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "broadcastId")
+    private Broadcast ticketBroadcast;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rowColumn")
+    private Seat assignedSeat;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "email")
+    private Client clientTicket;
+
+    @ManyToMany
+    @JoinTable(name = "ticket_combo_admit", joinColumns = @JoinColumn(name = "ticketCode"), inverseJoinColumns = @JoinColumn(name = "comboId"))
+    private List<Combo> admittedCombos = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "snack_contained", joinColumns = @JoinColumn(name = "ticketCode"), inverseJoinColumns = @JoinColumn(name = "snackName"))
+    private List<Snack> snacks = new ArrayList<>();
+
 
 
 }

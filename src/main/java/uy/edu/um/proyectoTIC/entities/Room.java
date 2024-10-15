@@ -3,6 +3,7 @@ package uy.edu.um.proyectoTIC.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,5 +23,5 @@ public class Room {
 
 
     @OneToMany(mappedBy = "hasRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Broadcast> has;
+    private List<Broadcast> has = new ArrayList<>();
 }

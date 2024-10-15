@@ -2,7 +2,11 @@ package uy.edu.um.proyectoTIC.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,4 +20,10 @@ public class Snack {
     private String snackName;
 
     private String snackPrice;
+
+    @ManyToMany(mappedBy = "snacks")
+    private List<Ticket> tickets = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "snacksIncluded")
+    private List<Combo> combos = new ArrayList<>();
 }
