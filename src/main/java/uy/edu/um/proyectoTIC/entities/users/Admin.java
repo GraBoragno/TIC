@@ -5,5 +5,6 @@ import lombok.*;
 
 @Entity
 @Builder
+@NoArgsConstructor
 public class Admin extends Account {
 }
