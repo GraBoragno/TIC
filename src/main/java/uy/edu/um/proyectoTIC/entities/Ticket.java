@@ -19,10 +19,6 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ticketCode;
 
-    private String cTName;
-
-    private Long tCentralId;
-
     private Long ticketPrice; //se calcula
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -38,11 +34,11 @@ public class Ticket {
     private Client clientTicket;
 
     @ManyToMany
-    @JoinTable(name = "ticket_combo_admit", joinColumns = @JoinColumn(name = "ticketCode"), inverseJoinColumns = @JoinColumn(name = "comboId"))
+    @JoinTable(name = "ticketComboAdmit", joinColumns = @JoinColumn(name = "ticketCode"), inverseJoinColumns = @JoinColumn(name = "comboId"))
     private List<Combo> admittedCombos = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "snack_contained", joinColumns = @JoinColumn(name = "ticketCode"), inverseJoinColumns = @JoinColumn(name = "snackName"))
+    @JoinTable(name = "snackContained", joinColumns = @JoinColumn(name = "ticketCode"), inverseJoinColumns = @JoinColumn(name = "snackName"))
     private List<Snack> snacks = new ArrayList<>();
 
 

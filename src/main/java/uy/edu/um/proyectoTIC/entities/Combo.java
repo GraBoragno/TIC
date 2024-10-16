@@ -24,6 +24,6 @@ public class Combo {
     private List<Ticket> tickets = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "combo_content", joinColumns = @JoinColumn(name = "comboId"), inverseJoinColumns = @JoinColumn(name = "snackName"))
+    @JoinTable(name = "comboContent", joinColumns = @JoinColumn(name = "comboId"), inverseJoinColumns = @JoinColumn(name = "snackName"))
     private List<Snack> snacksIncluded = new ArrayList<>();
 }
