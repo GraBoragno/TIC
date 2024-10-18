@@ -1,19 +1,16 @@
 package uy.edu.um.proyectoTIC.entities.users;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 
-@Entity
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)  //Crea tablas separadas para cliente y admin
+@MappedSuperclass
 public abstract class Account {
 
     @Id
