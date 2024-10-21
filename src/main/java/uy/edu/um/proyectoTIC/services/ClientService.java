@@ -29,7 +29,7 @@ public class ClientService {
                 .name(name)
                 .address(address)
                 .birthdate(birthDate)
-                .password(password)
+                .password(password)   //Se Prueba a verificar el largo con HTML
                 .build();
         return clientRepo.save(newClient);
     }
