@@ -3,8 +3,14 @@ package uy.edu.um.proyectoTIC.entities.users;
 import jakarta.persistence.Entity;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
-@Builder
 @NoArgsConstructor
 public class Admin extends Account {
+
+    @Builder
+    public Admin(String email, String name, String address, LocalDate birthdate, Long cardNbr) {
+        super(email, name, address, birthdate);
+    }
 }
