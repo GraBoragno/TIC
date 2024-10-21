@@ -9,6 +9,7 @@ import uy.edu.um.proyectoTIC.exceptions.InvalidIdException;
 import uy.edu.um.proyectoTIC.repository.ClientRepository;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @Service
@@ -18,15 +19,17 @@ public class ClientService {
     private ClientRepository clientRepo;
 
 
-    public Client addClient(String email, String name, String address, String date)
+    public Client addClient(String email, String name, String address, String date,String password)
     {
-        LocalDate birthDate = LocalDate.parse(date);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate birthDate = LocalDate.parse(date, formatter);
 
         Client newClient = Client.builder()
                 .email(email)
                 .name(name)
                 .address(address)
                 .birthdate(birthDate)
+                .password(password)
                 .build();
         return clientRepo.save(newClient);
     }
@@ -43,6 +46,7 @@ public class ClientService {
         }
 
         Optional<Client> result = clientRepo.findById(email);
+
         if(result.isEmpty()){
             throw new EntityNotFoundException("El usuario no existe");
         }

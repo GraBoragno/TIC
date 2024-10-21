@@ -25,5 +25,7 @@ public abstract class Account {
     private String address;
     @NotNull
     private LocalDate birthdate;
+    @NotNull
+    private String password;
 
 }

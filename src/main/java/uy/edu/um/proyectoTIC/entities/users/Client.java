@@ -1,10 +1,7 @@
 package uy.edu.um.proyectoTIC.entities.users;
 
 import jakarta.annotation.Nullable;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 import uy.edu.um.proyectoTIC.entities.Ticket;
 
@@ -22,11 +19,12 @@ public class Client extends Account {
     private Long cardNbr;
 
     @Builder
-    public Client(String email, String name, String address, LocalDate birthdate, Long cardNbr) {
-        super(email, name, address, birthdate);
+    public Client(String email, String name, String address, LocalDate birthdate,String password, Long cardNbr) {
+        super(email, name, address, birthdate, password);
         this.cardNbr = cardNbr;
     }
 
+    @Transient ////Ver si funciona
     @OneToMany(mappedBy = "clientTicket", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Ticket> ticketsBought;
 }
