@@ -1,0 +1,48 @@
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    background-color: #D0AB8A;
+}
+
+/* Each column */
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    background-color: #BA8353;
+    padding: 5px
+}
+
+
+/* Each box */
+.box {
+    display: inline-flex;
+    background-color: grey;
+    margin-bottom: 20px;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.titleBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 10px solid #38261B;
+    margin: 1px;
+    background-color: white;
+    color: #38261B;
+    font-size: 24px;
+}
+
+.imageTest {
+    display: flex;
+    justify-content: center;
+}

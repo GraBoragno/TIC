@@ -1,0 +1,53 @@
+<head>
+    <meta charset="UTF-8">
+    <title>home HTML</title>
+</head>
+<link rel="stylesheet" href="/tic.css" />
+<body>
+
+<div class="titleBox flex">WTF Cinema</div>
+
+<div class="container">
+    <div class="column columnBox">
+        <div class="box flex">movie 1</div>
+        <div class="box flex">movie 5</div>
+        <div class="box flex">movie 9</div>
+    </div>
+    <div class="column">
+        <div class="box flex">movie 2</div>
+        <div class="box flex">movie 6</div>
+        <div class="box flex">movie 10</div>
+    </div>
+    <div class="column">
+        <div class="box flex">movie 3</div>
+        <div class="box flex">movie 7</div>
+        <div class="box flex">movie 11</div>
+    </div>
+    <div class="column">
+        <div class="box flex">movie 4</div>
+        <div class="box flex">movie 8</div>
+        <div class="box flex">movie 12</div>
+    </div>
+</div>
+
+
+<div class="imageTest">
+    <button id="loginBtn">
+        DONT CLICK
+    </button>
+    <img src="/nerd.jpg" alt="Your Image" class="nerdImage" id="nerd" style="display: none;"/>
+
+    <script>
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            const img = document.getElementById('nerd');
+            if (img.style.display === 'none' || img.style.display === '') {
+                img.style.display = 'block'; // Show the image
+                this.textContent = 'wtf'; // Change button text
+            } else {
+                img.style.display = 'none'; // Hide the image
+                this.textContent = 'Show Image'; // Change button text back
+            }});
+    </script>
+</div>
+
+</body>
