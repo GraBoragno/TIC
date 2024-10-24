@@ -36,7 +36,6 @@ public class ClientService {
 
     public Boolean UpdatePaymentMethod(String email, Long cardNbr) throws EntityNotFoundException
     {
-        Boolean success = false;
         if (email == null || email.isEmpty() ){
             throw new InvalidIdException("El email no cumple con el formato adecuado");
         }
@@ -46,6 +45,7 @@ public class ClientService {
         }
 
         Optional<Client> result = clientRepo.findById(email);
+        Boolean success = false;
 
         if(result.isEmpty()){
             throw new EntityNotFoundException("El usuario no existe");

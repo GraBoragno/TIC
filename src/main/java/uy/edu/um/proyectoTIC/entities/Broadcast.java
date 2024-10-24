@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class Broadcast {
 
     @Id
     private Long broadcastId;
-    private LocalDate dateTime;
+    private LocalDateTime dateTime;
     private Long broadcastPrice;
 
     @Transient  //No lo mapea en la base de datos
@@ -38,8 +39,5 @@ public class Broadcast {
     @ManyToMany
     @JoinTable(name = "broadcastSeat", joinColumns = @JoinColumn(name = "broadcastId"), inverseJoinColumns = @JoinColumn(name = "rowColumn"))
     private List<Seat> availableSeats = new ArrayList<>();
-
-
-
 
 }

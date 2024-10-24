@@ -3,6 +3,8 @@ package uy.edu.um.proyectoTIC.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import uy.edu.um.proyectoTIC.entities.Broadcast;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
