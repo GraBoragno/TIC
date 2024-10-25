@@ -12,11 +12,10 @@ public class HomeController {
     @Autowired
     private ClientService clientService;
 
-    @GetMapping("/home") // Map this method to the root URL
+    @GetMapping("/home")
     public String home(Model model) {
-        // You can retrieve data from the service and add it to the model
-       // Assuming you have a method to get all clients
-        return "home"; // Return the name of the Thymeleaf template (home.html)
+
+        return "home";
     }
 }
 
