@@ -36,12 +36,9 @@ public class FilmService {
     {
         Year releaseYear = Year.parse(releaseYearDate);
 
-        Long filmCode = generateFilmCode();
-
         List<String> genreList = parseGenres(genres);
 
         Film newFilm = Film.builder()
-                .filmCode(filmCode)
                 .filmName(filmName)
                 .directorName(directorName)
                 .duration((long) duration)
@@ -52,26 +49,14 @@ public class FilmService {
         return filmRepository.save(newFilm);
     }
 
-    // genera el codigo de las pelis aleatorios hasta que no coincida con ningun otro
-    public Long generateFilmCode()
-    {
-        Random random = new Random();
-        Long filmCode = Math.abs(random.nextLong());
-
-        while (filmRepository.existsByFilmCode(filmCode)) {
-            filmCode = Math.abs(random.nextLong());
-        }
-        return filmCode;
-    }
-
     // parsea el string de generos en una lista
-    //por alguna razon si pones tipo "cienciA fi ccion" en la bd lo guarda como "ciencia fi ccion" y no le saca los espacios
-    public List<String> parseGenres(String genres)
-    {
+    public List<String> parseGenres(String genres) {
         return Arrays.stream(genres.split(","))
                 .map(String::trim)
+                .map(genre -> genre.replaceAll("\\s+", ""))
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
     }
+
 
 }
