@@ -3,51 +3,74 @@
     <title>home HTML</title>
 </head>
 <link rel="stylesheet" href="/tic.css" />
-<body>
+<body class="bodyHome">
+
+<div class="account">
+    <div id="login">
+        <button id="loginBtn" onclick="location.href='/log-in'">
+            Log In
+        </button>
+    </div>
+    <div id="register">
+        <button id="registerBtn" onclick="location.href='/register'">
+            Register
+        </button>
+    </div>
+</div>
 
 <div class="titleBox flex">WTF Cinema</div>
 
-<div class="container">
-    <div class="column columnBox">
-        <div class="box flex">movie 1</div>
-        <div class="box flex">movie 5</div>
-        <div class="box flex">movie 9</div>
-    </div>
-    <div class="column">
-        <div class="box flex">movie 2</div>
-        <div class="box flex">movie 6</div>
-        <div class="box flex">movie 10</div>
-    </div>
-    <div class="column">
-        <div class="box flex">movie 3</div>
-        <div class="box flex">movie 7</div>
-        <div class="box flex">movie 11</div>
-    </div>
-    <div class="column">
-        <div class="box flex">movie 4</div>
-        <div class="box flex">movie 8</div>
-        <div class="box flex">movie 12</div>
+<!--<div class="container">-->
+<!--    <div class="column columnBox">-->
+<!--        <div class="box flex">movie 1</div>-->
+<!--        <div class="box flex">movie 5</div>-->
+<!--        <div class="box flex">movie 9</div>-->
+<!--    </div>-->
+<!--    <div class="column">-->
+<!--        <div class="box flex">movie 2</div>-->
+<!--        <div class="box flex">movie 6</div>-->
+<!--        <div class="box flex">movie 10</div>-->
+<!--    </div>-->
+<!--    <div class="column">-->
+<!--        <div class="box flex">movie 3</div>-->
+<!--        <div class="box flex">movie 7</div>-->
+<!--        <div class="box flex">movie 11</div>-->
+<!--    </div>-->
+<!--    <div class="column">-->
+<!--        <div class="box flex">movie 4</div>-->
+<!--        <div class="box flex">movie 8</div>-->
+<!--        <div class="box flex">movie 12</div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="moviesBox">
+    <div th:each="movie : ${movies}" class="movie-item">
+        <img src="/nerd.jpg" alt="Poster of ${movie.title}" />
+        <h2 th:text="${movie.filmName}">Movie Title</h2>
+        <p th:text="${movie.genres}">Movie Description</p>
     </div>
 </div>
 
 
 <div class="imageTest">
-    <button id="loginBtn">
+    <button id="nerdBtn">
         DONT CLICK
     </button>
     <img src="/nerd.jpg" alt="Your Image" class="nerdImage" id="nerd" style="display: none;"/>
 
     <script>
-        document.getElementById('loginBtn').addEventListener('click', function() {
+        document.getElementById('nerdBtn').addEventListener('click', function() {
             const img = document.getElementById('nerd');
             if (img.style.display === 'none' || img.style.display === '') {
-                img.style.display = 'block'; // Show the image
-                this.textContent = 'wtf'; // Change button text
+                img.style.display = 'block';
+                this.textContent = 'wtf';
             } else {
-                img.style.display = 'none'; // Hide the image
-                this.textContent = 'DONT CLICK'; // Change button text back
+                img.style.display = 'none';
+                this.textContent = 'DONT CLICK';
             }});
     </script>
 </div>
+
+
 
 </body>

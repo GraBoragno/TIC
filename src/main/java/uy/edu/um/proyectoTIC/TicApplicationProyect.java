@@ -31,7 +31,6 @@ public class TicApplicationProyect {
 
 	public void runInCommandLine() {
 		Client newClient = clientService.addClient("email@email.com","persona1","xd", "21/10/2024","1234");
-
 		System.out.println("Ejecutando programa...");
 	}
 }

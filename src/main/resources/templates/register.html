@@ -1,0 +1,54 @@
+
+<head>
+    <meta charset="UTF-8">
+    <title>registro HTML</title>
+</head>
+<link rel="stylesheet" href="/tic.css" />
+<body class="bodyRegister">
+
+<div id = "home" class = "homeButton">
+    <button id="homeBtn" onclick="location.href='/home'">
+        Inicio
+    </button>
+</div>
+
+<div class="flex">
+    Registro de usuario
+</div>
+<form action="/new" method="POST">
+<div class="questions">
+    <div class="registerQuestions"> Nombre: </div>
+    <div class="inputRegister">
+        <input type="text" id="name" name="name" placeholder="Ingresar nombre" required><br>
+    </div>
+</div>
+<div class="questions">
+    <div class="registerQuestions"> Email: </div>
+    <div class="inputRegister">
+        <input type="text" id="email" name="email" placeholder="Ingresar email" required><br>
+    </div>
+</div>
+<div class="questions">
+    <div class="registerQuestions"> Fecha de nacimiento: </div>
+    <div class="inputRegister">
+        <input type="text" id="birthdate" name="birthdate" placeholder="Ingresar fecha de Nac." required> <br>
+    </div>
+</div>
+<div class="questions">
+    <div class="registerQuestions"> Direccion: </div>
+    <div class="inputRegister">
+        <input type="text" id="address" name="address" placeholder="Ingresar Direccion" required><br>
+    </div>
+</div>
+<div class="questions">
+    <div class="registerQuestions"> Contraseña: </div>
+    <div class="inputRegister">
+        <input type="password" id="password" name="password" placeholder="Ingresar contraseña" required><br>
+    </div>
+</div>
+<div class="questions">
+    <input type="submit" value="Confirmar">
+</div>
+</form>
+</body>
+

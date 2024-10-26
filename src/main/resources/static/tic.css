@@ -7,8 +7,10 @@
     background-color: #D0AB8A;
 }
 
-/* Each column */
+
 .column {
+    /*background-image: url('filmRollVertical.png');*/
+    /*background-repeat: repeat;*/
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -45,4 +47,115 @@
 .imageTest {
     display: flex;
     justify-content: center;
+}
+
+
+.account {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.bodyHome {
+    background-image: url('nerd.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 20px;
+}
+
+.movie-item {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.movie-item img {
+    max-width: 100%;
+    border-radius: 4px;
+}
+
+.moviesBox {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+}
+
+
+/*register css*/
+
+/*body {*/
+/*    font-size: 3vw; !* Responsive font size based on viewport width *!*/
+/*}*/
+.questions {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: auto;
+    margin: 5%;
+    /*gap: 2%;*/
+    gap: 20px;
+    align-items: center
+}
+
+.inputRegister {
+    max-width: 200px;
+    /*max-width: 30%;*/
+    display: flex;
+    justify-content: center;
+    /*width: 100%;*/
+}
+
+
+.registerQuestions {
+    width: 150px;
+    /*width: 30%;*/
+    text-align: left
+}
+
+.homeButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 30%
+}
+
+/*log in css*/
+
+.questionsLogin {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: auto;
+    margin: 5%;
+    /*gap: 2%;*/
+    gap: 20px;
+    align-items: center
+}
+
+.inputRegisterLogin {
+    max-width: 200px;
+    /*max-width: 30%;*/
+    display: flex;
+    justify-content: center;
+    /*width: 100%;*/
+}
+
+
+.loginQuestions {
+    width: 150px;
+    /*width: 30%;*/
+    text-align: left
 }
