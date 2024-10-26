@@ -15,4 +15,5 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
         WHERE b.dateTime > :currentDate
         """)
     List<Film> findAvailableFilms(LocalDateTime currentDate);
+    boolean existsByFilmCode(Long filmCode);
 }

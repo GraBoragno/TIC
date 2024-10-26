@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.repository.ClientRepository;
 import uy.edu.um.proyectoTIC.services.ClientService;
+import uy.edu.um.proyectoTIC.services.FilmService;
 
 import java.time.LocalDate;
 
@@ -22,6 +23,9 @@ public class TicApplicationProyect {
 	@Autowired
 	private ClientService clientService;
 
+	@Autowired
+	private FilmService filmService;
+
 	public static void main(String[] args)
 	{
 		ApplicationContext ctx = SpringApplication.run(TicApplicationProyect.class, args);
@@ -31,8 +35,16 @@ public class TicApplicationProyect {
 
 	public void runInCommandLine() {
 		Client newClient = clientService.addClient("email@email.com","persona1","xd", "21/10/2024","1234");
+
+		filmService.addFilm("Dune", "Denis Villeneuve", 155, "2021", "ciencia ficción, aventura");
+		filmService.addFilm("Dune: Part Two", "Denis Villeneuve", 160, "2023", "ciencia ficción, aventura");
+		filmService.addFilm("Inception", "Christopher Nolan", 148, "2010", "ciencia ficción, thriller");
+		filmService.addFilm("The Matrix", "Wachowski Sisters", 136, "1999", "acción, ciencia ficción");
+		filmService.addFilm("Interstellar", "Christopher Nolan", 169, "2014", "ciencia ficción, drama");
+
 		System.out.println("Ejecutando programa...");
 	}
+
 }
 
 

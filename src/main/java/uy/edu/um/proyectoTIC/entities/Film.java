@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class Film {
 
     private Long duration; //En minutos
 
-    private LocalDate releaseYear;
+    private Year releaseYear;
 
     @ElementCollection
     @Builder.Default
