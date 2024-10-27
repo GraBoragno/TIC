@@ -8,7 +8,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import uy.edu.um.proyectoTIC.entities.users.Client;
+import uy.edu.um.proyectoTIC.exceptions.DuplicateEntityException;
 import uy.edu.um.proyectoTIC.repository.ClientRepository;
+import uy.edu.um.proyectoTIC.services.CinemaService;
 import uy.edu.um.proyectoTIC.services.ClientService;
 import uy.edu.um.proyectoTIC.services.FilmService;
 
@@ -26,14 +28,16 @@ public class TicApplicationProyect {
 	@Autowired
 	private FilmService filmService;
 
-	public static void main(String[] args)
-	{
+	@Autowired
+	private CinemaService cinemaService;
+
+	public static void main(String[] args) throws DuplicateEntityException {
 		ApplicationContext ctx = SpringApplication.run(TicApplicationProyect.class, args);
 		TicApplicationProyect app = ctx.getBean(TicApplicationProyect.class);
 		app.runInCommandLine();
 	}
 
-	public void runInCommandLine() {
+	public void runInCommandLine() throws DuplicateEntityException {
 		Client newClient = clientService.addClient("email@email.com","persona1","xd", "21/10/2024","1234");
 
 		filmService.addFilm("Dune", "Denis Villeneuve", 155, "2021", "ciencia ficción, aventura");
@@ -41,6 +45,15 @@ public class TicApplicationProyect {
 		filmService.addFilm("Inception", "Christopher Nolan", 148, "2010", "cie ncia ficción, thriller");
 		filmService.addFilm("The Matrix", "Wachowski Sisters", 136, "1999", "acción, ciencia ficción");
 		filmService.addFilm("Interstellar", "Christopher Nolan", 169, "2014", "ciencia ficción, drama");
+
+		cinemaService.addCinema(1, 8, "Punta Carretas");
+		cinemaService.addCinema(2, 5, "Ciudad Vieja");
+		cinemaService.addCinema(3, 7, "Pocitos");
+		cinemaService.addCinema(4, 4, "Carrasco");
+		cinemaService.addCinema(5, 6, "Tres Cruces");
+		cinemaService.addCinema(6, 10, "Centro");
+		cinemaService.addCinema(7, 3, "Malvín");
+		cinemaService.addCinema(8, 6, "Buceo");
 
 		System.out.println("Ejecutando programa...");
 	}

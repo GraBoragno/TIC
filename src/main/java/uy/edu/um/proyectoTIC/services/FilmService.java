@@ -2,16 +2,12 @@ package uy.edu.um.proyectoTIC.services;
 
 import org.springframework.stereotype.Service;
 import uy.edu.um.proyectoTIC.entities.Film;
-import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.repository.FilmRepository;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Year;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,8 +26,8 @@ public class FilmService {
     }
 
     // los generos se pasan como un string, dsps se separan por coma y se meten a una lista
-    //no estoy muy segura que chequee que la lista de generos no sea vacia
-    //HAY QUE ARRGELAR LA PK
+    // no estoy muy segura que chequee que la lista de generos no sea vacia
+    // HAY QUE ARRGELAR LA PK
     public Film addFilm(String filmName, String directorName, Integer duration, String releaseYearDate, String genres)
     {
         Year releaseYear = Year.parse(releaseYearDate);
@@ -52,11 +48,8 @@ public class FilmService {
     // parsea el string de generos en una lista
     public List<String> parseGenres(String genres) {
         return Arrays.stream(genres.split(","))
-                .map(String::trim)
-                .map(genre -> genre.replaceAll("\\s+", ""))
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
     }
-
 
 }
