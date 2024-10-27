@@ -20,6 +20,7 @@ public class Broadcast {
     private Long broadcastId;
     private LocalDateTime dateTime;
     private Long broadcastPrice;
+    private Long centralId;
 
     @Transient  //No lo mapea en la base de datos
     @Builder.Default
