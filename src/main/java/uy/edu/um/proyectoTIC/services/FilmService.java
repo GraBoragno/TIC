@@ -1,5 +1,6 @@
 package uy.edu.um.proyectoTIC.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uy.edu.um.proyectoTIC.entities.Film;
 import uy.edu.um.proyectoTIC.repository.FilmRepository;
@@ -13,11 +14,9 @@ import java.util.stream.Collectors;
 @Service
 public class FilmService {
 
+    @Autowired
     private FilmRepository filmRepository;
-
-    public FilmService(FilmRepository filmRepository) {
-        this.filmRepository = filmRepository;
-    }
+    
 
     // devuelve todas las pelis disponibles en todos los cines solo filtra por fecha actual en adelante
     public List<Film> getAvailableFilms() {

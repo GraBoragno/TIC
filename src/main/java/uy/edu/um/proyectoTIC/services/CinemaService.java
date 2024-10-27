@@ -20,7 +20,8 @@ public class CinemaService {
 
     // agrega un cine nuevo, si el id existe tira DuplicateEntityException, si el id es vacio InvalidException
     // y si la cantidad de room es mayor a 10 tira InvalidRoomQtyException
-    public Cinema addCinema(Integer centralId, Integer roomQty, String neighborhood) throws DuplicateEntityException {
+    public Cinema addCinema(Integer centralId, Integer roomQty, String neighborhood) throws DuplicateEntityException
+    {
 
         if (centralId == null){
             throw new InvalidIdException("La Id es invalida");
@@ -33,7 +34,7 @@ public class CinemaService {
         }
 
         if(roomQty > 10){
-            throw new InvalidRoomQtyException("El cine ya existe");
+            throw new InvalidRoomQtyException("Excede el numero maximo de salas");
         }
 
         Cinema newCinema= Cinema.builder()

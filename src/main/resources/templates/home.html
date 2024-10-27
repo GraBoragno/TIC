@@ -2,17 +2,16 @@
     <meta charset="UTF-8">
     <title>home HTML</title>
 </head>
-<link rel="stylesheet" href="/tic.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="/Session.css" />
 <body class="bodyHome">
 
 <div class="account">
-    <div id="login">
-        <button id="loginBtn" onclick="location.href='/log-in'">
+    <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <button id="loginBtn" type="button" class="btn btn-outline-primary" onclick="location.href='/log-in'">
             Log In
         </button>
-    </div>
-    <div id="register">
-        <button id="registerBtn" onclick="location.href='/register'">
+        <button id="registerBtn" type="button" class="btn btn-outline-primary" onclick="location.href='/register/registerNew'">
             Register
         </button>
     </div>
