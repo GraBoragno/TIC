@@ -37,7 +37,7 @@ public class CinemaService {
             throw new InvalidRoomQtyException("Excede el numero maximo de salas");
         }
 
-        Cinema newCinema= Cinema.builder()
+        Cinema newCinema = Cinema.builder()
                 .centralId((long) centralId)
                 .roomQty(roomQty)
                 .neighborhood(neighborhood)

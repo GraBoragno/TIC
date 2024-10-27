@@ -19,7 +19,7 @@ public class RoomService {
     @Autowired
     private CinemaRepository cinemaRepository;
 
-
+    //agrega una room y tira EntityNotFoundException si no encuentra el cine
     public Room addRoom(Integer roomNbr, Integer centralId) throws EntityNotFoundException {
 
         Optional<Cinema> result = cinemaRepository.findById((long) centralId);

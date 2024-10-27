@@ -11,10 +11,7 @@ import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.exceptions.DuplicateEntityException;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
 import uy.edu.um.proyectoTIC.repository.ClientRepository;
-import uy.edu.um.proyectoTIC.services.CinemaService;
-import uy.edu.um.proyectoTIC.services.ClientService;
-import uy.edu.um.proyectoTIC.services.FilmService;
-import uy.edu.um.proyectoTIC.services.RoomService;
+import uy.edu.um.proyectoTIC.services.*;
 
 import java.time.LocalDate;
 
@@ -35,6 +32,9 @@ public class TicApplicationProyect {
 
 	@Autowired
 	private RoomService roomService;
+
+	@Autowired
+	private SnackService snackService;
 
 	public static void main(String[] args) throws DuplicateEntityException {
 		ApplicationContext ctx = SpringApplication.run(TicApplicationProyect.class, args);
@@ -70,6 +70,15 @@ public class TicApplicationProyect {
 		} catch (EntityNotFoundException e) {
 			System.out.println("Error: El cine no existe");
         }
+
+		try {
+			snackService.addSnack("Pop dulce", "200");
+			snackService.addSnack("Nachos", "250");
+			snackService.addSnack("Pop salado", "150");
+			snackService.addSnack("Nachos", "300");
+		} catch (DuplicateEntityException e) {
+			System.out.println("Error: Ya existe un snack con el mismo nombre.");
+		}
 
         System.out.println("Ejecutando programa...");
 	}
