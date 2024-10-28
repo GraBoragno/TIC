@@ -1,4 +1,130 @@
+/* Estilos generales */
+body {
+    background-color: #161616;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
+/* Encabezado */
+.header {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: #161616;
+}
+
+.header-logo {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Cartel de Now on Stream */
+.now-stream-banner {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.now-stream-banner img {
+    max-width: 90%;
+    border: 5px solid red;
+    border-radius: 10px;
+}
+
+/* Carrusel de películas */
+.movies-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.carousel-container {
+    display: flex;
+    gap: 20px;
+}
+
+.movie-item {
+    width: 150px;
+    height: 225px;
+    overflow: hidden;
+    border: 2px solid #cc0000;
+    border-radius: 10px;
+    background-color: #333333;
+}
+
+.movie-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.movie-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Botones de carrusel */
+.carousel-btn {
+    color: white;
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.prev-btn {
+    margin-right: 10px;
+}
+
+.next-btn {
+    margin-left: 10px;
+}
+
+/* Botón de Inicio de Sesión */
+.login-button, .register-button {
+    color: white;
+    background-color: #cc0000;
+    border: 1px solid #e60000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 20px;
+}
+
+.login-button:hover, .register-button:hover {
+    background-color: #e60000;
+}
+
+/* Offcanvas */
+.offcanvas-body {
+    background-color: black;
+    color: white;
+}
+
+.offcanvas-item {
+    background-color: #cc0000;
+    color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.offcanvas-item:hover {
+    background-color: #e60000;
+}
+
+/* Link de Logout */
+.logout-link {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+/* Estilos de la película en cuadrantes */
 .container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -6,7 +132,6 @@
     padding: 20px;
     background-color: #D0AB8A;
 }
-
 
 .column {
     /*background-image: url('filmRollVertical.png');*/
@@ -16,9 +141,8 @@
     justify-content: space-between;
     height: 100%;
     background-color: #BA8353;
-    padding: 5px
+    padding: 5px;
 }
-
 
 /* Each box */
 .box {
@@ -27,10 +151,11 @@
     margin-bottom: 20px;
 }
 
+/* Elementos comunes */
 .flex {
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
 }
 
 .titleBox {
@@ -49,12 +174,10 @@
     justify-content: center;
 }
 
-
 .account {
     display: flex;
     flex-direction: row-reverse;
 }
-
 
 .movies-grid {
     display: grid;
@@ -87,7 +210,6 @@ h1 {
     text-align: center;
 }
 
-
 .questions {
     display: flex;
     justify-content: center;
@@ -96,7 +218,7 @@ h1 {
     margin: 5%;
     /*gap: 2%;*/
     gap: 20px;
-    align-items: center
+    align-items: center;
 }
 
 .inputRegister {
@@ -107,22 +229,20 @@ h1 {
     /*width: 100%;*/
 }
 
-
 .registerQuestions {
     width: 150px;
     /*width: 30%;*/
-    text-align: left
+    text-align: left;
 }
 
 .homeButton {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 30%
+    width: 30%;
 }
 
-/*log in css*/
-
+/* Log in css */
 .questionsLogin {
     display: flex;
     justify-content: center;
@@ -131,7 +251,7 @@ h1 {
     margin: 5%;
     /*gap: 2%;*/
     gap: 20px;
-    align-items: center
+    align-items: center;
 }
 
 .inputRegisterLogin {
@@ -142,10 +262,8 @@ h1 {
     /*width: 100%;*/
 }
 
-
 .loginQuestions {
     width: 150px;
     /*width: 30%;*/
-    text-align: left
+    text-align: left;
 }
-
