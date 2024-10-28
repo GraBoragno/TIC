@@ -6,6 +6,7 @@ import uy.edu.um.proyectoTIC.entities.Film;
 
 import java.util.List;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 public interface FilmRepository extends JpaRepository<Film, Long> {
     @Query("""
@@ -17,9 +18,9 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
     List<Film> findAvailableFilms(LocalDateTime currentDate);
 
     @Query("""
-        SELECT f 
-        FROM Film f  
-        WHERE f.filmName > :filmName
-        """)
-    Film findByFilmName(String filmName);
+    SELECT f 
+    FROM Film f  
+    WHERE f.filmName = :filmName
+    """)
+    Optional<Film> findByFilmName(String filmName);
 }

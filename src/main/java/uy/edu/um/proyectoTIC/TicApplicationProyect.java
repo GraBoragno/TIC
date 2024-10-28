@@ -10,10 +10,7 @@ import org.springframework.stereotype.Component;
 import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.exceptions.DuplicateEntityException;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
-import uy.edu.um.proyectoTIC.repository.ClientRepository;
 import uy.edu.um.proyectoTIC.services.*;
-
-import java.time.LocalDate;
 
 @SpringBootApplication
 @Component
@@ -36,20 +33,24 @@ public class TicApplicationProyect {
 	@Autowired
 	private SnackService snackService;
 
-	public static void main(String[] args) throws DuplicateEntityException {
+	public static void main(String[] args) throws DuplicateEntityException{
 		ApplicationContext ctx = SpringApplication.run(TicApplicationProyect.class, args);
 		TicApplicationProyect app = ctx.getBean(TicApplicationProyect.class);
 		app.runInCommandLine();
 	}
 
-	public void runInCommandLine() throws DuplicateEntityException {
+	public void runInCommandLine() {
 		Client newClient = clientService.addClient("email@email.com","persona1","xd", "21/10/2024","1234");
 
-//		filmService.addFilm("Dune", "Denis Villeneuve", 155, "2021", "ciencia ficción, aventura");
-//		filmService.addFilm("Dune: Part Two", "Denis Villeneuve", 160, "2023", "ciencia ficción, aventura");
-//		filmService.addFilm("Inception", "Christopher Nolan", 148, "2010", "cie ncia ficción, thriller");
-//		filmService.addFilm("The Matrix", "Wachowski Sisters", 136, "1999", "acción, ciencia ficción");
-//		filmService.addFilm("Interstellar", "Christopher Nolan", 169, "2014", "ciencia ficción, drama");
+		try {
+			filmService.addFilm("Dune", "Denis Villeneuve", 155, "2021", "ciencia ficción, aventura");
+			filmService.addFilm("Dune: Part Two", "Denis Villeneuve", 160, "2023", "ciencia ficción, aventura");
+			filmService.addFilm("Inception", "Christopher Nolan", 148, "2010", "cie ncia ficción, thriller");
+			filmService.addFilm("The Matrix", "Wachowski Sisters", 136, "1999", "acción, ciencia ficción");
+			filmService.addFilm("Interstellar", "Christopher Nolan", 169, "2014", "ciencia ficción, drama");
+		} catch (DuplicateEntityException e) {
+			System.out.println("Error: Ya existe una pelicula con ese nombre.");
+		}
 
 		try {
 			cinemaService.addCinema(1, 8, "Punta Carretas");
@@ -65,8 +66,9 @@ public class TicApplicationProyect {
 		}
 
 		try {
-			roomService.addRoom(1, 1);
-			roomService.addRoom(1, 10);
+			roomService.createRoom(1, 1);
+			roomService.createRoom(2, 1);
+			roomService.createRoom(1, 10);
 		} catch (EntityNotFoundException e) {
 			System.out.println("Error: El cine no existe");
         }

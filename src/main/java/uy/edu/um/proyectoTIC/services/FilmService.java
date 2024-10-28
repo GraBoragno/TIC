@@ -3,8 +3,7 @@ package uy.edu.um.proyectoTIC.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uy.edu.um.proyectoTIC.entities.Film;
-import uy.edu.um.proyectoTIC.entities.users.Client;
-import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
+import uy.edu.um.proyectoTIC.exceptions.DuplicateEntityException;
 import uy.edu.um.proyectoTIC.repository.FilmRepository;
 
 import java.time.LocalDateTime;
@@ -31,13 +30,13 @@ public class FilmService {
     // no estoy muy segura que chequee que la lista de generos no sea vacia
     // HAY QUE ARRGELAR LA PK
     //hay que ver si es nulo el film
-    public Film addFilm(String filmName, String directorName, Integer duration, String releaseYearDate, String genres) throws EntityNotFoundException {
+    public Film addFilm(String filmName, String directorName, Integer duration, String releaseYearDate, String genres) throws DuplicateEntityException {
         Year releaseYear = Year.parse(releaseYearDate);
 
-        Film film = findByName(filmName);
+        Optional<Film> film = findByName(filmName);
 
-        if (film == null){
-            throw new EntityNotFoundException("dgd");
+        if (film != null){
+            throw new DuplicateEntityException("La pelicula con ese nombre ya existe");
         }
 
         List<String> genreList = parseGenres(genres);
@@ -60,9 +59,7 @@ public class FilmService {
                 .collect(Collectors.toList());
     }
 
-    public Film findByName(String name) {
-        Film film = filmRepository.findByFilmName(name);
-        return film;
+    public Optional<Film> findByName(String name) {
+        return filmRepository.findByFilmName(name);
     }
-
 }

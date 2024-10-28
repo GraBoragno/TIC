@@ -1,5 +1,7 @@
 package uy.edu.um.proyectoTIC.services;
 
+import jakarta.transaction.Transactional;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uy.edu.um.proyectoTIC.entities.Cinema;
@@ -21,7 +23,8 @@ public class RoomService {
     private CinemaRepository cinemaRepository;
 
     //agrega una room y tira EntityNotFoundException si no encuentra el cine
-    public Room addRoom(Integer roomNbr, Integer centralId) throws EntityNotFoundException
+    @Transactional
+    public Room createRoom(Integer roomNbr, Integer centralId) throws EntityNotFoundException
     {
 
         Optional<Cinema> result = cinemaRepository.findById((long) centralId);
@@ -31,9 +34,6 @@ public class RoomService {
         }
 
         Cinema cinema = result.get();
-        if (cinema.getRoomsCollection().size() == cinema.getRoomQty()){
-            throw new InvalidRoomQtyException("Capacidad maxima alcanzada");
-        }
 
         Room newRoom = Room.builder()
                 .roomNbr(roomNbr)

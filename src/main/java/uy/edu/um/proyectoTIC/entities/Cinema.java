@@ -23,10 +23,11 @@ public class Cinema {
     private String neighborhood;
 
     @Transient
-    @Builder.Default//Capaz esto no va, ya veremos
     private List<Snack> cinemaSnacks = new LinkedList<>(); //Usar un findAll() de Snack al crear la lista
 
-    @OneToMany(mappedBy = "cinemaRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cinemaRoom", cascade = CascadeType.ALL)
     @Builder.Default
     private List<Room> roomsCollection = new ArrayList<>();
+
+
 }
