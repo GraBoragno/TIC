@@ -55,12 +55,6 @@
     flex-direction: row-reverse;
 }
 
-.bodyHome {
-    background-image: url('nerd.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
 
 .movies-grid {
     display: grid;

@@ -81,34 +81,4 @@
 <div class="titleBox flex">WTF Cinema</div>
 
 
-<div class="moviesBox">
-    <div th:each="movie : ${movies}" class="movie-item">
-        <img src="/nerd.jpg" alt="Poster of ${movie.title}" />
-        <h2 th:text="${movie.filmName}">Movie Title</h2>
-        <p th:text="${movie.genres}">Movie Description</p>
-    </div>
-</div>
-
-
-<div class="imageTest">
-    <button id="nerdBtn">
-        DONT CLICK
-    </button>
-    <img src="/nerd.jpg" alt="Your Image" class="nerdImage" id="nerd" style="display: none;"/>
-
-    <script>
-        document.getElementById('nerdBtn').addEventListener('click', function() {
-            const img = document.getElementById('nerd');
-            if (img.style.display === 'none' || img.style.display === '') {
-                img.style.display = 'block';
-                this.textContent = 'wtf';
-            } else {
-                img.style.display = 'none';
-                this.textContent = 'DONT CLICK';
-            }});
-    </script>
-</div>
-
-
-
 </body>
