@@ -35,7 +35,8 @@ public class ClientService {
     }
 
 
-    public Client findByEmail(String email) throws EntityNotFoundException {
+    public Client findByEmail(String email) throws EntityNotFoundException
+    {
         Optional<Client> client = clientRepo.findById(email);
         if(client.isEmpty())
             throw new EntityNotFoundException("No existe el cliente");

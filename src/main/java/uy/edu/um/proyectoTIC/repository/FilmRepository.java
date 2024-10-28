@@ -15,4 +15,11 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
         WHERE b.dateTime > :currentDate
         """)
     List<Film> findAvailableFilms(LocalDateTime currentDate);
+
+    @Query("""
+        SELECT f 
+        FROM Film f  
+        WHERE f.filmName > :filmName
+        """)
+    Film findByFilmName(String filmName);
 }

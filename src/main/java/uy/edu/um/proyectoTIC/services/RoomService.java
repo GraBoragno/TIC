@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import uy.edu.um.proyectoTIC.entities.Cinema;
 import uy.edu.um.proyectoTIC.entities.Room;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
+import uy.edu.um.proyectoTIC.exceptions.InvalidRoomQtyException;
 import uy.edu.um.proyectoTIC.repository.CinemaRepository;
 import uy.edu.um.proyectoTIC.repository.RoomRepository;
 
@@ -20,7 +21,8 @@ public class RoomService {
     private CinemaRepository cinemaRepository;
 
     //agrega una room y tira EntityNotFoundException si no encuentra el cine
-    public Room addRoom(Integer roomNbr, Integer centralId) throws EntityNotFoundException {
+    public Room addRoom(Integer roomNbr, Integer centralId) throws EntityNotFoundException
+    {
 
         Optional<Cinema> result = cinemaRepository.findById((long) centralId);
 
@@ -28,10 +30,18 @@ public class RoomService {
             throw new EntityNotFoundException("El cine no existe");
         }
 
+        Cinema cinema = result.get();
+        if (cinema.getRoomsCollection().size() == cinema.getRoomQty()){
+            throw new InvalidRoomQtyException("Capacidad maxima alcanzada");
+        }
+
         Room newRoom = Room.builder()
                 .roomNbr(roomNbr)
-                .cinemaRoom(result.get())
+                .cinemaRoom(cinema)
                 .build();
+
+        cinema.getRoomsCollection().add(newRoom);
+        cinemaRepository.save(cinema);
 
         return roomRepository.save(newRoom);
     }

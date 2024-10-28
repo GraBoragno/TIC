@@ -4,12 +4,19 @@ package uy.edu.um.proyectoTIC.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uy.edu.um.proyectoTIC.entities.Broadcast;
+import uy.edu.um.proyectoTIC.entities.Cinema;
+import uy.edu.um.proyectoTIC.entities.Film;
+import uy.edu.um.proyectoTIC.entities.Room;
 import uy.edu.um.proyectoTIC.entities.users.Client;
+import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
 import uy.edu.um.proyectoTIC.repository.BroadcastRepository;
+import uy.edu.um.proyectoTIC.repository.CinemaRepository;
+import uy.edu.um.proyectoTIC.repository.FilmRepository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 
 @Service
@@ -17,21 +24,47 @@ public class BroadcastService {
 
     @Autowired
     private BroadcastRepository broadcastRepository;
+    @Autowired
+    private CinemaRepository cinemaRepository;
+    @Autowired
+    private FilmRepository filmRepository;
 
-    /*public Broadcast addBroadcast(String dateTimeS, Integer broadcastPrice, Integer roomNbr, Integer centralId, Integer filmCode)
-    {
+    public Broadcast addBroadcast(String dateTimeS, Integer broadcastPrice, Integer roomNbr, Integer centralId, Integer filmCode) throws EntityNotFoundException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(dateTimeS, formatter);
+
+        Optional<Cinema> cinemaAux = cinemaRepository.findById((long)centralId);
+        if (cinemaAux.isEmpty()){
+            throw new EntityNotFoundException("No existe el cine");
+        }
+        Cinema cinema = cinemaAux.get();
+
+        int index = -1;
+        for (int i = 0; i < cinema.getRoomsCollection().size(); i++) {
+            if (roomNbr == cinema.getRoomsCollection().get(i).getRoomNbr()){
+                index = i;
+            }
+        }
+
+        Room room = cinema.getRoomsCollection().get(index);
+
+        Optional<Film> filmAux = filmRepository.findById((long)filmCode);
+
+        if (filmAux.isEmpty()){
+            throw new EntityNotFoundException("No existe la pelicula");
+        }
+        Film film = filmAux.get();
 
         Broadcast newBroadcast = Broadcast.builder()
                 .dateTime(dateTime)
                 .broadcastPrice((long) broadcastPrice)
-                .hasRoom((long) roomNbr)
+                .hasRoom(room)
                 .centralId((long) centralId)
-                .broadcastFilm((long) filmCode)
+                .broadcastFilm(film)
                 .build();
 
         return broadcastRepository.save(newBroadcast);
-    }*/
+
+    }
 
 }
