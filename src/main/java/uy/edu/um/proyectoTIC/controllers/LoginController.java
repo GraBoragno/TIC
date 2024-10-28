@@ -25,6 +25,7 @@ public class LoginController {
     }
 
 
+
     @PostMapping("/log-in")
     public String login(@RequestParam String email, @RequestParam String password, HttpSession session) throws EntityNotFoundException
     {
@@ -38,3 +39,4 @@ public class LoginController {
     }
 
 }
+

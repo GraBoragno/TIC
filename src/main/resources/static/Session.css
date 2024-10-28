@@ -179,6 +179,15 @@ body {
     flex-direction: row-reverse;
 }
 
+
+.bodyHome {
+    background-image: url('cinema_background5.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+
 .movies-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
