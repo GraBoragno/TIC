@@ -34,6 +34,16 @@ public class ClientService {
         return clientRepo.save(newClient);
     }
 
+
+    public Client findByEmail(String email) throws EntityNotFoundException {
+        Optional<Client> client = clientRepo.findById(email);
+        if(client.isEmpty())
+            throw new EntityNotFoundException("No existe el cliente");
+        Client clientTemp = client.get();
+
+        return clientTemp;
+    }
+
     public Boolean UpdatePaymentMethod(String email, Long cardNbr) throws EntityNotFoundException
     {
         if (email == null || email.isEmpty() ){

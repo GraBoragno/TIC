@@ -45,11 +45,11 @@ public class TicApplicationProyect {
 	public void runInCommandLine() throws DuplicateEntityException {
 		Client newClient = clientService.addClient("email@email.com","persona1","xd", "21/10/2024","1234");
 
-		filmService.addFilm("Dune", "Denis Villeneuve", 155, "2021", "ciencia ficción, aventura");
-		filmService.addFilm("Dune: Part Two", "Denis Villeneuve", 160, "2023", "ciencia ficción, aventura");
-		filmService.addFilm("Inception", "Christopher Nolan", 148, "2010", "cie ncia ficción, thriller");
-		filmService.addFilm("The Matrix", "Wachowski Sisters", 136, "1999", "acción, ciencia ficción");
-		filmService.addFilm("Interstellar", "Christopher Nolan", 169, "2014", "ciencia ficción, drama");
+//		filmService.addFilm("Dune", "Denis Villeneuve", 155, "2021", "ciencia ficción, aventura");
+//		filmService.addFilm("Dune: Part Two", "Denis Villeneuve", 160, "2023", "ciencia ficción, aventura");
+//		filmService.addFilm("Inception", "Christopher Nolan", 148, "2010", "cie ncia ficción, thriller");
+//		filmService.addFilm("The Matrix", "Wachowski Sisters", 136, "1999", "acción, ciencia ficción");
+//		filmService.addFilm("Interstellar", "Christopher Nolan", 169, "2014", "ciencia ficción, drama");
 
 		try {
 			cinemaService.addCinema(1, 8, "Punta Carretas");

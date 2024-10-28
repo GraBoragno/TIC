@@ -1,0 +1,17 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.client-button, .login-button, .register-button {
+    background-color: #cc0000; /* Color de fondo para los botones */
+    color: white; /* Color del texto */
+    padding: 15px; /* Espaciado dentro del botón */
+    text-align: center; /* Centrar el texto */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+    transition: background-color 0.3s; /* Transición suave al cambiar el color */
+}
+
+.client-button:hover, .login-button:hover, .register-button:hover {
+    background-color: #e60000; /* Color de fondo más claro al pasar el ratón */
+}

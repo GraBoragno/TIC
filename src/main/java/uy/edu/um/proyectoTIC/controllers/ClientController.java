@@ -23,9 +23,9 @@ public class ClientController {
 
 
     @PostMapping("/registerNew")
-    public ResponseEntity<Client> addClient(@RequestParam String email, @RequestParam String name, @RequestParam String address, @RequestParam String birthdate,@RequestParam String password)
+    public String addClient(@RequestParam String email, @RequestParam String name, @RequestParam String address, @RequestParam String birthdate,@RequestParam String password)
     {
         Client newClient= clientService.addClient(email, name, address, birthdate, password);
-        return ResponseEntity.ok(newClient);
+        return "redirect:/log-in";
     }
 }

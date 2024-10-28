@@ -1,9 +1,12 @@
 package uy.edu.um.proyectoTIC.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.services.ClientService;
 import uy.edu.um.proyectoTIC.services.FilmService;
 
@@ -18,10 +21,19 @@ public class HomeController {
     private FilmService filmService;
 
     @GetMapping("/home")
-    public String home(Model model) {
-
+    public String home(Model model, HttpSession session)
+    {
+        Client user = (Client) session.getAttribute("user");
         model.addAttribute("movies", filmService.getAvailableFilms());
+        model.addAttribute("user", user); // Añade el usuario al modelo si esta en sesión
         return "home";
+    }
+
+    @PostMapping("/log-out")
+    public String logout(HttpSession session)
+    {
+        session.invalidate(); // Invalida la sesión para cerrar sesión
+        return "redirect:/log-in"; // Redirige al login después de logout
     }
 }
 
