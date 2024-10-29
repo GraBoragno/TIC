@@ -17,7 +17,7 @@ public class SnackService {
     private SnackRepository snackRepository;
 
     // agrega el snack, tira InvalidIdException si es nula y tira DuplicateEntityException si ya existe el snack
-    public Snack addSnack(String snackName, int snackPrice) throws DuplicateEntityException
+    public Snack addSnack(String snackName, String snackPrice) throws DuplicateEntityException
     {
         if (snackName == null || snackName.isEmpty()){
             throw new InvalidIdException("La Id es invalida");
