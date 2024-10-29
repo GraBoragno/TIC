@@ -33,12 +33,6 @@ public class FilmService {
     public Film addFilm(String filmName, String directorName, Integer duration, String releaseYearDate, String genres) throws DuplicateEntityException {
         Year releaseYear = Year.parse(releaseYearDate);
 
-        Optional<Film> film = findByName(filmName);
-
-        if (film != null){
-            throw new DuplicateEntityException("La pelicula con ese nombre ya existe");
-        }
-
         List<String> genreList = parseGenres(genres);
 
         Film newFilm = Film.builder()
