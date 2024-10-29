@@ -181,7 +181,6 @@ body {
 
 
 .bodyHome {
-    background-image: url('cinema_background5.jpeg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -277,8 +276,4 @@ h1 {
     /*width: 30%;*/
     text-align: left;
 }
-<<<<<<< HEAD
-=======
 
-/*home 2*/
->>>>>>> 5b98d7a (rebase4)

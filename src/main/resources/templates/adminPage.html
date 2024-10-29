@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Services List</title>
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Services</h2>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="addSnack-tab" data-toggle="tab" data-target="#addSnack" type="button" role="tab" aria-controls="addSnack" aria-selected="true">Add Snack</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="addCinema-tab" data-toggle="tab" data-target="#addCinema" type="button" role="tab" aria-controls="addCinema" aria-selected="false">Create Cinema</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="addRoom-tab" data-toggle="tab" data-target="#addRoom" type="button" role="tab" aria-controls="addRoom" aria-selected="false">Add Room</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="addBroadcast-tab" data-toggle="tab" data-target="#addBroadcast" type="button" role="tab" aria-controls="addBroadcast" aria-selected="false">Add Broadcast</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="addMovies-tab" data-toggle="tab" data-target="#addMovies" type="button" role="tab" aria-controls="addMovies" aria-selected="false">Add Movies</button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="addSnack" role="tabpanel" aria-labelledby="addSnack-tab" tabindex="0">
+            <div class="flex">
+               Register
+            </div>
+
+            <form action="falta path" method="POST">
+                <div class="questions">
+                    <div class="registerQuestions"> Snack Name: </div>
+                    <div class="inputRegister">
+                        <input type="text" id="snackName" name="snackName" placeholder="Enter snack name" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <div class="registerQuestions"> Snack Price: </div>
+                    <div class="inputRegister">
+                        <input type="number" id="snackPrice" name="snackPrice" placeholder="Enter snack price" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <button type="submit" class="client-button">Confirm</button>
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="addCinema" role="tabpanel" aria-labelledby="addCinema-tab" tabindex="0">
+            <div class="flex">
+                Register
+            </div>
+
+            <form action="falta path" method="POST">
+                <div class="questions">
+                    <div class="registerQuestions"> Central ID: </div>
+                    <div class="inputRegister">
+                        <input type="number" id="centralIdCinema" name="centralIdNewCinema" placeholder="Enter central ID" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <div class="registerQuestions"> Number of Rooms: </div>
+                    <div class="inputRegister">
+                        <input type="number" id="roomQty" name="roomQty" placeholder="Enter number of rooms" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <div class="registerQuestions"> Neighborhood: </div>
+                    <div class="inputRegister">
+                        <input type="text" id="neighborhood" name="neighborhood" placeholder="Enter neighborhood" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <button type="submit" class="client-button">Confirm</button>
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="addRoom" role="tabpanel" aria-labelledby="addRoom-tab" tabindex="0">
+            <div class="flex">
+                Register
+            </div>
+
+            <form action="falta path" method="POST">
+                <div class="questions">
+                    <div class="registerQuestions"> Room Number: </div>
+                    <div class="inputRegister">
+                        <input type="number" id="roomNbrRoom" name="roomNbrRoom" placeholder="Enter room number" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <div class="registerQuestions"> Central ID: </div>
+                    <div class="inputRegister">
+                        <input type="number" id="centralIdRoom" name="centralIdRoom" placeholder="Enter central ID" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <button type="submit" class="client-button">Confirm</button>
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="addBroadcast" role="tabpanel" aria-labelledby="addBroadcast-tab" tabindex="0">
+            <div class="flex">
+                Register
+            </div>
+
+            <form action="falta path" method="POST">
+                <div class="questions">
+                    <div class="registerQuestions"> Broadcast Date and Time: </div>
+                    <div class="inputRegister">
+                        <input type="text" id="dateTimeS" name="dateTimeS" placeholder="Enter date and time" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <div class="registerQuestions"> Broadcast Price: </div>
+                    <div class="inputRegister">
+                        <input type="number" id="broadcastPrice" name="broadcastPrice" placeholder="Enter price" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <div class="registerQuestions"> Room Number: </div>
+                    <div class="inputRegister">
+                        <input type="number" id="roomNbrBroadcast" name="roomNbrBroadcast" placeholder="Enter room number" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <div class="registerQuestions"> Central ID: </div>
+                    <div class="inputRegister">
+                        <input type="number" id="centralIdBroadcast" name="centralIdBroadcast" placeholder="Enter central ID" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <div class="registerQuestions"> Film Code: </div>
+                    <div class="inputRegister">
+                        <input type="number" id="filmCode" name="filmCode" placeholder="Enter film code" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <button type="submit" class="client-button">Confirm</button>
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="addMovies" role="tabpanel" aria-labelledby="addMovies-tab" tabindex="0">
+            <div class="flex">
+                Register
+            </div>
+
+            <form action="falta path" method="POST">
+                <div class="questions">
+                    <div class="registerQuestions"> Film Name: </div>
+                    <div class="inputRegister">
+                        <input type="text" id="filmName" name="filmName" placeholder="Enter film name" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <div class="registerQuestions"> Director Name: </div>
+                    <div class="inputRegister">
+                        <input type="text" id="directorName" name="directorName" placeholder="Enter director name" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <div class="registerQuestions"> Duration (minutes): </div>
+                    <div class="inputRegister">
+                        <input type="number" id="duration" name="duration" placeholder="Enter duration" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <div class="registerQuestions"> Release Year: </div>
+                    <div class="inputRegister">
+                        <input type="text" id="releaseYearDate" name="releaseYearDate" placeholder="Enter release year" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <div class="registerQuestions"> Genres: </div>
+                    <div class="inputRegister">
+                        <input type="text" id="genres" name="genres" placeholder="Enter genres (comma separated)" required><br>
+                    </div>
+                </div>
+                <div class="questions">
+                    <button type="submit" class="client-button">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
