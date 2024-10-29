@@ -19,7 +19,7 @@ public class Snack {
     @Id
     private String snackName;
 
-    private String snackPrice;
+    private int snackPrice;
 
     @ManyToMany(mappedBy = "snacks")
     private List<Ticket> tickets = new ArrayList<>();

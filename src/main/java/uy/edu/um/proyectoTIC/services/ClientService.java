@@ -34,7 +34,6 @@ public class ClientService {
         return clientRepo.save(newClient);
     }
 
-
     public Client findByEmail(String email) throws EntityNotFoundException
     {
         Optional<Client> client = clientRepo.findById(email);
@@ -43,6 +42,49 @@ public class ClientService {
         Client clientTemp = client.get();
 
         return clientTemp;
+    }
+
+    public Client UpdateName(String email,String name) throws EntityNotFoundException
+    {
+        if (name == null)
+                throw new InvalidIdException("El nombre no puede ser vacio");
+
+         Client client = this.findByEmail(email);   //Ya chequea que exista el cliente
+         client.setName(name);
+         clientRepo.save(client);
+         return clientRepo.save(client);
+    }
+
+    public Client UpdateAddress(String email,String address) throws EntityNotFoundException
+    {
+        if (address == null)
+            throw new InvalidIdException("El nombre no puede ser vacio");
+
+        Client client = this.findByEmail(email);
+        client.setAddress(address);
+        return clientRepo.save(client);
+    }
+
+    public Client UpdateDate(String email,String date) throws EntityNotFoundException
+    {
+        if (date == null)
+            throw new InvalidIdException("Fecha no valida");
+
+        Client client = this.findByEmail(email);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate birthDate = LocalDate.parse(date, formatter);
+        client.setBirthdate(birthDate);
+        return clientRepo.save(client);
+    }
+
+    public Client UpdatePassword(String email, String password) throws EntityNotFoundException
+    {
+        if (password == null || password.length() < 8)
+            throw new InvalidIdException("Contraseña no apta");
+
+        Client client = this.findByEmail(email);
+        client.setPassword(password);
+        return clientRepo.save(client);
     }
 
     public Boolean UpdatePaymentMethod(String email, Long cardNbr) throws EntityNotFoundException
@@ -56,7 +98,7 @@ public class ClientService {
         }
 
         Optional<Client> result = clientRepo.findById(email);
-        Boolean success = false;
+        boolean success = false;
 
         if(result.isEmpty()){
             throw new EntityNotFoundException("El usuario no existe");
@@ -69,7 +111,6 @@ public class ClientService {
         }
         return success;
     }
-
 
     //Usa el algoritmo de Luhn
     private boolean cardNbrValidator(Long cardNbr)

@@ -74,10 +74,10 @@ public class TicApplicationProyect {
         }
 
 		try {
-			snackService.addSnack("Pop dulce", "200");
-			snackService.addSnack("Nachos", "250");
-			snackService.addSnack("Pop salado", "150");
-			snackService.addSnack("Nachos", "300");
+			snackService.addSnack("Pop dulce", 200);
+			snackService.addSnack("Nachos", 250);
+			snackService.addSnack("Pop salado", 150);
+			snackService.addSnack("Nachos", 300);
 		} catch (DuplicateEntityException e) {
 			System.out.println("Error: Ya existe un snack con el mismo nombre.");
 		}
