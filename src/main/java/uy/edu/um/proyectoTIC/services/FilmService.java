@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uy.edu.um.proyectoTIC.entities.Film;
 import uy.edu.um.proyectoTIC.exceptions.DuplicateEntityException;
+import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
 import uy.edu.um.proyectoTIC.repository.FilmRepository;
 
 import java.time.LocalDateTime;
@@ -30,8 +31,11 @@ public class FilmService {
     // no estoy muy segura que chequee que la lista de generos no sea vacia
     // HAY QUE ARRGELAR LA PK
     //hay que ver si es nulo el film
-    public Film addFilm(String filmName, String directorName, Integer duration, String releaseYearDate, String genres) throws DuplicateEntityException {
+    public Film addFilm(String filmName, String directorName, Integer duration, String releaseYearDate, String genres) throws DuplicateEntityException, EntityNotFoundException {
         Year releaseYear = Year.parse(releaseYearDate);
+
+        if (genres.length() == 0)
+            throw new EntityNotFoundException("No hay genero");
 
         List<String> genreList = parseGenres(genres);
 

@@ -13,10 +13,14 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Seat {
     @Id
-    private String rowColumn;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long seatId;
+
+    private Long seatRow;
+
+    private Long seatColumn;
 
     @ManyToMany(mappedBy = "availableSeats")
     private List<Broadcast> broadcasts = new ArrayList<>();

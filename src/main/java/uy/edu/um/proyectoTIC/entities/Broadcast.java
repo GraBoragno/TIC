@@ -22,9 +22,6 @@ public class Broadcast {
     private Long broadcastPrice;
     private Long centralId;
 
-    @Transient  //No lo mapea en la base de datos
-    @Builder.Default
-    private int[][] seats = new int[15][10];
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "roomNbr") //No va el Buider.Default porque se especifica el cine al crearla

@@ -41,6 +41,4 @@ public class Ticket {
     @JoinTable(name = "snackContained", joinColumns = @JoinColumn(name = "ticketCode"), inverseJoinColumns = @JoinColumn(name = "snackName"))
     private List<Snack> snacks = new ArrayList<>();
 
-
-
 }
