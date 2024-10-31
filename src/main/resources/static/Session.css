@@ -125,13 +125,13 @@ body {
 }
 
 /* Estilos de la película en cuadrantes */
-.container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 20px;
-    background-color: #D0AB8A;
-}
+/*.container {*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(4, 1fr);*/
+/*    gap: 20px;*/
+/*    padding: 20px;*/
+/*    background-color: #D0AB8A;*/
+/*}*/
 
 .column {
     /*background-image: url('filmRollVertical.png');*/
@@ -276,5 +276,12 @@ h1 {
     width: 150px;
     /*width: 30%;*/
     text-align: left;
+}
+
+/*admin*/
+
+.nowrap {
+    white-space: nowrap;
+    display: inline-block; /* Prevent wrapping */
 }
 

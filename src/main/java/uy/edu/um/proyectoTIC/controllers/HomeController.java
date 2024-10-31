@@ -25,7 +25,10 @@ public class HomeController {
     {
         Client user = (Client) session.getAttribute("user");
         model.addAttribute("movies", filmService.getAvailableFilms());
-        model.addAttribute("user", user); // Añade el usuario al modelo si esta en sesión
+        model.addAttribute("user", user);// Añade el usuario al modelo si esta en sesión
+        if (user != null) {
+        model.addAttribute("isAdmin", isAdmin(user.getEmail()));
+        }
         return "home";
     }
 
@@ -34,6 +37,10 @@ public class HomeController {
     {
         session.invalidate(); // Invalida la sesión para cerrar sesión
         return "redirect:/log-in"; // Redirige al login después de logout
+    }
+
+    private boolean isAdmin(String email) {
+        return email.endsWith("@wtf.com");
     }
 }
 

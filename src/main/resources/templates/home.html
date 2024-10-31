@@ -86,6 +86,10 @@
                     <button class="client-button" type="button" id="userDropdown" data-bs-toggle="offcanvas" data-bs-target="#offcanvasUser" aria-controls="offcanvasUser">
                         <span th:text="${user.name}"></span>
                     </button>
+
+                    <button th:if="${isAdmin}" id="adminBtn" class="client-button" onclick="location.href='/adminPage'">
+                        <span>Admin Services</span>
+                    </button>
                 </div>
             </span>
         <span th:if="${user == null}">

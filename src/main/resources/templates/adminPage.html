@@ -1,37 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/Session.css">
+    <link rel="stylesheet" href="/static/Buttons.css">
     <title>Services List</title>
 </head>
 <body>
 
+<div id="home2" class="homeButton">
+    <button id="homeBtn" class="client-button" onclick="location.href='/home'"> <!-- Aplicar la clase de estilo -->
+        Home
+    </button>
+</div>
+
 <div class="container mt-4">
     <h2>Services</h2>
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="addSnack-tab" data-toggle="tab" data-target="#addSnack" type="button" role="tab" aria-controls="addSnack" aria-selected="true">Add Snack</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="addCinema-tab" data-toggle="tab" data-target="#addCinema" type="button" role="tab" aria-controls="addCinema" aria-selected="false">Create Cinema</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="addRoom-tab" data-toggle="tab" data-target="#addRoom" type="button" role="tab" aria-controls="addRoom" aria-selected="false">Add Room</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="addBroadcast-tab" data-toggle="tab" data-target="#addBroadcast" type="button" role="tab" aria-controls="addBroadcast" aria-selected="false">Add Broadcast</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="addMovies-tab" data-toggle="tab" data-target="#addMovies" type="button" role="tab" aria-controls="addMovies" aria-selected="false">Add Movies</button>
-        </li>
-    </ul>
+    <div class="navbar">
+        <ul class="nav nav-tabs d-flex flex-nowrap overflow-auto" id="myTab" role="tablist">
+            <li class="nav-item nowrap" role="presentation">
+                <button class="nav-link active" id="addSnack-tab" data-toggle="tab" data-target="#addSnack" type="button" role="tab" aria-controls="addSnack" aria-selected="true">Add Snack</button>
+            </li>
+            <li class="nav-item nowrap" role="presentation">
+                <button class="nav-link" id="addCinema-tab" data-toggle="tab" data-target="#addCinema" type="button" role="tab" aria-controls="addCinema" aria-selected="false">Create Cinema</button>
+            </li>
+            <li class="nav-item nowrap" role="presentation">
+                <button class="nav-link" id="addRoom-tab" data-toggle="tab" data-target="#addRoom" type="button" role="tab" aria-controls="addRoom" aria-selected="false">Add Room</button>
+            </li>
+            <li class="nav-item nowrap" role="presentation">
+                <button class="nav-link" id="addBroadcast-tab" data-toggle="tab" data-target="#addBroadcast" type="button" role="tab" aria-controls="addBroadcast" aria-selected="false">Add Broadcast</button>
+            </li>
+            <li class="nav-item nowrap" role="presentation">
+                <button class="nav-link" id="addMovies-tab" data-toggle="tab" data-target="#addMovies" type="button" role="tab" aria-controls="addMovies" aria-selected="false">Add Movies</button>
+            </li>
+        </ul>
+    </div>
 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="addSnack" role="tabpanel" aria-labelledby="addSnack-tab" tabindex="0">
             <div class="flex">
-               Register
+                Register
             </div>
 
             <form action="falta path" method="POST">
@@ -189,10 +199,16 @@
     </div>
 </div>
 
+<div>
+    <form action="/test" method="POST">
+        <div class="questions">
+            <input type="submit" class="client-button" value="Test"> <!-- Aplicar la clase de estilo -->
+        </div>
+    </form>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-

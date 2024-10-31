@@ -30,7 +30,7 @@ public class LoginController {
     public String login(@RequestParam String email, @RequestParam String password, HttpSession session) throws EntityNotFoundException
     {
         Client client = clientService.findByEmail(email);
-        if (client != null) {
+        if (client != null && client.getPassword() != null && client.getPassword().equals(password)) {
             session.setAttribute("user", client); // Guarda el usuario en la sesión
             return "redirect:/home";
         } else {
