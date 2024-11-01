@@ -22,9 +22,9 @@ public class FilmService {
     
 
     // devuelve todas las pelis disponibles en todos los cines solo filtra por fecha actual en adelante
-    public List<Film> getAvailableFilms() {
+    public List<Film> getAvailableFilmsByDate() {
         LocalDateTime now = LocalDateTime.now();
-        return filmRepository.findAvailableFilms(now);
+        return filmRepository.findAvailableFilmsByDate(now);
     }
 
     // los generos se pasan como un string, dsps se separan por coma y se meten a una lista
@@ -59,5 +59,9 @@ public class FilmService {
 
     public Optional<Film> findByName(String name) {
         return filmRepository.findByFilmName(name);
+    }
+
+    public List<Film> getAvailableFilms() {
+        return filmRepository.findAvailableFilms();
     }
 }

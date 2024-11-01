@@ -128,10 +128,12 @@ public class TicApplicationProyect {
 //			System.out.println("Error: No se encontraron algunos snacks.");
 //		}
 
-		String dir = "10/10/2000";
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate birthDate = LocalDate.parse(dir, formatter);
-		Admin admin = adminService.createAdmin("admin1@whatthefun.com","Pablo","casa de pablo",birthDate,"pablo1234");
+
+//		Admin admin = adminService.createAdmin("admin1@whatthefun.com","Pablo","casa de pablo","10/10/2000","pablo1234");
+
+//		for (int i = 0; i < filmService.getAvailableFilms().size(); i++) {
+//			System.out.println(filmService.getAvailableFilms().get(i).getFilmName());
+//		}
 
         System.out.println("Ejecutando programa...");
 	}

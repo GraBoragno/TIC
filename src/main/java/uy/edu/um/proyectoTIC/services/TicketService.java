@@ -25,6 +25,7 @@ public class TicketService {
     private ClientRepository clientRepository;
 
     //Las listas de combo y Snack se pasan siempre, incluso vacias
+    //Agregarlo a la lista del ticket del cliente
     public Ticket buyTicket(int broadcastId, int row, int column, String email, List<Combo> combos, List<Snack> snacks)
     {
         Optional<Broadcast> broadcastAux = broadcastRepository.findById((long) broadcastId);

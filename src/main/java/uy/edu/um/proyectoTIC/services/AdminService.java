@@ -78,7 +78,7 @@ public class AdminService {
         return comboService.addCombo(comboPrice,snackList);
     }
 
-    public Admin createAdmin(String email, String name, String address, LocalDate birthdate, String password) throws DuplicateEntityException
+    public Admin createAdmin(String email, String name, String address, String birthdate, String password) throws DuplicateEntityException
     {
         if (!email.endsWith("@whatthefun.com"))
             throw new InvalidIdException("El email del administrador debe terminar en \"@whatthefun.com\"");
@@ -88,18 +88,18 @@ public class AdminService {
         }
 
         if (adminRepository.findById(email).isPresent()){
-            throw new DuplicateEntityException("Ya existe un adminostrador con ese email");
+            throw new DuplicateEntityException("Ya existe un administrador con ese email");
         }
 
         //Cambiar el birthdate a String
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//        LocalDate birthDate = LocalDate.parse(birthdate, formatter);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate birthDate = LocalDate.parse(birthdate, formatter);
 
         Admin admin = Admin.builder()
                 .email(email)
                 .name(name)
                 .address(address)
-                .birthdate(birthdate)
+                .birthdate(birthDate)
                 .password(password)
                 .build();
 

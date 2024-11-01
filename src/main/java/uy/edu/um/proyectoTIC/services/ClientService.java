@@ -134,4 +134,6 @@ public class ClientService {
         return (sum % 10 == 0);
     }
 
+    //puntuar peli
+
 }

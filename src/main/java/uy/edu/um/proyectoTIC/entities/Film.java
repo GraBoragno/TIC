@@ -28,6 +28,10 @@ public class Film {
 
     private Year releaseYear;
 
+    //cantidad de personas que puntuaron arranca en 0
+
+    //puntuacion total
+
     @ElementCollection
     @Builder.Default
     private List<String> genres = new ArrayList<>();
