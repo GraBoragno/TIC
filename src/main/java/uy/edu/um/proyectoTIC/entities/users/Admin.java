@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class Admin extends Account {
 
     @Builder
-    public Admin(String email, String name, String address, LocalDate birthdate,String password, Long cardNbr) {
+    public Admin(String email, String name, String address, LocalDate birthdate,String password) {
         super(email, name, address, birthdate,password);
     }
 }

@@ -35,8 +35,8 @@ public class HomeController {
     @PostMapping("/log-out")
     public String logout(HttpSession session)
     {
-        session.invalidate(); // Invalida la sesión para cerrar sesión
-        return "redirect:/log-in"; // Redirige al login después de logout
+        session.invalidate();
+        return "redirect:/log-in";
     }
 
     private boolean isAdmin(String email) {

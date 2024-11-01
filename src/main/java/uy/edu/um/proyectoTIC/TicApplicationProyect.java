@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import uy.edu.um.proyectoTIC.entities.Combo;
 import uy.edu.um.proyectoTIC.entities.Snack;
+import uy.edu.um.proyectoTIC.entities.users.Admin;
 import uy.edu.um.proyectoTIC.exceptions.*;
 import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.exceptions.DuplicateEntityException;
@@ -16,6 +17,8 @@ import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
 import uy.edu.um.proyectoTIC.repository.SnackRepository;
 import uy.edu.um.proyectoTIC.services.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @SpringBootApplication
@@ -47,6 +50,8 @@ public class TicApplicationProyect {
 
 	@Autowired
 	private SnackRepository snackRepository;
+    @Autowired
+    private AdminService adminService;
 
 
 	public static void main(String[] args) throws DuplicateEntityException{
@@ -55,7 +60,7 @@ public class TicApplicationProyect {
 		app.runInCommandLine();
 	}
 
-	public void runInCommandLine() {
+	public void runInCommandLine() throws DuplicateEntityException {
 //		Client newClient = clientService.addClient("email@email.com","persona1","xd", "21/10/2024","1234");
 //
 //		try {
@@ -114,15 +119,19 @@ public class TicApplicationProyect {
 //			System.out.println("Error: Ya existe ese asiento");
 //		}
 
-		try {
-			List<Snack> allSnacks = snackRepository.findAll();
+//		try {
+//			List<Snack> allSnacks = snackRepository.findAll();
+//
+//			Combo combo1 = comboService.addCombo(500, allSnacks);
+//
+//		} catch (EntityNotFoundException e) {
+//			System.out.println("Error: No se encontraron algunos snacks.");
+//		}
 
-			Combo combo1 = comboService.addCombo(500, allSnacks);
-
-		} catch (EntityNotFoundException e) {
-			System.out.println("Error: No se encontraron algunos snacks.");
-		}
-
+		String dir = "10/10/2000";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate birthDate = LocalDate.parse(dir, formatter);
+		Admin admin = adminService.createAdmin("admin1@whatthefun.com","Pablo","casa de pablo",birthDate,"pablo1234");
 
         System.out.println("Ejecutando programa...");
 	}
