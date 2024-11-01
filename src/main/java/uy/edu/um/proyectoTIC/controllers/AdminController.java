@@ -22,18 +22,16 @@ public class AdminController {
         return "adminPage";
     }
 
-    @PostMapping("/test")
-    public String test(Model model, HttpSession session) throws EntityNotFoundException
-    {
-        Client user = (Client) session.getAttribute("user");
-        if (!isAdmin(user.getEmail())){
-            return "redirect:/home";
-        }
-        return "redirect:/adminPage";
-    }
+//    @PostMapping("/test")
+//    public String test(Model model, HttpSession session) throws EntityNotFoundException
+//    {
+//        Client user = (Client) session.getAttribute("user");
+//        if (!isAdmin(user.getEmail())){
+//            return "redirect:/home";
+//        }
+//        return "redirect:/adminPage";
+//    }
 
-    private boolean isAdmin(String email) {
-        return email.endsWith("@whatthefun.com");
-    }
 }
+
 
