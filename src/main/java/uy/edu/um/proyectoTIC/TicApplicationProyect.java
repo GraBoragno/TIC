@@ -129,11 +129,13 @@ public class TicApplicationProyect {
 //		}
 
 
+
 //		Admin admin = adminService.createAdmin("admin1@whatthefun.com","Pablo","casa de pablo","10/10/2000","pablo1234");
 
 //		for (int i = 0; i < filmService.getAvailableFilms().size(); i++) {
 //			System.out.println(filmService.getAvailableFilms().get(i).getFilmName());
 //		}
+
 
         System.out.println("Ejecutando programa...");
 	}

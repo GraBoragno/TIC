@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+
+::selection {
+    background: transparent;
+    color: inherit;
+}
+::-moz-selection {
+    background: transparent;
+    color: inherit;
+}
+
+body {
+    font-family: 'Lato', 'sans-serif';
+    background-color: #242333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #fff;
+    margin: 0;
+}
+
+.movie-container label {
+    margin-right: 10px;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.movie-container select {
+    padding: 5px;
+    border-radius: 4px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    font-size: 14px;
+}
+
+.showcase {
+    border-radius: 7px;
+    display: flex;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    list-style: none;
+    font-weight: 500;
+    margin: 20px 0;
+    color: #777;
+}
+
+.showcase li {
+    margin: 0 10px;
+}
+
+.showcase li small {
+    margin-left: 3px;
+}
+
+.seat {
+    height: 13px;
+    width: 13px;
+    background-color: #777;
+    display: inline-block;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.seat.selected {
+    background-color: rgb(115, 115, 253);
+}
+
+.seat.occupied {
+    background-color: red;
+}
+
+.container {
+    width: 200px;
+    perspective: 1000px;
+}
+
+
+
+.row .seat:nth-of-type(2) {
+    margin-right: 10px;
+}
+
+.row .seat:nth-last-of-type(2) {
+    margin-left: 10px;
+}
+
+.container .seat {
+    margin-left: 2px;
+}
+
+.container .seat:not(.occupied):hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.text span {
+    color: rgb(115, 115, 253);
+}
