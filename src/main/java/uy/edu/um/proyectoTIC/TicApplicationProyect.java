@@ -50,8 +50,12 @@ public class TicApplicationProyect {
 
 	@Autowired
 	private SnackRepository snackRepository;
+
     @Autowired
     private AdminService adminService;
+
+	@Autowired
+	private BroadcastService broadcastService;
 
 
 	public static void main(String[] args) throws DuplicateEntityException{
@@ -97,7 +101,7 @@ public class TicApplicationProyect {
 //		} catch (EntityNotFoundException e) {
 //			System.out.println("Error: El cine no existe");
 //        }
-//
+
 //		try {
 //			snackService.addSnack("Pop dulce", "200");
 //			snackService.addSnack("Nachos", "250");
@@ -136,8 +140,35 @@ public class TicApplicationProyect {
 //			System.out.println(filmService.getAvailableFilms().get(i).getFilmName());
 //		}
 
+//		try {
+//			roomService.createRoom(8, 1);
+//			roomService.createRoom(1, 3);
+//			roomService.createRoom(1, 4);
+//			roomService.createRoom(1, 5);
+//			roomService.createRoom(1, 6);
+//			roomService.createRoom(1, 7);
+//			roomService.createRoom(1, 8);
+//		} catch (EntityNotFoundException e) {
+//			System.out.println("Error: El cine no existe");
+//		}
 
-        System.out.println("Ejecutando programa...");
+		try {
+			broadcastService.addBroadcast("10/11/2024 18:00", 250, 1, 1, 1);
+			broadcastService.addBroadcast("10/11/2024 20:30", 300, 2, 2, 2);
+			broadcastService.addBroadcast("11/11/2024 19:00", 200, 1, 3, 3);
+			broadcastService.addBroadcast("11/11/2024 21:30", 280, 8, 1, 4);
+			broadcastService.addBroadcast("12/11/2024 17:00", 300, 3, 4, 5);
+			broadcastService.addBroadcast("12/11/2024 20:30", 250, 1, 1, 6);
+			broadcastService.addBroadcast("13/11/2024 18:00", 220, 2, 2, 7);
+			broadcastService.addBroadcast("13/11/2024 21:30", 280, 10, 1, 8);
+
+		} catch (EntityNotFoundException e) {
+			System.out.println("Error al agregar la emisión: " + e.getMessage());
+		}
+
+
+
+		System.out.println("Ejecutando programa...");
 	}
 
 }
