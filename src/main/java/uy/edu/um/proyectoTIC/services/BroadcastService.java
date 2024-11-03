@@ -16,6 +16,7 @@ import uy.edu.um.proyectoTIC.repository.FilmRepository;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +38,7 @@ public class BroadcastService {
         if (cinemaAux.isEmpty()){
             throw new EntityNotFoundException("No existe el cine");
         }
+
         Cinema cinema = cinemaAux.get();
 
         int index = -1;
@@ -65,6 +67,18 @@ public class BroadcastService {
 
         return broadcastRepository.save(newBroadcast);
 
+    }
+
+    public List<Broadcast> getBroadcastsByFilmName(String filmName) {
+        return broadcastRepository.findByFilmNameBroadcast(filmName, LocalDateTime.now());
+    }
+
+    public List<Broadcast> findByFilmAndCinema(String filmName, Long centralId) {
+        return broadcastRepository.findByFilmCodeAndCentralId(filmName, centralId, LocalDateTime.now());
+    }
+
+    public List<Broadcast> findByFilmAndCinemaAndTime(Long filmCode, Long centralId, LocalDateTime dateTime) {
+        return broadcastRepository.findByFilmCodeAndCentralIdAndDateTime(filmCode, centralId, dateTime);
     }
 
 }
