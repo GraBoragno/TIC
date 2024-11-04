@@ -134,8 +134,6 @@ body {
 /*}*/
 
 .column {
-    /*background-image: url('filmRollVertical.png');*/
-    /*background-repeat: repeat;*/
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -294,8 +292,7 @@ h1 {
     font-size: 26px;
     font-weight: bold;
     text-align: center;
-<<<<<<< HEAD
-    margin-bottom: 25px;
+    margin-bottom: 40px;
 }
 
 .titleLog {
