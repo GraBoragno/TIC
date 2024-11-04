@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import uy.edu.um.proyectoTIC.entities.Combo;
+import uy.edu.um.proyectoTIC.entities.Film;
 import uy.edu.um.proyectoTIC.entities.Snack;
 import uy.edu.um.proyectoTIC.entities.users.Admin;
 import uy.edu.um.proyectoTIC.exceptions.*;
@@ -20,6 +21,7 @@ import uy.edu.um.proyectoTIC.services.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 @Component
@@ -161,9 +163,28 @@ public class TicApplicationProyect {
 //			System.out.println("Error al agregar la emisión: " + e.getMessage());
 //		}
 
+//		try {
+//			filmService.addFilm("Parasite", "Bong Joon-ho", 132, "2019", "drama, thriller");
+//			filmService.addFilm("Pulp Fiction", "Quentin Tarantino", 154, "1994", "crimen, drama");
+//			filmService.addFilm("Fight Club", "David Fincher", 139, "1999", "drama, thriller");
+//			filmService.addFilm("The Godfather", "Francis Ford Coppola", 175, "1972", "crimen, drama");
+//
+//		} catch (DuplicateEntityException | EntityNotFoundException e) {
+//			System.out.println("Error: Ya existe una pelicula con ese nombre.");
+//		}
+
+//        Optional<Film> parasite = filmService.findByName("Parasite");
+//        Optional<Film> pulpFiction = filmService.findByName("Pulp Fiction");
+//        Optional<Film> fightClub = filmService.findByName("Fight Club");
+//        Optional<Film> theGodfather = filmService.findByName("The Godfather");
+//
+//        parasite.ifPresent(adminService::deleteFilm);
+//        pulpFiction.ifPresent(adminService::deleteFilm);
+//        fightClub.ifPresent(adminService::deleteFilm);
+//        theGodfather.ifPresent(adminService::deleteFilm);
 
 
-		System.out.println("Ejecutando programa...");
+        System.out.println("Ejecutando programa...");
 	}
 
 }
