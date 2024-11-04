@@ -70,8 +70,9 @@ public class FilmService {
     {
         Optional<Film> filmAux = filmRepository.findById(filmCode);
         Film film = filmAux.get();
-        float prevCounter = film.getScoreCounter();
-        film.setScoreCounter(film.getScoreCounter()+1);
+        int prevCounter = film.getScoreCounter();
+
+        film.setScoreCounter(prevCounter+1);
         film.setScore(((film.getScore()*prevCounter)+score)/film.getScoreCounter());
         filmRepository.save(film);
     }
