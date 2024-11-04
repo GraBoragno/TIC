@@ -6,9 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import uy.edu.um.proyectoTIC.entities.Film;
 import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.services.ClientService;
 import uy.edu.um.proyectoTIC.services.FilmService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -27,7 +31,17 @@ public class HomeController {
     {
         //Cambiar
         Client user = (Client) session.getAttribute("user");
-        model.addAttribute("movies", filmService.getAvailableFilms());
+
+        // Obtiene todas las películas disponibles
+        List<Film> films = filmService.getAvailableFilms();
+
+        // Divide las películas en grupos de 6
+        List<List<Film>> filmGroups = new ArrayList<>();
+        for (int i = 0; i < films.size(); i += 6) {
+            filmGroups.add(films.subList(i, Math.min(i + 6, films.size())));
+        }
+
+        model.addAttribute("filmGroups", filmGroups);
         model.addAttribute("user", user);// Añade el usuario al modelo si esta en sesión
         if (user != null) {
             model.addAttribute("isAdmin", isAdmin(user.getEmail()));
