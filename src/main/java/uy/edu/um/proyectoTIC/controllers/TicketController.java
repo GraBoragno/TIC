@@ -33,13 +33,7 @@ public class TicketController {
         return "seats";
     }
 
-    @PostMapping("/chooseSeats")
-    public String chooseSeats(Model model, @RequestParam Long seatRow,@RequestParam Long seatColumn) {
-        model.addAttribute("seatRow", seatRow);
-        model.addAttribute("seatColumn", seatColumn);
-//        buyTicket(int broadcastId, int row, int column, String email, List<Combo> combos, List<Snack> snacks
-        return "seats";
-    }
+
 
 //    @PostMapping("/ticketNew")
 //    public String buyTicket(int broadcastId, int row, int column, String email, List<Combo> combos, List<Snack> snacks)
