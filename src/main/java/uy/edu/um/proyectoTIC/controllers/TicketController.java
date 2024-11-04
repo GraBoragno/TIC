@@ -22,7 +22,7 @@ public class TicketController {
     @GetMapping("/ticketNew")
     public String formulario() {return "ticketNew";}
 
-
+    //agregar el id de la peliculas que toma el boton de comprar
     @PostMapping("/ticketNew")
     public String chooseFunction(HttpSession Session, Model model, @RequestParam String neighborhood, @RequestParam String dateTime, @RequestParam List<Combo> combos, @RequestParam List<Snack> snacks) {
         model.addAttribute("neighborhood", neighborhood);

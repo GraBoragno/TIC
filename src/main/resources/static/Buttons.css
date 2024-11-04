@@ -13,6 +13,7 @@ body {
     font-size: 14px; /* Ajustar tamaño de fuente */
     border-radius: 20px; /* Bordes redondeados */
     margin: 5px; /* Espacio entre los botones */
+    text-decoration: none;
 }
 
 .home-button {
@@ -30,7 +31,7 @@ body {
 }
 
 .client-button:hover, .login-button:hover, .register-button:hover, .home-button:hover {
-    background-color: #e60000; /* Color de fondo más claro al pasar el ratón */
+    background-color: #ff4d4d; /* Color de fondo más claro al pasar el ratón */
 }
 
 /* Grupo de botones */

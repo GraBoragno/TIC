@@ -76,7 +76,6 @@ public class BroadcastService {
                 .build();
 
         return broadcastRepository.save(newBroadcast);
-
     }
 
     public List<Broadcast> getBroadcastsByFilmName(String filmName) {
