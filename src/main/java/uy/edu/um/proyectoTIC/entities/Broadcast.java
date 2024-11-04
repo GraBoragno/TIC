@@ -17,6 +17,7 @@ import java.util.List;
 public class Broadcast {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long broadcastId;
     private LocalDateTime dateTime;
     private Long broadcastPrice;

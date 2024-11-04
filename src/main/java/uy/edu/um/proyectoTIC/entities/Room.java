@@ -14,7 +14,11 @@ import java.util.List;
 @NoArgsConstructor
 public class Room {
 
+    //Se cambió
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private Integer roomNbr;
 
     @ManyToOne(fetch = FetchType.LAZY)

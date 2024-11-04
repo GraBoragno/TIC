@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import uy.edu.um.proyectoTIC.entities.users.Client;
+import uy.edu.um.proyectoTIC.exceptions.InvalidAttributeException;
 import uy.edu.um.proyectoTIC.services.ClientService;
 
 
@@ -24,6 +25,9 @@ public class RegisterController {
     @PostMapping("/registerNew")
     public String addClient(@RequestParam String email, @RequestParam String name, @RequestParam String address, @RequestParam String birthdate,@RequestParam String password)
     {
+        if (email.endsWith("@wtf.com"))
+            return "registerNew";
+
         Client newClient = clientService.addClient(email, name, address, birthdate, password);
         return "redirect:/log-in";
     }

@@ -36,6 +36,15 @@ public class AdminService {
     @Autowired
     private SnackRepository snackRepository;
 
+    public Admin findById(String email) throws EntityNotFoundException
+    {
+        Optional<Admin> admin = adminRepository.findById(email);
+        if (admin.isEmpty())
+            throw new EntityNotFoundException("No existe el administrador");
+
+        return admin.get();
+    }
+
     public Film createFilm(String filmName, String directorName, Integer duration, String releaseYearDate, String genres) throws DuplicateEntityException, EntityNotFoundException
     {
         return filmService.addFilm(filmName, directorName, duration, releaseYearDate, genres);
@@ -80,8 +89,8 @@ public class AdminService {
 
     public Admin createAdmin(String email, String name, String address, String birthdate, String password) throws DuplicateEntityException
     {
-        if (!email.endsWith("@whatthefun.com"))
-            throw new InvalidIdException("El email del administrador debe terminar en \"@whatthefun.com\"");
+        if (!email.endsWith("@wtf.com"))
+            throw new InvalidIdException("El email del administrador debe terminar en \"@wtf.com\"");
 
         if (name == null || name.isEmpty() || address == null || birthdate == null || password == null || password.length() < 8){
             throw new InvalidAttributeException("Atributo no valido");

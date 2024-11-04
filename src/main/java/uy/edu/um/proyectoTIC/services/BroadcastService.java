@@ -1,6 +1,7 @@
 package uy.edu.um.proyectoTIC.services;
 
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uy.edu.um.proyectoTIC.entities.Broadcast;
@@ -30,6 +31,9 @@ public class BroadcastService {
     @Autowired
     private FilmRepository filmRepository;
 
+
+    //Verificar que no se agregue mas de una vez
+    @Transactional
     public Broadcast addBroadcast(String dateTimeS, Integer broadcastPrice, Integer roomNbr, Integer centralId, Integer filmCode) throws EntityNotFoundException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(dateTimeS, formatter);
@@ -43,11 +47,16 @@ public class BroadcastService {
 
         int index = -1;
         for (int i = 0; i < cinema.getRoomsCollection().size(); i++) {
-            if (roomNbr == cinema.getRoomsCollection().get(i).getRoomNbr()){
+            if ((long)roomNbr == cinema.getRoomsCollection().get(i).getRoomNbr()){
                 index = i;
             }
         }
 
+        System.out.println(roomNbr);
+        if (index == -1)
+            throw new EntityNotFoundException("No existe la sala");
+
+        System.out.println(index);
         Room room = cinema.getRoomsCollection().get(index);
 
         Optional<Film> filmAux = filmRepository.findById((long)filmCode);

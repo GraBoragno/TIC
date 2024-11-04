@@ -40,8 +40,15 @@ public class RoomService {
                 .cinemaRoom(cinema)
                 .build();
 
-        cinema.getRoomsCollection().add(newRoom);
-        cinemaRepository.save(cinema);
+        for (int i = 0; i < cinema.getRoomsCollection().size(); i++) {
+            if (cinema.getRoomsCollection().get(i).getRoomNbr() == roomNbr){
+                throw new InvalidRoomQtyException("El room no puede ser igual");
+            }
+        }
+
+        //Ver porque se guarda dos veces
+//        cinema.getRoomsCollection().add(newRoom);
+//        cinemaRepository.save(cinema);
 
         return roomRepository.save(newRoom);
     }

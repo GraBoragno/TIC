@@ -20,6 +20,8 @@ public class HomeController {
     @Autowired
     private FilmService filmService;
 
+
+    //Cambiar la parte del Admin
     @GetMapping("/home")
     public String home(Model model, HttpSession session)
     {
@@ -27,7 +29,7 @@ public class HomeController {
         model.addAttribute("movies", filmService.getAvailableFilms());
         model.addAttribute("user", user);// Añade el usuario al modelo si esta en sesión
         if (user != null) {
-        model.addAttribute("isAdmin", isAdmin(user.getEmail()));
+            model.addAttribute("isAdmin", isAdmin(user.getEmail()));
         }
         return "home";
     }
@@ -39,7 +41,8 @@ public class HomeController {
         return "redirect:/log-in";
     }
 
-    private boolean isAdmin(String email) {
+    private boolean isAdmin(String email)
+    {
         return email.endsWith("@wtf.com");
     }
 }
