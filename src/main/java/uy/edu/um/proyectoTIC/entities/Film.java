@@ -28,9 +28,10 @@ public class Film {
 
     private Year releaseYear;
 
-    //cantidad de personas que puntuaron arranca en 0
+    @Builder.Default
+    private int scoreCounter = 0;
 
-    //puntuacion total
+    private float score;
 
     @ElementCollection
     @Builder.Default

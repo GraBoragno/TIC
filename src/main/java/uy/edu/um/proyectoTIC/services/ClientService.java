@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import uy.edu.um.proyectoTIC.entities.Ticket;
 import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
+import uy.edu.um.proyectoTIC.exceptions.InvalidAttributeException;
 import uy.edu.um.proyectoTIC.exceptions.InvalidCardNbr;
 import uy.edu.um.proyectoTIC.exceptions.InvalidIdException;
 import uy.edu.um.proyectoTIC.repository.ClientRepository;
@@ -26,6 +27,10 @@ public class ClientService {
 
     public Client addClient(String email, String name, String address, String date,String password)
     {
+        if (password.length() < 8){
+            throw new InvalidAttributeException("Atributo no valido");
+        }
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate birthDate = LocalDate.parse(date, formatter);
 
@@ -64,7 +69,7 @@ public class ClientService {
         if (name == null)
                 throw new InvalidIdException("El nombre no puede ser vacio");
 
-         Client client = this.findByEmail(email);   //Ya chequea que exista el cliente
+         Client client = this.findByEmail(email);
          client.setName(name);
          clientRepo.save(client);
          return clientRepo.save(client);

@@ -32,9 +32,10 @@ public class BroadcastService {
     private FilmRepository filmRepository;
 
 
-    //Verificar que no se agregue mas de una vez
+    // Verificar que no se agregue mas de una vez
     @Transactional
-    public Broadcast addBroadcast(String dateTimeS, Integer broadcastPrice, Integer roomNbr, Integer centralId, Integer filmCode) throws EntityNotFoundException {
+    public Broadcast addBroadcast(String dateTimeS, Integer broadcastPrice, Integer roomNbr, Integer centralId, Integer filmCode) throws EntityNotFoundException
+    {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(dateTimeS, formatter);
 
