@@ -25,7 +25,7 @@ public class Client extends Account {
     }
 
     //cambiar
-    @Transient //Ver si funciona
+    //Ver si funciona
     @OneToMany(mappedBy = "clientTicket", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Ticket> ticketsBought;
      //Hash

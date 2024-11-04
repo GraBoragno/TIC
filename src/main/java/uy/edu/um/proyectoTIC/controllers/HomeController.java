@@ -25,6 +25,7 @@ public class HomeController {
     @GetMapping("/home")
     public String home(Model model, HttpSession session)
     {
+        //Cambiar
         Client user = (Client) session.getAttribute("user");
         model.addAttribute("movies", filmService.getAvailableFilms());
         model.addAttribute("user", user);// Añade el usuario al modelo si esta en sesión

@@ -1,12 +1,15 @@
 package uy.edu.um.proyectoTIC.services;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uy.edu.um.proyectoTIC.entities.Ticket;
 import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
 import uy.edu.um.proyectoTIC.exceptions.InvalidCardNbr;
 import uy.edu.um.proyectoTIC.exceptions.InvalidIdException;
 import uy.edu.um.proyectoTIC.repository.ClientRepository;
+import uy.edu.um.proyectoTIC.repository.TicketRepository;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -17,6 +20,8 @@ public class ClientService {
 
     @Autowired
     private ClientRepository clientRepo;
+    @Autowired
+    private TicketRepository ticketRepository;
 
 
     public Client addClient(String email, String name, String address, String date,String password)
@@ -32,6 +37,16 @@ public class ClientService {
                 .password(password)   //Se Prueba a verificar el largo con HTML
                 .build();
         return clientRepo.save(newClient);
+    }
+
+    @Transactional
+    public void cancelTicket(Ticket ticket)
+    {
+        Client client = ticket.getClientTicket();
+        if (client != null)
+            client.getTicketsBought().remove(ticket);
+
+        ticketRepository.delete(ticket);
     }
 
     public Client findByEmail(String email) throws EntityNotFoundException

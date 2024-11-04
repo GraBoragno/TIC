@@ -8,8 +8,7 @@ import uy.edu.um.proyectoTIC.exceptions.DuplicateEntityException;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
 import uy.edu.um.proyectoTIC.exceptions.InvalidAttributeException;
 import uy.edu.um.proyectoTIC.exceptions.InvalidIdException;
-import uy.edu.um.proyectoTIC.repository.AdminRepository;
-import uy.edu.um.proyectoTIC.repository.SnackRepository;
+import uy.edu.um.proyectoTIC.repository.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -26,6 +25,8 @@ public class AdminService {
     @Autowired
     private FilmService filmService;
     @Autowired
+    private FilmRepository filmRepository;
+    @Autowired
     private CinemaService cinemaService;
     @Autowired
     private BroadcastService broadcastService;
@@ -35,6 +36,16 @@ public class AdminService {
     private ComboService comboService;
     @Autowired
     private SnackRepository snackRepository;
+    @Autowired
+    private CinemaRepository cinemaRepository;
+    @Autowired
+    private BroadcastRepository broadcastRepository;
+    @Autowired
+    private ComboRepository comboRepository;
+    @Autowired
+    private RoomService roomService;
+    @Autowired
+    private RoomRepository roomRepository;
 
     public Admin findById(String email) throws EntityNotFoundException
     {
@@ -50,9 +61,19 @@ public class AdminService {
         return filmService.addFilm(filmName, directorName, duration, releaseYearDate, genres);
     }
 
+    public void deleteFilm(Film film)
+    {
+        filmRepository.delete(film);
+    }
+
     public Cinema createCinema(Integer centralId, Integer roomQty, String neighborhood) throws DuplicateEntityException
     {
         return cinemaService.addCinema(centralId, roomQty, neighborhood);
+    }
+
+    public void deleteCinema(Cinema cinema)
+    {
+        cinemaRepository.delete(cinema);
     }
 
     public Broadcast createBroadcast(String dateTimeS, Integer broadcastPrice, Integer roomNbr, Integer centralId, Integer filmCode) throws EntityNotFoundException
@@ -60,11 +81,21 @@ public class AdminService {
         return broadcastService.addBroadcast( dateTimeS, broadcastPrice, roomNbr, centralId, filmCode);
     }
 
+    public void deleteBroadcast(Broadcast broadcast)
+    {
+        broadcastRepository.delete(broadcast);
+    }
+
     public Snack createSnack(String snackName, String snackPrice) throws DuplicateEntityException
     {
         if (Long.parseLong(snackPrice) < 1)
             throw new InvalidAttributeException("El precio debe ser mayor que 0");
         return snackService.addSnack(snackName,snackPrice);
+    }
+
+    public void deleteSnack(Snack snack)
+    {
+        snackRepository.delete(snack);
     }
 
     //Quizas es necesario un trimm o algo para los nombres
@@ -85,6 +116,11 @@ public class AdminService {
             }
         }
         return comboService.addCombo(comboPrice,snackList);
+    }
+
+    public void deleteCombo(Combo combo)
+    {
+        comboRepository.delete(combo);
     }
 
     public Admin createAdmin(String email, String name, String address, String birthdate, String password) throws DuplicateEntityException
@@ -115,5 +151,20 @@ public class AdminService {
         return adminRepository.save(admin);
     }
 
-    //Agregar delete Methods
+    public void deleteAdmin(Admin admin)
+    {
+        adminRepository.delete(admin);
+    }
+
+    public Room createRoom(Integer roomNbr, Integer centralId) throws EntityNotFoundException
+    {
+        return roomService.createRoom(roomNbr,centralId);
+    }
+
+    public void deleteRoom(Room room)
+    {
+        roomRepository.delete(room);
+    }
+
+    //Ver que en la pagina aparezca la lista de cada una de las entidades en su respectivo metodo (por ahora)
 }
