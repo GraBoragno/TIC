@@ -1,5 +1,6 @@
 package uy.edu.um.proyectoTIC.services;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uy.edu.um.proyectoTIC.entities.*;
@@ -61,6 +62,8 @@ public class AdminService {
         return filmService.addFilm(filmName, directorName, duration, releaseYearDate, genres);
     }
 
+    //Quizas este no
+    @Transactional
     public void deleteFilm(Film film)
     {
         filmRepository.delete(film);
@@ -71,6 +74,7 @@ public class AdminService {
         return cinemaService.addCinema(centralId, roomQty, neighborhood);
     }
 
+    @Transactional
     public void deleteCinema(Cinema cinema)
     {
         cinemaRepository.delete(cinema);
@@ -81,6 +85,7 @@ public class AdminService {
         return broadcastService.addBroadcast( dateTimeS, broadcastPrice, roomNbr, centralId, filmCode);
     }
 
+    @Transactional
     public void deleteBroadcast(Broadcast broadcast)
     {
         broadcastRepository.delete(broadcast);
@@ -93,6 +98,7 @@ public class AdminService {
         return snackService.addSnack(snackName,snackPrice);
     }
 
+    @Transactional
     public void deleteSnack(Snack snack)
     {
         snackRepository.delete(snack);
@@ -118,6 +124,7 @@ public class AdminService {
         return comboService.addCombo(comboPrice,snackList);
     }
 
+    @Transactional
     public void deleteCombo(Combo combo)
     {
         comboRepository.delete(combo);
@@ -151,6 +158,7 @@ public class AdminService {
         return adminRepository.save(admin);
     }
 
+    @Transactional
     public void deleteAdmin(Admin admin)
     {
         adminRepository.delete(admin);
@@ -161,6 +169,7 @@ public class AdminService {
         return roomService.createRoom(roomNbr,centralId);
     }
 
+    @Transactional
     public void deleteRoom(Room room)
     {
         roomRepository.delete(room);
