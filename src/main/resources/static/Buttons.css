@@ -29,7 +29,7 @@ body {
     justify-content: flex-start; /* Alinear a la izquierda */
 }
 
-.client-button:hover, .login-button:hover, .register-button:hover {
+.client-button:hover, .login-button:hover, .register-button:hover, .home-button:hover {
     background-color: #e60000; /* Color de fondo más claro al pasar el ratón */
 }
 

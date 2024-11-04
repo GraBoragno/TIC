@@ -163,7 +163,6 @@ body {
     justify-content: center;
     align-items: center;
     border: 10px solid #38261B;
-    margin: 1px;
     background-color: white;
     color: #38261B;
     font-size: 24px;
@@ -225,45 +224,49 @@ h1 {
     justify-content: center;
     flex-direction: row;
     height: auto;
-    margin: 5%;
+    /*margin: 5%;*/
     /*gap: 2%;*/
-    gap: 20px;
+    gap: 10px;
     align-items: center;
+    margin-bottom: 25px;
+}
+
+.questionsLogin {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: auto;
+    /*margin: 5%;*/
+    /*gap: 2%;*/
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 40px;
 }
 
 .inputRegister input {
-    max-width: 200px;
-    /*max-width: 30%;*/
-    display: flex;
+    width: 120%;
     justify-content: center;
-    /*width: 100%;*/
     border-radius: 15px; /* Bordes más redondeados */
+    border: #FFFFFF;
 }
 
 .registerQuestions {
-    width: 150px;
+    font-size: 15px;
+    width: 100px;
     /*width: 30%;*/
     text-align: left;
 }
 
 .homeButton {
+    position: absolute;
+    top: 20px;
+    left: 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     width: 30%;
 }
 
-/* Log in css */
-.questionsLogin {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    height: auto;
-    margin: 5%;
-    /*gap: 2%;*/
-    gap: 20px;
-    align-items: center;
-}
 
 .inputRegisterLogin {
     max-width: 200px;
@@ -286,9 +289,17 @@ h1 {
     display: inline-block; /* Prevent wrapping */
 }
 
-/* Título de "Inicio de sesión" */
-.title {
-    font-size: 36px;
+/* Títulos de "Inicio de sesión" y "Registrarse" */
+.titleReg {
+    font-size: 26px;
     font-weight: bold;
     text-align: center;
+    margin-bottom: 25px;
+}
+
+.titleLog {
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
 }
