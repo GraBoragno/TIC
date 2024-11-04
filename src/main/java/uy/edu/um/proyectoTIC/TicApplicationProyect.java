@@ -65,7 +65,7 @@ public class TicApplicationProyect {
 	}
 
 	public void runInCommandLine() throws DuplicateEntityException {
-//		Client newClient = clientService.addClient("email@email.com","persona1","xd", "21/10/2024","1234");
+//		Client newClient = clientService.addClient("email@email.com","persona1","xd", "21/10/2024","123456789");
 //
 //		try {
 //			filmService.addFilm("The Grand Budapest Hotel", "Wes Anderson", 99, "2014", "comedia, drama");
@@ -110,12 +110,12 @@ public class TicApplicationProyect {
 //		} catch (DuplicateEntityException e) {
 //			System.out.println("Error: Ya existe un snack con el mismo nombre.");
 //		}
-
-////		try {
-////			seatService.fullSeats();
-////		} catch (DuplicateEntityException e) {
-////			System.out.println("Error: Ya existe ese asiento");
-////		}
+//
+//		try {
+//			seatService.fullSeats();
+//		} catch (DuplicateEntityException e) {
+//			System.out.println("Error: Ya existe ese asiento");
+//		}
 //
 //
 //		try {
@@ -137,12 +137,12 @@ public class TicApplicationProyect {
 //
 //		try {
 //			roomService.createRoom(8, 1);
-//			roomService.createRoom(1, 3);
-//			roomService.createRoom(1, 4);
-//			roomService.createRoom(1, 5);
-//			roomService.createRoom(1, 6);
 //			roomService.createRoom(1, 7);
-//			roomService.createRoom(1, 8);
+//			roomService.createRoom(8, 1);
+//			roomService.createRoom(3, 4);
+//			roomService.createRoom(2, 2);
+//			roomService.createRoom(10, 1);
+//			roomService.createRoom(1, 1);
 //		} catch (EntityNotFoundException | InvalidRoomQtyException e) {
 //			System.out.println("Error: El cine no existe");
 //		}
