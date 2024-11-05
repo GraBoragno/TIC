@@ -183,8 +183,17 @@ public class TicApplicationProyect {
 //        fightClub.ifPresent(adminService::deleteFilm);
 //        theGodfather.ifPresent(adminService::deleteFilm);
 
+//		filmService.rateFilm(5, 5);
+//		filmService.rateFilm(1, 5);
+//		filmService.rateFilm(1, 1);
+//		filmService.rateFilm(1, 5);
 
-        System.out.println("Ejecutando programa...");
+//		for (int i = 0; i < filmService.getRatedFilms().size(); i++) {
+//			System.out.println(filmService.getRatedFilms().get(i).getFilmName());
+//		}
+
+
+		System.out.println("Ejecutando programa...");
 	}
 
 }

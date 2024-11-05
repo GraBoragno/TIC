@@ -66,15 +66,19 @@ public class FilmService {
         return filmRepository.findAvailableFilms();
     }
 
-    public void rateFilm(Long filmCode, float score)
+    public void rateFilm(Integer filmCode, float score)
     {
-        Optional<Film> filmAux = filmRepository.findById(filmCode);
+        Optional<Film> filmAux = filmRepository.findById((long)filmCode);
         Film film = filmAux.get();
         int prevCounter = film.getScoreCounter();
 
         film.setScoreCounter(prevCounter+1);
         film.setScore(((film.getScore()*prevCounter)+score)/film.getScoreCounter());
         filmRepository.save(film);
+    }
+
+    public List<Film> getRatedFilms() {
+        return filmRepository.findTopRatedFilms();
     }
 
 }

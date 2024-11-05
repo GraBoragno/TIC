@@ -30,5 +30,11 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
         """)
     List<Film> findAvailableFilms();
 
-    //query ordena por puntuacion total, sacando las que tienen 0
+    @Query("""
+    SELECT f 
+    FROM Film f 
+    WHERE f.score > 0 
+    ORDER BY f.score DESC
+    """)
+    List<Film> findTopRatedFilms();
 }
