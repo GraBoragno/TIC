@@ -53,4 +53,12 @@ public class RoomService {
         return roomRepository.save(newRoom);
     }
 
+    public Long getRoomIdByCentralIdAndRoomNbr(Long centralId, Integer roomNbr) {
+        return roomRepository.findRoomIdByCentralIdAndRoomNbr(centralId, roomNbr);
+    }
+
+    public Room findRoomByCentralIdAndId(Long centralId, Long id) {
+        return roomRepository.findRoomByCentralIdAndId(centralId, id);
+    }
+
 }

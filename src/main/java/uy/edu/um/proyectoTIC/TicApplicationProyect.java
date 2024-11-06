@@ -163,11 +163,11 @@ public class TicApplicationProyect {
 //		} catch (EntityNotFoundException | InvalidRoomQtyException e) {
 //			System.out.println("Error: El cine no existe");
 //		}
-//
+
 //		System.out.println("----------------8-------------------------");
 //
 //		try {
-//			broadcastService.addBroadcast("10/11/2024 18:00", 250, 1, 1, 1);
+////			broadcastService.addBroadcast("10/11/2024 18:00", 250, 1, 1, 1);
 //			broadcastService.addBroadcast("10/11/2024 20:30", 300, 1, 7, 2);
 //			broadcastService.addBroadcast("11/11/2024 19:00", 200, 1, 3, 3);
 //			broadcastService.addBroadcast("11/11/2024 21:30", 280, 8, 1, 4);
@@ -179,7 +179,7 @@ public class TicApplicationProyect {
 //		} catch (EntityNotFoundException e) {
 //			System.out.println("Error al agregar la emisión: " + e.getMessage());
 //		}
-//
+
 //		System.out.println("----------------9-------------------------");
 //
 //		try {

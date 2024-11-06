@@ -13,6 +13,7 @@ import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
 import uy.edu.um.proyectoTIC.repository.BroadcastRepository;
 import uy.edu.um.proyectoTIC.repository.CinemaRepository;
 import uy.edu.um.proyectoTIC.repository.FilmRepository;
+import uy.edu.um.proyectoTIC.repository.RoomRepository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,6 +32,16 @@ public class BroadcastService {
     @Autowired
     private FilmRepository filmRepository;
 
+    @Autowired
+    private RoomRepository roomRepository;
+
+    //solucion muy momentanea para el problema de las id
+    @Transactional
+    public Long addBroadcastAux(Integer roomNbr, Integer centralId) throws EntityNotFoundException
+    {
+        return (roomRepository.findRoomIdByCentralIdAndRoomNbr((long)centralId, roomNbr));
+    }
+
 
     // Verificar que no se agregue mas de una vez
     @Transactional
@@ -44,21 +55,24 @@ public class BroadcastService {
             throw new EntityNotFoundException("No existe el cine");
         }
 
+        Long newRoomNbr = addBroadcastAux(roomNbr, centralId);
+        System.out.println(newRoomNbr);
+
         Cinema cinema = cinemaAux.get();
 
-        int index = -1;
-        for (int i = 0; i < cinema.getRoomsCollection().size(); i++) {
-            if ((long)roomNbr == cinema.getRoomsCollection().get(i).getRoomNbr()){
-                index = i;
-            }
-        }
+//        int index = -1;
+//        for (int i = 0; i < cinema.getRoomsCollection().size(); i++) {
+//            if (newRoomNbr.intValue() == cinema.getRoomsCollection().get(i).getRoomNbr()){
+//                index = i;
+//            }
+//        }
+//
+////        System.out.println(roomNbr);
+//        if (index == -1)
+//            throw new EntityNotFoundException("No existe la sala");
 
-        System.out.println(roomNbr);
-        if (index == -1)
-            throw new EntityNotFoundException("No existe la sala");
-
-        System.out.println(index);
-        Room room = cinema.getRoomsCollection().get(index);
+//        System.out.println(index);
+        Room room = roomRepository.findRoomByCentralIdAndId((long)centralId, newRoomNbr);
 
         Optional<Film> filmAux = filmRepository.findById((long)filmCode);
 
@@ -67,7 +81,7 @@ public class BroadcastService {
         }
         Film film = filmAux.get();
 
-        if(!(isScheduleAvailable(dateTime, film.getDuration(), centralId, roomNbr))){
+        if(!(isScheduleAvailable(dateTime, film.getDuration(), centralId, roomNbr.intValue()))){
             throw new EntityNotFoundException("Ya hay una funcion a esa hora");
         }
 
