@@ -33,7 +33,7 @@ public class HomeController {
         Client user = (Client) session.getAttribute("user");
 
         // Obtiene todas las películas disponibles
-        List<Film> films = filmService.getAvailableFilms();
+        List<Film> films = filmService.getAvailableFilmsByDate();
 
         // Divide las películas en grupos de 6
         List<List<Film>> filmGroups = new ArrayList<>();
