@@ -42,4 +42,25 @@ public interface BroadcastRepository extends JpaRepository<Broadcast,Long> {
             @Param("centralId") Long centralId,
             @Param("dateTime") LocalDateTime dateTime
     );
+
+    @Query("""
+    SELECT b FROM Broadcast b
+    WHERE b.centralId = :centralId
+    AND b.hasRoom.roomNbr = :roomNbr
+    AND (
+        (b.dateTime <= :newStartTime AND b.dateTime + :durationMinutes MINUTE > :newStartTime) OR
+        (b.dateTime < :newEndTime AND b.dateTime + :durationMinutes MINUTE >= :newEndTime) OR
+        (b.dateTime >= :newStartTime AND b.dateTime + :durationMinutes MINUTE <= :newEndTime)
+    )
+""")
+    List<Broadcast> findConflictingBroadcasts(
+            @Param("centralId") Long centralId,
+            @Param("roomNbr") Integer roomNbr,
+            @Param("newStartTime") LocalDateTime newStartTime,
+            @Param("newEndTime") LocalDateTime newEndTime,
+            @Param("durationMinutes") Long durationMinutes
+    );
+
+
+
 }

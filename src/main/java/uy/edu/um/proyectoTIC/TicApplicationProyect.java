@@ -64,15 +64,16 @@ public class TicApplicationProyect {
 	private TicketService ticketService;
 
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws DuplicateEntityException {
 		ApplicationContext ctx = SpringApplication.run(TicApplicationProyect.class, args);
 		TicApplicationProyect app = ctx.getBean(TicApplicationProyect.class);
 		app.runInCommandLine();
 	}
 
-	public void runInCommandLine(){
+	public void runInCommandLine() throws DuplicateEntityException {
 //		Client newClient = clientService.addClient("email@email.com","persona1","xd", "21/10/2024","123456789");
 //
+//		System.out.println("----------------1-------------------------");
 //		try {
 //			filmService.addFilm("The Grand Budapest Hotel", "Wes Anderson", 99, "2014", "comedia, drama");
 //			filmService.addFilm("Blade Runner 2049", "Denis Villeneuve", 164, "2017", "ciencia ficción, misterio");
@@ -87,6 +88,8 @@ public class TicApplicationProyect {
 //			System.out.println("Error: Ya existe una pelicula con ese nombre.");
 //		}
 //
+//		System.out.println("----------------2-------------------------");
+//
 //		try {
 //			cinemaService.addCinema(1, 8, "Punta Carretas");
 //			cinemaService.addCinema(2, 5, "Ciudad Vieja");
@@ -100,6 +103,8 @@ public class TicApplicationProyect {
 //			System.out.println("Error: Ya existe un cine con los mismos datos.");
 //		}
 //
+//		System.out.println("----------------3-------------------------");
+//
 //		try {
 //			roomService.createRoom(1, 1);
 //			roomService.createRoom(2, 1);
@@ -107,6 +112,8 @@ public class TicApplicationProyect {
 //		} catch (EntityNotFoundException e) {
 //			System.out.println("Error: El cine no existe");
 //        }
+//
+//		System.out.println("----------------4-------------------------");
 //
 //		try {
 //			snackService.addSnack("Pop dulce", "200");
@@ -117,12 +124,15 @@ public class TicApplicationProyect {
 //			System.out.println("Error: Ya existe un snack con el mismo nombre.");
 //		}
 //
+//		System.out.println("----------------5-------------------------");
+//
 //		try {
 //			seatService.fullSeats();
 //		} catch (DuplicateEntityException e) {
 //			System.out.println("Error: Ya existe ese asiento");
 //		}
 //
+//		System.out.println("----------------6-------------------------");
 //
 //		try {
 //			List<Snack> allSnacks = snackRepository.findAll();
@@ -134,6 +144,8 @@ public class TicApplicationProyect {
 //		}
 //
 //
+//		System.out.println("----------------7-------------------------");
+//
 //
 //		Admin admin = adminService.createAdmin("admin1@wtf.com","Pablo","casa de pablo","10/10/2000","pablo1234");
 //
@@ -144,7 +156,6 @@ public class TicApplicationProyect {
 //		try {
 //			roomService.createRoom(8, 1);
 //			roomService.createRoom(1, 7);
-//			roomService.createRoom(8, 1);
 //			roomService.createRoom(3, 4);
 //			roomService.createRoom(2, 2);
 //			roomService.createRoom(10, 1);
@@ -152,6 +163,8 @@ public class TicApplicationProyect {
 //		} catch (EntityNotFoundException | InvalidRoomQtyException e) {
 //			System.out.println("Error: El cine no existe");
 //		}
+//
+//		System.out.println("----------------8-------------------------");
 //
 //		try {
 //			broadcastService.addBroadcast("10/11/2024 18:00", 250, 1, 1, 1);
@@ -166,7 +179,9 @@ public class TicApplicationProyect {
 //		} catch (EntityNotFoundException e) {
 //			System.out.println("Error al agregar la emisión: " + e.getMessage());
 //		}
-
+//
+//		System.out.println("----------------9-------------------------");
+//
 //		try {
 //			filmService.addFilm("Parasite", "Bong Joon-ho", 132, "2019", "drama, thriller");
 //			filmService.addFilm("Pulp Fiction", "Quentin Tarantino", 154, "1994", "crimen, drama");
@@ -176,35 +191,34 @@ public class TicApplicationProyect {
 //		} catch (DuplicateEntityException | EntityNotFoundException e) {
 //			System.out.println("Error: Ya existe una pelicula con ese nombre.");
 //		}
-
-//        Optional<Film> parasite = filmService.findByName("Parasite");
+//
+//		System.out.println("----------------10-------------------------");
+//
+//		Optional<Film> parasite = filmService.findByName("Parasite");
 //        Optional<Film> pulpFiction = filmService.findByName("Pulp Fiction");
 //        Optional<Film> fightClub = filmService.findByName("Fight Club");
 //        Optional<Film> theGodfather = filmService.findByName("The Godfather");
 //
-//        parasite.ifPresent(adminService::deleteFilm);
+//		System.out.println("----------------11-------------------------");
+//
+//		parasite.ifPresent(adminService::deleteFilm);
 //        pulpFiction.ifPresent(adminService::deleteFilm);
 //        fightClub.ifPresent(adminService::deleteFilm);
 //        theGodfather.ifPresent(adminService::deleteFilm);
-
+//
+//		System.out.println("----------------12-------------------------");
+//
+//		Optional<Film> parasite2 = filmService.findByName("Parasite");
+//		Optional<Film> pulpFiction2 = filmService.findByName("Pulp Fiction");
+//		Optional<Film> fightClub2 = filmService.findByName("Fight Club");
+//		Optional<Film> theGodfather2 = filmService.findByName("The Godfather");
+//
+//		System.out.println("----------------13-------------------------");
+//
 //		filmService.rateFilm(5, 5);
 //		filmService.rateFilm(1, 5);
 //		filmService.rateFilm(1, 1);
 //		filmService.rateFilm(1, 5);
-
-//		for (int i = 0; i < filmService.getRatedFilms().size(); i++) {
-//			System.out.println(filmService.getRatedFilms().get(i).getFilmName());
-//		}
-
-
-//		ticketService.buyTicket(1, 1, 1, "email@email.com", comboService.getAvailableCombos(), snackService.getAvailableSnacks());
-//
-//		try {
-//			System.out.println(clientService.getTicketByEmail("email@email.com"));
-//
-//		} catch (EntityNotFoundException e) {
-//			System.out.println("Error: No existe");
-//		}
 
 		System.out.println("Ejecutando programa...");
 	}

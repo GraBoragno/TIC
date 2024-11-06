@@ -67,6 +67,10 @@ public class BroadcastService {
         }
         Film film = filmAux.get();
 
+        if(!(isScheduleAvailable(dateTime, film.getDuration(), centralId, roomNbr))){
+            throw new EntityNotFoundException("Ya hay una funcion a esa hora");
+        }
+
         Broadcast newBroadcast = Broadcast.builder()
                 .dateTime(dateTime)
                 .broadcastPrice((long) broadcastPrice)
@@ -77,6 +81,14 @@ public class BroadcastService {
 
         return broadcastRepository.save(newBroadcast);
     }
+
+    public boolean isScheduleAvailable(LocalDateTime newStartTime, Long durationMinutes, Integer centralId, Integer roomNbr) {
+        LocalDateTime newEndTime = newStartTime.plusMinutes(durationMinutes);
+        List<Broadcast> conflictingBroadcasts = broadcastRepository.findConflictingBroadcasts(
+                (long)centralId, roomNbr, newStartTime, newEndTime, durationMinutes);
+        return conflictingBroadcasts.isEmpty();
+    }
+
 
     public List<Broadcast> getBroadcastsByFilmName(String filmName) {
         return broadcastRepository.findByFilmNameBroadcast(filmName, LocalDateTime.now());
