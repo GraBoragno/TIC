@@ -73,13 +73,5 @@ public class TicketService {
         return price;
     }
 
-    @Transactional
-    public List<Ticket> getTicketByEmail(String email) throws EntityNotFoundException {
-        Optional<Client> clientOptional = clientRepository.findById(email);
-
-        Client client = clientOptional.orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado"));
-
-        return client.getTicketsBought();
-    }
 
 }

@@ -14,6 +14,7 @@ import uy.edu.um.proyectoTIC.repository.TicketRepository;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -155,5 +156,14 @@ public class ClientService {
     }
 
     //puntuar peli
+
+    @Transactional
+    public List<Ticket> getTicketByEmail(String email) throws EntityNotFoundException {
+        Optional<Client> clientOptional = clientRepo.findById(email);
+
+        Client client = clientOptional.orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado"));
+
+        return client.getTicketsBought();
+    }
 
 }

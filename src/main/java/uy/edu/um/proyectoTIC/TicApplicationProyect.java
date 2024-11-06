@@ -200,7 +200,7 @@ public class TicApplicationProyect {
 //		ticketService.buyTicket(1, 1, 1, "email@email.com", comboService.getAvailableCombos(), snackService.getAvailableSnacks());
 
 		try {
-			List listita = ticketService.getTicketByEmail("email@email.com");
+			List listita = clientService.getTicketByEmail("email@email.com");
 
 			for (int i = 0; i < listita.size(); i++) {
 				System.out.println(listita.get(i).toString());
