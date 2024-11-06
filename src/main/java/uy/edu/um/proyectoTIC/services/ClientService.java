@@ -161,7 +161,7 @@ public class ClientService {
     public List<Ticket> getTicketByEmail(String email) throws EntityNotFoundException {
         Optional<Client> clientOptional = clientRepo.findById(email);
 
-        Client client = clientOptional.orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado"));
+        Client client = clientOptional.get();
 
         return client.getTicketsBought();
     }

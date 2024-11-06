@@ -26,7 +26,7 @@ public class Client extends Account {
 
     //cambiar
     //Ver si funciona
-    @OneToMany(mappedBy = "clientTicket", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "clientTicket", cascade = CascadeType.ALL)
     private List<Ticket> ticketsBought;
      //Hash
 }
