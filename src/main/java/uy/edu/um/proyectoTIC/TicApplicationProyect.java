@@ -1,5 +1,6 @@
 package uy.edu.um.proyectoTIC;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -59,14 +60,17 @@ public class TicApplicationProyect {
 	@Autowired
 	private BroadcastService broadcastService;
 
+	@Autowired
+	private TicketService ticketService;
 
-	public static void main(String[] args) throws DuplicateEntityException{
+
+	public static void main(String[] args){
 		ApplicationContext ctx = SpringApplication.run(TicApplicationProyect.class, args);
 		TicApplicationProyect app = ctx.getBean(TicApplicationProyect.class);
 		app.runInCommandLine();
 	}
 
-	public void runInCommandLine() throws DuplicateEntityException {
+	public void runInCommandLine(){
 //		Client newClient = clientService.addClient("email@email.com","persona1","xd", "21/10/2024","123456789");
 //
 //		try {
@@ -192,6 +196,18 @@ public class TicApplicationProyect {
 //			System.out.println(filmService.getRatedFilms().get(i).getFilmName());
 //		}
 
+
+//		ticketService.buyTicket(1, 1, 1, "email@email.com", comboService.getAvailableCombos(), snackService.getAvailableSnacks());
+
+		try {
+			List listita = ticketService.getTicketByEmail("email@email.com");
+
+			for (int i = 0; i < listita.size(); i++) {
+				System.out.println(listita.get(i).toString());
+			}
+		} catch (EntityNotFoundException e) {
+			System.out.println("Error: No existe");
+		}
 
 		System.out.println("Ejecutando programa...");
 	}

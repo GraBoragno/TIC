@@ -2,8 +2,10 @@ package uy.edu.um.proyectoTIC.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import uy.edu.um.proyectoTIC.entities.*;
 import uy.edu.um.proyectoTIC.entities.users.Client;
+import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
 import uy.edu.um.proyectoTIC.repository.BroadcastRepository;
 import uy.edu.um.proyectoTIC.repository.ClientRepository;
 import uy.edu.um.proyectoTIC.repository.SeatRepository;
@@ -71,5 +73,13 @@ public class TicketService {
         return price;
     }
 
+    @Transactional
+    public List<Ticket> getTicketByEmail(String email) throws EntityNotFoundException {
+        Optional<Client> clientOptional = clientRepository.findById(email);
+
+        Client client = clientOptional.orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado"));
+
+        return client.getTicketsBought();
+    }
 
 }

@@ -3,6 +3,7 @@ package uy.edu.um.proyectoTIC.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uy.edu.um.proyectoTIC.entities.Combo;
+import uy.edu.um.proyectoTIC.entities.Film;
 import uy.edu.um.proyectoTIC.entities.Snack;
 import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
@@ -13,6 +14,7 @@ import uy.edu.um.proyectoTIC.repository.ComboRepository;
 import uy.edu.um.proyectoTIC.repository.SnackRepository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
@@ -38,5 +40,9 @@ public class ComboService {
                 .build();
 
         return comboRepository.save(newCombo);
+    }
+
+    public List<Combo> getAvailableCombos() {
+        return comboRepository.findAvailableCombos();
     }
 }

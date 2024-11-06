@@ -2,11 +2,13 @@ package uy.edu.um.proyectoTIC.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uy.edu.um.proyectoTIC.entities.Combo;
 import uy.edu.um.proyectoTIC.entities.Snack;
 import uy.edu.um.proyectoTIC.exceptions.DuplicateEntityException;
 import uy.edu.um.proyectoTIC.exceptions.InvalidIdException;
 import uy.edu.um.proyectoTIC.repository.SnackRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -34,6 +36,10 @@ public class SnackService {
                 .snackPrice(snackPrice)
                 .build();
         return snackRepository.save(newSnack);
+    }
+
+    public List<Snack> getAvailableSnacks() {
+        return snackRepository.findAvailableSnacks();
     }
 
 }
