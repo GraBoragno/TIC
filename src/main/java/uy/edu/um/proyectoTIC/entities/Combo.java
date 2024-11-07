@@ -18,6 +18,8 @@ public class Combo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long comboId;
 
+    //Agregar comboName
+
     private Long comboPrice;
 
     @ManyToMany(mappedBy = "admittedCombos")

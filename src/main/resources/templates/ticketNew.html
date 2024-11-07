@@ -103,7 +103,7 @@
     <div class="movie-info">
         <h3 th:text="${film.getFilmName()}"></h3>
         <p>Director: <span th:text="${film.getDirectorName()}">Director</span></p>
-        <p>Generos: <span th:text="${film.getGenres()}">Géneros</span></p>
+        <p>Generos: <span th:text="${#strings.arrayJoin(film.getGenres(), ', ')}">Géneros</span></p>
         <p>Duracion: <span th:text="${film.getDuration()}">Duración</span> minutos</p>
         <p>Rating: <span th:text="${film.getScore()}">Rating</span></p>
     </div>
