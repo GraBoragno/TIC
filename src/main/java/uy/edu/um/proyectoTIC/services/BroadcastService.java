@@ -59,7 +59,11 @@ public class BroadcastService {
         }
 
         Long newRoomNbr = addBroadcastAux(roomNbr, centralId);
-        System.out.println(newRoomNbr);
+
+        if (newRoomNbr == null){
+            throw new EntityNotFoundException("No existe la sala");
+        }
+//        System.out.println(newRoomNbr);
 
         Cinema cinema = cinemaAux.get();
 
@@ -82,6 +86,11 @@ public class BroadcastService {
         if (filmAux.isEmpty()){
             throw new EntityNotFoundException("No existe la pelicula");
         }
+
+        if (filmAux == null){
+            throw new EntityNotFoundException("No existe la pelicula");
+        }
+
         Film film = filmAux.get();
 
         if(!(isScheduleAvailable(dateTime, film.getDuration(), centralId, roomNbr.intValue()))){
