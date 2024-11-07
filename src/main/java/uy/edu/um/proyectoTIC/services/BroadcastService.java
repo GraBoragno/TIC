@@ -18,6 +18,7 @@ import uy.edu.um.proyectoTIC.repository.RoomRepository;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,8 @@ public class BroadcastService {
     private CinemaRepository cinemaRepository;
     @Autowired
     private FilmRepository filmRepository;
+    @Autowired
+    private CinemaService cinemaService;
 
     @Autowired
     private RoomRepository roomRepository;
@@ -104,8 +107,19 @@ public class BroadcastService {
     }
 
 
-    public List<Broadcast> getBroadcastsByFilmName(String filmName) {
-        return broadcastRepository.findByFilmNameBroadcast(filmName, LocalDateTime.now());
+    public List<Cinema> getBroadcastsByFilmName(String filmName)
+    {
+        List <Broadcast> broadcasts = broadcastRepository.findByFilmNameBroadcast(filmName, LocalDateTime.now());
+        List<Cinema> cinemas = new ArrayList<>();
+
+        for (Broadcast b : broadcasts) {
+            Optional<Cinema> cinemaAux = cinemaRepository.findById(b.getCentralId());
+            if (cinemaAux.isPresent()){
+                Cinema cinema = cinemaAux.get();
+                cinemas.add(cinema);
+            }
+        }
+        return cinemas;
     }
 
     public List<Broadcast> findByFilmAndCinema(String filmName, Long centralId) {

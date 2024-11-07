@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import uy.edu.um.proyectoTIC.entities.Film;
+import uy.edu.um.proyectoTIC.entities.users.Admin;
 import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.services.ClientService;
 import uy.edu.um.proyectoTIC.services.FilmService;
@@ -25,14 +26,16 @@ public class HomeController {
     private FilmService filmService;
 
 
-    //Cambiar la parte del Admin
+
     @GetMapping("/home")
     public String home(Model model, HttpSession session)
     {
-        //Cambiar
-        Client user = (Client) session.getAttribute("user");
+        Object user = session.getAttribute("user");
 
-        // Obtiene todas las películas disponibles
+        if (user instanceof Admin)
+            return "redirect:/adminPage";
+
+
         List<Film> films = filmService.getAvailableFilmsByDate();
 
         // Divide las películas en grupos de 6
@@ -42,10 +45,8 @@ public class HomeController {
         }
 
         model.addAttribute("filmGroups", filmGroups);
-        model.addAttribute("user", user);// Añade el usuario al modelo si esta en sesión
-        if (user != null) {
-            model.addAttribute("isAdmin", isAdmin(user.getEmail()));
-        }
+        model.addAttribute("user", user);
+
         return "home";
     }
 

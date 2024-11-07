@@ -124,14 +124,7 @@ body {
     display: block;
 }
 
-/* Estilos de la película en cuadrantes */
-/*.container {*/
-/*    display: grid;*/
-/*    grid-template-columns: repeat(4, 1fr);*/
-/*    gap: 20px;*/
-/*    padding: 20px;*/
-/*    background-color: #D0AB8A;*/
-/*}*/
+
 
 .column {
     display: flex;
@@ -301,4 +294,6 @@ h1 {
     text-align: center;
     margin-bottom: 40px;
 }
+
+
 
