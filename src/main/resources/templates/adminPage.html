@@ -6,205 +6,416 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/Session.css">
     <link rel="stylesheet" href="/static/Buttons.css">
-    <title>Services List</title>
+    <title>Lista de Servicios</title>
 </head>
-<body>
+<body class = "bodyHome">
 
 <div id="home2" class="homeButton">
-    <button id="homeBtn" class="client-button" onclick="location.href='/home'"> <!-- Aplicar la clase de estilo -->
-        Home
+    <button id="homeBtn" class="client-button" onclick="location.href='/home'">
+        Inicio
     </button>
 </div>
 
-<div class="container mt-4">
-    <h2>Services</h2>
+<div class="container mt-4 ">
+    <h2 class = "flex">Servicios</h2>
     <div class="navbar">
         <ul class="nav nav-tabs d-flex flex-nowrap overflow-auto" id="myTab" role="tablist">
             <li class="nav-item nowrap" role="presentation">
-                <button class="nav-link active" id="addSnack-tab" data-toggle="tab" data-target="#addSnack" type="button" role="tab" aria-controls="addSnack" aria-selected="true">Add Snack</button>
+                <button class="nav-link active" id="addSnack-tab" data-toggle="tab" data-target="#addSnack" type="button" role="tab" aria-controls="addSnack" aria-selected="true">Crear Snack</button>
             </li>
             <li class="nav-item nowrap" role="presentation">
-                <button class="nav-link" id="addCinema-tab" data-toggle="tab" data-target="#addCinema" type="button" role="tab" aria-controls="addCinema" aria-selected="false">Create Cinema</button>
+                <button class="nav-link" id="addCinema-tab" data-toggle="tab" data-target="#addCinema" type="button" role="tab" aria-controls="addCinema" aria-selected="false">Crear Cine</button>
             </li>
             <li class="nav-item nowrap" role="presentation">
-                <button class="nav-link" id="addRoom-tab" data-toggle="tab" data-target="#addRoom" type="button" role="tab" aria-controls="addRoom" aria-selected="false">Add Room</button>
+                <button class="nav-link" id="addRoom-tab" data-toggle="tab" data-target="#addRoom" type="button" role="tab" aria-controls="addRoom" aria-selected="false">Agregar Salon</button>
             </li>
             <li class="nav-item nowrap" role="presentation">
-                <button class="nav-link" id="addBroadcast-tab" data-toggle="tab" data-target="#addBroadcast" type="button" role="tab" aria-controls="addBroadcast" aria-selected="false">Add Broadcast</button>
+                <button class="nav-link" id="addBroadcast-tab" data-toggle="tab" data-target="#addBroadcast" type="button" role="tab" aria-controls="addBroadcast" aria-selected="false">Agrega Funcion</button>
             </li>
             <li class="nav-item nowrap" role="presentation">
-                <button class="nav-link" id="addMovies-tab" data-toggle="tab" data-target="#addMovies" type="button" role="tab" aria-controls="addMovies" aria-selected="false">Add Movies</button>
+                <button class="nav-link" id="addMovies-tab" data-toggle="tab" data-target="#addMovies" type="button" role="tab" aria-controls="addMovies" aria-selected="false">Agrega Pelicula</button>
+            </li>
+            <li class="nav-item nowrap" role="presentation">
+                <button class="nav-link" id="deleteAdmin-tab" data-toggle="tab" data-target="#deleteAdmin" type="button" role="tab" aria-controls="deleteAdmin" aria-selected="true">Borrar Admin</button>
+            </li>
+            <li class="nav-item nowrap" role="presentation">
+                <button class="nav-link" id="deleteRoom-tab" data-toggle="tab" data-target="#deleteRoom" type="button" role="tab" aria-controls="deleteRoom" aria-selected="false">Borrar Salon</button>
+            </li>
+            <li class="nav-item nowrap" role="presentation">
+                <button class="nav-link" id="createAdmin-tab" data-toggle="tab" data-target="#createAdmin" type="button" role="tab" aria-controls="createAdmin" aria-selected="false">Crear Admin</button>
+            </li>
+            <li class="nav-item nowrap" role="presentation">
+                <button class="nav-link" id="deleteCombo-tab" data-toggle="tab" data-target="#deleteCombo" type="button" role="tab" aria-controls="deleteCombo" aria-selected="false">Borrar Combo</button>
+            </li>
+            <li class="nav-item nowrap" role="presentation">
+                <button class="nav-link" id="createCombo-tab" data-toggle="tab" data-target="#createCombo" type="button" role="tab" aria-controls="createCombo" aria-selected="false">Crear Combo</button>
+            </li>
+            <li class="nav-item nowrap" role="presentation">
+                <button class="nav-link" id="deleteSnack-tab" data-toggle="tab" data-target="#deleteSnack" type="button" role="tab" aria-controls="deleteSnack" aria-selected="false">Borrar Snack</button>
+            </li>
+            <li class="nav-item nowrap" role="presentation">
+                <button class="nav-link" id="deleteBroadcast-tab" data-toggle="tab" data-target="#deleteBroadcast" type="button" role="tab" aria-controls="deleteBroadcast" aria-selected="false">Borrar Broadcast</button>
+            </li>
+            <li class="nav-item nowrap" role="presentation">
+                <button class="nav-link" id="deleteCinema-tab" data-toggle="tab" data-target="#deleteCinema" type="button" role="tab" aria-controls="deleteCinema" aria-selected="false">Borrar Cinema</button>
+            </li>
+            <li class="nav-item nowrap" role="presentation">
+                <button class="nav-link" id="deleteFilm-tab" data-toggle="tab" data-target="#deleteFilm" type="button" role="tab" aria-controls="deleteFilm" aria-selected="false">Borrar Film</button>
             </li>
         </ul>
+
+
     </div>
 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="addSnack" role="tabpanel" aria-labelledby="addSnack-tab" tabindex="0">
-            <div class="flex">
-                Register
-            </div>
 
-            <form action="falta path" method="POST">
+
+            <form action="/adminAddSnack" method="POST">
                 <div class="questions">
-                    <div class="registerQuestions"> Snack Name: </div>
+                    <div class="registerQuestions"> Snack Nombre: </div>
                     <div class="inputRegister">
-                        <input type="text" id="snackName" name="snackName" placeholder="Enter snack name" required><br>
+                        <input type="text" id="snackName" name="snackName" placeholder="Ingresar nombre de snack" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <div class="registerQuestions"> Snack Price: </div>
+                    <div class="registerQuestions"> Snack Precio: </div>
                     <div class="inputRegister">
-                        <input type="number" id="snackPrice" name="snackPrice" placeholder="Enter snack price" required><br>
+                        <input type="number" id="snackPrice" name="snackPrice" placeholder="Ingresar precio de snack" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <button type="submit" class="client-button">Confirm</button>
+                    <button type="submit" class="client-button">Confirmar</button>
                 </div>
             </form>
         </div>
         <div class="tab-pane fade" id="addCinema" role="tabpanel" aria-labelledby="addCinema-tab" tabindex="0">
-            <div class="flex">
-                Register
-            </div>
+
 
             <form action="falta path" method="POST">
                 <div class="questions">
-                    <div class="registerQuestions"> Central ID: </div>
+                    <div class="registerQuestions"> ID Central: </div>
                     <div class="inputRegister">
-                        <input type="number" id="centralIdCinema" name="centralIdNewCinema" placeholder="Enter central ID" required><br>
+                        <input type="number" id="centralIdCinema" name="centralIdNewCinema" placeholder="Ingresar central ID" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <div class="registerQuestions"> Number of Rooms: </div>
+                    <div class="registerQuestions"> Numero of Salones: </div>
                     <div class="inputRegister">
-                        <input type="number" id="roomQty" name="roomQty" placeholder="Enter number of rooms" required><br>
+                        <input type="number" id="roomQty" name="roomQty" placeholder="Ingresar numer de salones" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <div class="registerQuestions"> Neighborhood: </div>
+                    <div class="registerQuestions"> Local: </div>
                     <div class="inputRegister">
-                        <input type="text" id="neighborhood" name="neighborhood" placeholder="Enter neighborhood" required><br>
+                        <input type="text" id="neighborhood" name="neighborhood" placeholder="Ingresar Localidad" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <button type="submit" class="client-button">Confirm</button>
+                    <button type="submit" class="client-button">Confirmar</button>
                 </div>
             </form>
         </div>
         <div class="tab-pane fade" id="addRoom" role="tabpanel" aria-labelledby="addRoom-tab" tabindex="0">
-            <div class="flex">
-                Register
-            </div>
+
 
             <form action="falta path" method="POST">
                 <div class="questions">
-                    <div class="registerQuestions"> Room Number: </div>
+                    <div class="registerQuestions"> Numeoro de Salon: </div>
                     <div class="inputRegister">
-                        <input type="number" id="roomNbrRoom" name="roomNbrRoom" placeholder="Enter room number" required><br>
+                        <input type="number" id="roomNbrRoom" name="roomNbrRoom" placeholder="Ingresar numero de salon" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <div class="registerQuestions"> Central ID: </div>
+                    <div class="registerQuestions"> ID Central: </div>
                     <div class="inputRegister">
-                        <input type="number" id="centralIdRoom" name="centralIdRoom" placeholder="Enter central ID" required><br>
+                        <input type="number" id="centralIdRoom" name="centralIdRoom" placeholder="Ingresar central ID" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <button type="submit" class="client-button">Confirm</button>
+                    <button type="submit" class="client-button">Confirmar</button>
                 </div>
             </form>
         </div>
         <div class="tab-pane fade" id="addBroadcast" role="tabpanel" aria-labelledby="addBroadcast-tab" tabindex="0">
-            <div class="flex">
-                Register
-            </div>
 
             <form action="falta path" method="POST">
                 <div class="questions">
-                    <div class="registerQuestions"> Broadcast Date and Time: </div>
+                    <div class="registerQuestions"> Tiempo y Fecha: </div>
                     <div class="inputRegister">
-                        <input type="text" id="dateTimeS" name="dateTimeS" placeholder="Enter date and time" required><br>
+                        <input type="text" id="dateTimeS" name="dateTimeS" placeholder="Ingresar fecha y hora" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <div class="registerQuestions"> Broadcast Price: </div>
+                    <div class="registerQuestions"> Precio: </div>
                     <div class="inputRegister">
-                        <input type="number" id="broadcastPrice" name="broadcastPrice" placeholder="Enter price" required><br>
+                        <input type="number" id="broadcastPrice" name="broadcastPrice" placeholder="Ingresar precio" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <div class="registerQuestions"> Room Number: </div>
+                    <div class="registerQuestions"> Numero de Salon: </div>
                     <div class="inputRegister">
-                        <input type="number" id="roomNbrBroadcast" name="roomNbrBroadcast" placeholder="Enter room number" required><br>
+                        <input type="number" id="roomNbrBroadcast" name="roomNbrBroadcast" placeholder="Ingresar numero de salon" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <div class="registerQuestions"> Central ID: </div>
+                    <div class="registerQuestions"> ID Central: </div>
                     <div class="inputRegister">
-                        <input type="number" id="centralIdBroadcast" name="centralIdBroadcast" placeholder="Enter central ID" required><br>
+                        <input type="number" id="centralIdBroadcast" name="centralIdBroadcast" placeholder="Ingresar  central ID" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <div class="registerQuestions"> Film Code: </div>
+                    <div class="registerQuestions"> Codigo: </div>
                     <div class="inputRegister">
-                        <input type="number" id="filmCode" name="filmCode" placeholder="Enter film code" required><br>
+                        <input type="number" id="filmCode" name="filmCode" placeholder="Ingresar codigo de pelicula" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <button type="submit" class="client-button">Confirm</button>
+                    <button type="submit" class="client-button">Confirmar</button>
                 </div>
             </form>
         </div>
         <div class="tab-pane fade" id="addMovies" role="tabpanel" aria-labelledby="addMovies-tab" tabindex="0">
-            <div class="flex">
-                Register
-            </div>
+
 
             <form action="falta path" method="POST">
                 <div class="questions">
-                    <div class="registerQuestions"> Film Name: </div>
+                    <div class="registerQuestions"> Nombre: </div>
                     <div class="inputRegister">
-                        <input type="text" id="filmName" name="filmName" placeholder="Enter film name" required><br>
+                        <input type="text" id="filmName" name="filmName" placeholder="Ingresar nombre de pelicula" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <div class="registerQuestions"> Director Name: </div>
+                    <div class="registerQuestions"> Director: </div>
                     <div class="inputRegister">
-                        <input type="text" id="directorName" name="directorName" placeholder="Enter director name" required><br>
+                        <input type="text" id="directorName" name="directorName" placeholder="Ingresar nombre de director" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <div class="registerQuestions"> Duration (minutes): </div>
+                    <div class="registerQuestions"> Duracion: </div>
                     <div class="inputRegister">
-                        <input type="number" id="duration" name="duration" placeholder="Enter duration" required><br>
+                        <input type="number" id="duration" name="duration" placeholder="Ingresar duracion" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <div class="registerQuestions"> Release Year: </div>
+                    <div class="registerQuestions"> Año de estreno: </div>
                     <div class="inputRegister">
-                        <input type="text" id="releaseYearDate" name="releaseYearDate" placeholder="Enter release year" required><br>
+                        <input type="text" id="releaseYearDate" name="releaseYearDate" placeholder="Ingresar Año de estreno" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <div class="registerQuestions"> Genres: </div>
+                    <div class="registerQuestions"> Generos: </div>
                     <div class="inputRegister">
-                        <input type="text" id="genres" name="genres" placeholder="Enter genres (comma separated)" required><br>
+                        <input type="text" id="genres" name="genres" placeholder="Ingresar generos (separados por comma)" required><br>
                     </div>
                 </div>
                 <div class="questions">
-                    <button type="submit" class="client-button">Confirm</button>
+                    <button type="submit" class="client-button">Confirmar</button>
                 </div>
             </form>
         </div>
-    </div>
-</div>
+        <div class="tab-pane fade" id="deleteAdmin" role="tabpanel" aria-labelledby="deleteAdmin-tab" tabindex="0">
 
-<div>
-    <form action="/test" method="POST">
-        <div class="questions">
-            <input type="submit" class="client-button" value="Test"> <!-- Aplicar la clase de estilo -->
+            <form action="falta path" method="POST">
+                <div class="questions">
+                    <div class="registerQuestions">Seleccione Admin:</div>
+                    <div class="inputRegister">
+                        <select id="adminSelect" name="adminId" required>
+                            <option value="">Seleccione un admin para borrar</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="questions">
+                    <button type="submit" class="client-button">Confirmar</button>
+                </div>
+            </form>
         </div>
-    </form>
+
+        <div class="tab-pane fade" id="deleteRoom" role="tabpanel" aria-labelledby="deleteRoom-tab" tabindex="0">
+
+            <form action="falta path" method="POST">
+                <div class="questions">
+                    <div class="registerQuestions">Seleccionar Salon:</div>
+                    <div class="inputRegister">
+                        <select id="roomSelect" name="roomId" required>
+                            <option value="">Seleccione un Salon</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="questions">
+                    <button type="submit" class="client-button">Confirmar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="tab-pane fade" id="createAdmin" role="tabpanel" aria-labelledby="createAdmin-tab" tabindex="0">
+
+            <form action="falta path" method="POST">
+                <div class="questions">
+                    <div class="registerQuestions">Email:</div>
+                    <div class="inputRegister">
+                        <input type="email" id="adminEmail" name="email" placeholder="Ingresar email" required>
+                    </div>
+                </div>
+                <div class="questions">
+                    <div class="registerQuestions">Nombre:</div>
+                    <div class="inputRegister">
+                        <input type="text" id="adminName" name="name" placeholder="Ingresar nombre" required>
+                    </div>
+                </div>
+                <div class="questions">
+                    <div class="registerQuestions">Direccion:</div>
+                    <div class="inputRegister">
+                        <input type="text" id="adminAddress" name="address" placeholder="Ingresar direccion" required>
+                    </div>
+                </div>
+
+                <div class="questions">
+                    <div class="registerQuestions"> Fecha de nacimiento: </div>
+                    <div class="inputRegister">
+                        <input type="text" id="adminBirthdate" name="birthdate" placeholder="Ingresar fecha de nacimiento" required><br>
+                    </div>
+                </div>
+
+                <div class="questions">
+                    <div class="registerQuestions">Contraseña:</div>
+                    <div class="inputRegister">
+                        <input type="password" id="adminPassword" name="password" placeholder="Ingresar contraseña" required>
+                    </div>
+                </div>
+                <div class="questions">
+                    <button type="submit" class="client-button">Confirmar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="tab-pane fade" id="deleteCombo" role="tabpanel" aria-labelledby="deleteCombo-tab" tabindex="0">
+
+            <form action="falta path" method="POST">
+                <div class="questions">
+                    <div class="registerQuestions">Seleccione Combo:</div>
+                    <div class="inputRegister">
+                        <select id="comboSelect" name="comboId" required>
+                            <option value="">Seleccione un combo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="questions">
+                    <button type="submit" class="client-button">Confirmar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="tab-pane fade" id="createCombo" role="tabpanel" aria-labelledby="createCombo-tab" tabindex="0">
+
+            <form action="falta path" method="POST">
+                <div class="questions">
+                    <div class="registerQuestions">Seleccione Snack:</div>
+                    <div class="inputRegister">
+                        <select id="snackDropdown" name="snackId">
+                            <option value="" disabled selected>Seleccione un snack</option>
+
+                        </select>
+                    </div>
+                    <div class="inputRegister">
+                        <button type="button" id="decreaseBtn">-</button>
+                        <input class="client-button" type="text" id="snackCounter" name="snackQuantity" value="0" readonly>
+                        <button type="button" id="increaseBtn">+</button>
+                    </div>
+
+                </div>
+                <div class="questions">
+                    <button type="submit" class="client-button">Confirmar</button>
+                </div>
+            </form>
+        </div>
+
+        <script th:inline="javascript">
+            let counter = /*[[${snackCounterValue}]]*/ 0;
+
+            document.getElementById('increaseBtn').addEventListener('click', function() {
+                counter++;
+                document.getElementById('snackCounter').value = counter;
+            });
+
+            document.getElementById('decreaseBtn').addEventListener('click', function() {
+                if (counter > 0) {
+                    counter--;
+                    document.getElementById('snackCounter').value = counter;
+                }
+            });
+        </script>
+
+
+        <div class="tab-pane fade" id="deleteSnack" role="tabpanel" aria-labelledby="deleteSnack-tab" tabindex="0">
+
+            <form action="/adminDeleteSnack" method="POST">
+                <div class="questions">
+                    <div class="registerQuestions">Seleccione Snack:</div>
+                    <div class="inputRegister">
+                        <select id="snackSelect" name="snackId" required>
+                            <option th:each="snack : ${snacks}" th:value="${snack.snackName}" th:text="${snack.snackName}">Snack Name</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="questions">
+                    <button type="submit" class="client-button">Confirmar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="tab-pane fade" id="deleteBroadcast" role="tabpanel" aria-labelledby="deleteBroadcast-tab" tabindex="0">
+
+            <form action="falta path" method="POST">
+                <div class="questions">
+                    <div class="registerQuestions">Seleccione Funcion:</div>
+                    <div class="inputRegister">
+                        <select id="broadcastSelect" name="broadcastId" required>
+                            <option value="">Seleccione una funcion</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="questions">
+                    <button type="submit" class="client-button">Confirmar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="tab-pane fade" id="deleteCinema" role="tabpanel" aria-labelledby="deleteCinema-tab" tabindex="0">
+
+            <form action="falta path" method="POST">
+                <div class="questions">
+                    <div class="registerQuestions">Seleccione Cine:</div>
+                    <div class="inputRegister">
+                        <select id="cinemaSelect" name="cinemaId" required>
+                            <option value="">Seleccione un cine</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="questions">
+                    <button type="submit" class="client-button">Confirmar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="tab-pane fade" id="deleteFilm" role="tabpanel" aria-labelledby="deleteFilm-tab" tabindex="0">
+
+            <form action="falta path" method="POST">
+                <div class="questions">
+                    <div class="registerQuestions">Seleccione Pelicula:</div>
+                    <div class="inputRegister">
+                        <select id="filmSelect" name="filmId" required>
+                            <option value="">Seleccione una pelicula</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="questions">
+                    <button type="submit" class="client-button">Confirmar</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
