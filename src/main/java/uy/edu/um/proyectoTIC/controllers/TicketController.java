@@ -5,10 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import uy.edu.um.proyectoTIC.entities.Cinema;
-import uy.edu.um.proyectoTIC.entities.Combo;
-import uy.edu.um.proyectoTIC.entities.Film;
-import uy.edu.um.proyectoTIC.entities.Snack;
+import uy.edu.um.proyectoTIC.entities.*;
+import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
 import uy.edu.um.proyectoTIC.repository.FilmRepository;
 import uy.edu.um.proyectoTIC.services.*;
 
@@ -57,6 +55,15 @@ public class TicketController {
 
         return "ticketNew";
     }
+
+
+    @GetMapping("/getBroadcasts")
+    @ResponseBody
+    public List<Broadcast> getAvailableBroadcasts(@RequestParam("filmCode") Long filmCode, @RequestParam("cinemaId") Long cinemaId) throws EntityNotFoundException {
+        Film film = filmRepository.findById(filmCode).orElseThrow(() -> new EntityNotFoundException("Film not found"));
+        return broadcastService.findByFilmAndCinema(film.getFilmName(), cinemaId);
+    }
+
 
     //agregar el id de la peliculas que toma el boton de comprar
     @PostMapping("/ticketNew")
