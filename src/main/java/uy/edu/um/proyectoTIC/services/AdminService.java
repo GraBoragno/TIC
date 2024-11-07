@@ -105,10 +105,10 @@ public class AdminService {
     }
 
     //Quizas es necesario un trimm o algo para los nombres
-    public Combo createCombo(Integer comboPrice, List<String> snackNames) throws EntityNotFoundException
+    public Combo createCombo(Integer comboPrice, List<String> snackNames, String comboName) throws EntityNotFoundException
     {
-        if (comboPrice < 1)
-            throw new InvalidAttributeException("El precio debe ser mayor que 0");
+        if (comboPrice < 1 || comboName == null || comboName.isEmpty())
+            throw new InvalidAttributeException("Atributo no valido");
 
         List<Snack> snackList = new ArrayList<>();
 
@@ -121,7 +121,7 @@ public class AdminService {
                 throw new EntityNotFoundException("No se encontro: " + snackName);
             }
         }
-        return comboService.addCombo(comboPrice,snackList);
+        return comboService.addCombo(comboPrice,snackList,comboName);
     }
 
     @Transactional

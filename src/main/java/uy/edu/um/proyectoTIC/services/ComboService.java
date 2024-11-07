@@ -31,12 +31,13 @@ public class ComboService {
     private SnackRepository snackRepository;
 
     // (-_-) -> (o_-) -> (0_-) -> (0_o) -> (0_0) -> (T-T)
-    public Combo addCombo(Integer comboPrice, List<Snack> snacks) throws EntityNotFoundException
+    public Combo addCombo(Integer comboPrice, List<Snack> snacks, String comboName) throws EntityNotFoundException
     {
 
         Combo newCombo = Combo.builder()
                 .comboPrice((long)comboPrice)
                 .snacksIncluded(snacks)
+                .comboName(comboName)
                 .build();
 
         return comboRepository.save(newCombo);

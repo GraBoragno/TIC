@@ -19,6 +19,7 @@ public class Combo {
     private Long comboId;
 
     //Agregar comboName
+    private String comboName;
 
     private Long comboPrice;
 
