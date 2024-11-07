@@ -152,8 +152,8 @@
             <div class="inputRegisterTicket">
                 <select class="form-select" aria-label="Default select example" name="combos">
                     <option th:each="combo : ${combos}"
-                            th:value="${combo.getSnacksIncluded()}"
-                            th:text="${combo.getSnacksIncluded()}">Snack</option>
+                            th:value="${combo.getComboName()}"
+                            th:text="${combo.getComboName()}">Snack</option>
                 </select>
             </div>
         </div>
