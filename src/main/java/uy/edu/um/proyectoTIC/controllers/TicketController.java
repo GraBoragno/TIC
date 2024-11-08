@@ -7,11 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import uy.edu.um.proyectoTIC.entities.*;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
+import uy.edu.um.proyectoTIC.repository.BroadcastRepository;
 import uy.edu.um.proyectoTIC.repository.FilmRepository;
 import uy.edu.um.proyectoTIC.services.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/ticket")
@@ -30,6 +33,10 @@ public class TicketController {
     private ComboService comboService;
     @Autowired
     private BroadcastService broadcastService;
+    @Autowired
+    private BroadcastRepository broadcastRepository;
+    @Autowired
+    private CinemaService cinemaService;
 
     @GetMapping("/ticketNew")
     public String formulario(HttpSession session, @RequestParam("filmCode") Long filmCode, Model model)
@@ -45,24 +52,28 @@ public class TicketController {
 
         List<Snack> snacks = snackService.getAvailableSnacks();
         List<Combo> combos = comboService.getAvailableCombos();
-        List<Cinema> cinemas = broadcastService.getBroadcastsByFilmName(film.getFilmName()); //No funciona
+        List<Broadcast> broadcasts = broadcastService.getBroadcastsByFilmName(film.getFilmName()); //No funciona
 
+        List<Long> centralIds = broadcasts.stream()
+                .map(Broadcast::getCentralId)
+                .distinct()
+                .collect(Collectors.toList());
+
+        List<Cinema> cinemas = cinemaService.findCinemasByCentralIds(centralIds);
+
+        // Crear un Map de centralId a Cinema
+        Map<Long, Cinema> cinemaMap = cinemas.stream()
+                .collect(Collectors.toMap(Cinema::getCentralId, cinema -> cinema));
 
         model.addAttribute("film", film);
-        model.addAttribute("cinemas", cinemas);
+        model.addAttribute("broadcasts", broadcasts); // Cambio de "broadcast" a "broadcasts"
+        model.addAttribute("cinemaMap", cinemaMap); // Cambio de "cinema" a "cinemaMap"
         model.addAttribute("snacks", snacks);
         model.addAttribute("combos", combos);
 
         return "ticketNew";
     }
 
-
-    @GetMapping("/getBroadcasts")
-    @ResponseBody
-    public List<Broadcast> getAvailableBroadcasts(@RequestParam("filmCode") Long filmCode, @RequestParam("cinemaId") Long cinemaId) throws EntityNotFoundException {
-        Film film = filmRepository.findById(filmCode).orElseThrow(() -> new EntityNotFoundException("Film not found"));
-        return broadcastService.findByFilmAndCinema(film.getFilmName(), cinemaId);
-    }
 
 
     //agregar el id de la peliculas que toma el boton de comprar

@@ -122,24 +122,17 @@
             Elija su función y snacks
         </div>
         <div class="questionsTicket">
-            <div class="registerQuestionsTicket">Lugar:</div>
+            <div class="registerQuestionsTicket">Función:</div>
             <div class="inputRegisterTicket">
-                <select id="cinemaSelect" class="form-select" name="neighborhood">
-                    <option value="" selected>Seleccione el cine</option>
-                    <option th:each="cinema : ${cinemas}"
-                            th:value="${cinema.getCentralId()}"
-                            th:text="${cinema.getNeighborhood()}">Cinema</option>
+                <select id="broadcastSelect" class="form-select" name="broadcastId" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                    <option value="" selected>Seleccione la función</option>
+                    <option th:each="broadcast : ${broadcasts}"
+                            th:value="${broadcast.broadcastId}"
+                            th:data-date="${broadcast.dateTime}"
+                            th:text="${cinemaMap[broadcast.centralId].neighborhood} + ' - ' + ${broadcast.dateTime}">
+                    </option>
                 </select>
-            </div>
-        </div>
 
-        <div class="questionsTicket" id="showSchedule">
-            <div class="registerQuestionsTicket">Horario:</div>
-            <div class="inputRegisterTicket">
-                <select id="scheduleSelect" class="form-select" name="dateTime">
-                    <option selected>Seleccione el horario</option>
-                    <!-- Los horarios se agregarán dinámicamente con JavaScript -->
-                </select>
             </div>
         </div>
 
@@ -172,43 +165,36 @@
 </div>
 
 <script>
-    document.getElementById('cinemaSelect').addEventListener('change', function() {
-        const cinemaId = this.value;
-        const filmCode = document.getElementById('filmCode').value;
-        const scheduleSelect = document.getElementById('scheduleSelect');
+    document.addEventListener("DOMContentLoaded", function() {
+        // Obtener todas las opciones del select
+        const options = document.querySelectorAll('#broadcastSelect option');
 
-        scheduleSelect.innerHTML = '<option selected>Seleccione el horario</option>'; // Restablece las opciones iniciales
+        // Formato deseado (por ejemplo, "dd MMM yyyy, HH:mm")
+        const optionsDateFormat = {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        };
 
-        if (cinemaId) {
-            const encodedFilmCode = encodeURIComponent(filmCode);
-            const encodedCinemaId = encodeURIComponent(cinemaId);
+        options.forEach(function(option) {
+            // Obtener la fecha desde el atributo data-date
+            const dateTimeString = option.getAttribute('data-date');
+            if (dateTimeString) {
+                const date = new Date(dateTimeString); // Crear un objeto Date con el string
 
-            fetch(`/ticket/getBroadcasts?filmCode=${encodedFilmCode}&cinemaId=${encodedCinemaId}`)
-                .then(response => response.json())
-                .then(broadcasts => {
-                    scheduleSelect.disabled = false;  // Habilitar el select
-                    scheduleSelect.innerHTML = '<option selected>Seleccione el horario</option>';
+                // Usar Intl.DateTimeFormat para formatear la fecha
+                const formattedDate = new Intl.DateTimeFormat('es-ES', optionsDateFormat).format(date);
 
-                    broadcasts.forEach(broadcast => {
-                        const option = document.createElement('option');
-                        const date = new Date(broadcast.dateTime);
-                        option.value = broadcast.dateTime;
-                        option.textContent = date.toLocaleString('es-ES', {
-                            day: '2-digit', month: '2-digit', year: 'numeric',
-                            hour: '2-digit', minute: '2-digit'
-                        });
-                        scheduleSelect.appendChild(option);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error fetching broadcasts:', error);
-                });
-        } else {
-            scheduleSelect.disabled = true;
-        }
+                // Actualizar el texto del option con el formato de fecha
+                option.textContent = `${option.textContent.split(' - ')[0]} - ${formattedDate}`;
+            }
+        });
     });
-
 </script>
+
 
 
 </body>

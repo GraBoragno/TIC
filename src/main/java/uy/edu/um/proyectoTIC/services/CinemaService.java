@@ -55,4 +55,8 @@ public class CinemaService {
         return snackRepository.findAll();
     }
 
+    public List<Cinema> findCinemasByCentralIds(List<Long> centralIds) {
+        return cinemaRepository.findByCentralIdIn(centralIds);
+    }
+
 }

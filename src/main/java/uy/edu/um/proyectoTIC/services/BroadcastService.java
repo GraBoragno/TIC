@@ -116,19 +116,10 @@ public class BroadcastService {
     }
 
 
-    public List<Cinema> getBroadcastsByFilmName(String filmName)
+    public List<Broadcast> getBroadcastsByFilmName(String filmName)
     {
         List <Broadcast> broadcasts = broadcastRepository.findByFilmNameBroadcast(filmName, LocalDateTime.now());
-        List<Cinema> cinemas = new ArrayList<>();
-
-        for (Broadcast b : broadcasts) {
-            Optional<Cinema> cinemaAux = cinemaRepository.findById(b.getCentralId());
-            if (cinemaAux.isPresent()){
-                Cinema cinema = cinemaAux.get();
-                cinemas.add(cinema);
-            }
-        }
-        return cinemas;
+        return broadcasts;
     }
 
     public List<Broadcast> findByFilmAndCinema(String filmName, Long centralId) {
