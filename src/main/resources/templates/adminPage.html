@@ -460,14 +460,14 @@
 
             <div class="custom-container">
                 <h1 class="custom-upcoming textTicketHistory">Peliculas</h1>
-                <div th:each="film : ${films}">
-                <div class="custom-item">
+                <div th:each="film : ${films}" style="display: flex; flex-wrap: nowrap; justify-content: center;">
+                <div class="custom-item" style="display: flex; flex-wrap: nowrap;">
                     <div class="custom-item-right">
                         <h2 class="custom-num" th:text="${#numbers.formatDecimal(film.score, 0, 0)+ '/5'}">rating</h2>
                         <p class="custom-day">Rating</p>
                     </div>
 
-                    <div class="custom-item-left">
+                    <div class="custom-item-left" >
                         <p class="custom-event"> Pelicula </p>
                         <h2 class="custom-title" th:text="${film.filmName}">Movie Title</h2>
                     </div>
