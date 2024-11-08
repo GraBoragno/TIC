@@ -366,3 +366,10 @@ h1 {
     pointer-events: none;
 }
 
+.admin-nav-background {
+    background-color: #161616 !important;
+}
+
+.admin-services-scroll {
+    padding-top: 60px;
+}

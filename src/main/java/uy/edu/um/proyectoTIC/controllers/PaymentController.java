@@ -22,10 +22,10 @@ public class PaymentController {
     @GetMapping("/payment")
     public String showPaymentPage(Model model, HttpSession session) throws EntityNotFoundException {
         // Obtener el email del cliente desde la sesión
-        String email = (String) session.getAttribute("userEmail");
+        Object client = (Client) session.getAttribute("user");
 
         // Asumimos que el usuario ya está autenticado y ha pasado por las páginas anteriores
-        Client client = clientService.findByEmail(email); // Buscar al cliente por su email
+         // Buscar al cliente por su email
 
         model.addAttribute("client", client); // Agregar el cliente al modelo para pasarlo a la vista
         return "payment"; // Retorna el nombre de la plantilla Thymeleaf (payment.html)
