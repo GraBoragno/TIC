@@ -126,6 +126,7 @@ body {
 
 
 
+
 .column {
     display: flex;
     flex-direction: column;
@@ -297,5 +298,71 @@ h1 {
     margin-bottom: 40px;
 }
 
+.center-title-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    height: 100vh;
+}
 
+/*custom button for the + and - for snacks*/
+.snack-selection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 25px 0;
+}
+
+.snack-label {
+    font-size: 15px;
+    width: 100px;
+    text-align: left;
+}
+
+.dropdown-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.quantity-control select,
+.quantity-control button,
+.quantity-input {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+}
+
+.quantity-control button {
+    width: 30px;
+    height: 30px;
+    background-color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quantity-control button:hover {
+    background-color: #e0e0e0;
+}
+
+.quantity-input {
+    width: 40px;
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    pointer-events: none;
+}
 

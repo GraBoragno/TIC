@@ -95,6 +95,11 @@
                 Cerrar sesión
             </a>
         </div>
+        <div class="offcanvas-item">
+            <a class="logout-link" onclick=location.href="/ticketHistory">
+                Historial Tickets
+            </a>
+        </div>
         <form id="logout-form" action="/log-out" method="POST" style="display: none;">
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import uy.edu.um.proyectoTIC.entities.Film;
 import uy.edu.um.proyectoTIC.entities.Snack;
 import uy.edu.um.proyectoTIC.entities.users.Admin;
 import uy.edu.um.proyectoTIC.entities.users.Client;
@@ -27,14 +28,21 @@ public class AdminController {
 
     @Autowired
     private SnackService snackService;
+
+    @Autowired
     private AdminService adminService;
 
+    @Autowired
+    private FilmService filmService;
 
 
     @GetMapping("/adminPage")
-    public String admin(Model model) {
+    public String admin(Model model , HttpSession session) {
 
         List<Snack> snacks = snackService.getAvailableSnacks();
+//        get rated films no anduvo :3
+        List<Film> films = filmService.getAvailableFilmsByDate();
+        model.addAttribute("films", films);
         model.addAttribute("snacks", snacks);
         return "adminPage";
     }
@@ -49,7 +57,9 @@ public class AdminController {
     }
 
     @PostMapping("/adminDeleteSnack")
-    public String deleteSnack(@RequestParam String snackId) {
+    public String deleteSnack(@RequestParam String snackName) {
+//        snack = snackService.getSnack(snackName);
+//        adminService.deleteSnack(snack);
         return "adminPage";
     }
 
