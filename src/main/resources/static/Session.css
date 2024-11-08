@@ -282,6 +282,16 @@ h1 {
     display: inline-block; /* Prevent wrapping */
 }
 
+.custom-scrollbar {
+    overflow: auto;
+    scrollbar-width: none; /* Firefox */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+
 /* Títulos de "Inicio de sesión" y "Registrarse" */
 .titleReg {
     font-size: 26px;
