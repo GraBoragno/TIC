@@ -33,7 +33,6 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
     @Query("""
     SELECT f 
     FROM Film f 
-    WHERE f.score > 0 
     ORDER BY f.score DESC
     """)
     List<Film> findTopRatedFilms();

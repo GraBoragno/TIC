@@ -71,8 +71,8 @@ public class TicApplicationProyect {
 	}
 
 	public void runInCommandLine() throws DuplicateEntityException {
-//		Client newClient = clientService.addClient("email@email.com","persona1","xd", "21/10/2024","123456789");
-//
+		Client newClient = clientService.addClient("email@email.com","persona1","xd", "21/10/2024","123456789");
+
 //		System.out.println("----------------1-------------------------");
 //		try {
 //			filmService.addFilm("The Grand Budapest Hotel", "Wes Anderson", 99, "2014", "comedia, drama");
@@ -137,7 +137,7 @@ public class TicApplicationProyect {
 //		try {
 //			List<Snack> allSnacks = snackRepository.findAll();
 //
-//			Combo combo1 = comboService.addCombo(500, allSnacks);
+//			Combo combo1 = comboService.addCombo(500, allSnacks, "Todos los snacks");
 //
 //		} catch (EntityNotFoundException e) {
 //			System.out.println("Error: No se encontraron algunos snacks.");
@@ -156,6 +156,7 @@ public class TicApplicationProyect {
 //		try {
 //			roomService.createRoom(8, 1);
 //			roomService.createRoom(1, 7);
+//			roomService.createRoom(1, 3);
 //			roomService.createRoom(3, 4);
 //			roomService.createRoom(2, 2);
 //			roomService.createRoom(10, 1);
@@ -163,7 +164,7 @@ public class TicApplicationProyect {
 //		} catch (EntityNotFoundException | InvalidRoomQtyException e) {
 //			System.out.println("Error: El cine no existe");
 //		}
-
+//
 //		System.out.println("----------------8-------------------------");
 //
 //		try {
@@ -179,7 +180,7 @@ public class TicApplicationProyect {
 //		} catch (EntityNotFoundException e) {
 //			System.out.println("Error al agregar la emisión: " + e.getMessage());
 //		}
-
+//
 //		System.out.println("----------------9-------------------------");
 //
 //		try {
@@ -219,6 +220,10 @@ public class TicApplicationProyect {
 //		filmService.rateFilm(1, 5);
 //		filmService.rateFilm(1, 1);
 //		filmService.rateFilm(1, 5);
+
+//		for (int i = 0; i < filmService.getRatedFilms().size(); i++) {
+//			System.out.println(filmService.getRatedFilms().get(i).getFilmName());
+//		}
 
 		System.out.println("Ejecutando programa...");
 	}
