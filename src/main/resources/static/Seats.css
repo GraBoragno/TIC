@@ -120,3 +120,13 @@ body {
 .first-row-padding {
     padding-top: 30px;
 }
+
+.homeButton {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 30%;
+}

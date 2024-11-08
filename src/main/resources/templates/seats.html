@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap' rel="stylesheet">
-    <link rel="stylesheet" href="/static/Seats.css" />
+    <link rel="stylesheet" href="/static/Seats.css"/>
     <link rel="stylesheet" href="/static/Buttons.css"/>
     <title>Services List</title>
 </head>
+<body>
+
+<div id="home3" class="homeButton">
+    <button id="homeBtn" class="client-button" onclick="location.href='/ticketNew'">
+        Volver
+    </button>
+</div>
 
 <ul class="showcase">
     <li>
@@ -28,19 +35,18 @@
 
 <div class="container px-4 ">
     <div class="screen"></div>
-    <div class="row justify-content-center flex-nowrap first-row-padding"></div>
     <!-- Row 1 -->
-    <div class="row justify-content-center flex-nowrap">
+    <div class="row justify-content-center flex-nowrap first-row-padding">
     <div class="col-auto p-1">
         <form action="/selectSeat" method="post">
             <input type="hidden" name="seatId" value="1"/>
-            <button type="submit" class="seat selected" id="seat1"></button>
+            <button type="submit" class="seat occupied" id="seat1"></button>
         </form>
     </div>
     <div class="col-auto p-1">
         <form action="/selectSeat" method="post">
             <input type="hidden" name="seatId" value="2"/>
-            <button type="submit" class="seat selected" id="seat2"></button>
+            <button type="submit" class="seat occupied" id="seat2"></button>
         </form>
     </div>
     <div class="col-auto p-1">
@@ -992,5 +998,5 @@
 
 
 </div>
-
+</body>
 </html>

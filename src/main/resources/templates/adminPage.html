@@ -69,7 +69,7 @@
                     <button class="nav-link admin-nav-background" id="addCinema-tab" data-toggle="tab" data-target="#addCinema" type="button" role="tab" aria-controls="addCinema" aria-selected="false" style="color: white;">Crear Cine</button>
                 </li>
                 <li class="nav-item nowrap" role="presentation">
-                    <button class="nav-link admin-nav-background" id="deleteCinema-tab" data-toggle="tab" data-target="#deleteCinema" type="button" role="tab" aria-controls="deleteCinema" aria-selected="false" style="color: white;">Borrar Cinema</button>
+                    <button class="nav-link admin-nav-background" id="deleteCinema-tab" data-toggle="tab" data-target="#deleteCinema" type="button" role="tab" aria-controls="deleteCinema" aria-selected="false" style="color: white;">Borrar Cine</button>
                 </li>
                 <li class="nav-item nowrap" role="presentation">
                     <button class="nav-link admin-nav-background" id="createCombo-tab" data-toggle="tab" data-target="#createCombo" type="button" role="tab" aria-controls="createCombo" aria-selected="false" style="color: white;">Crear Combo</button>
@@ -87,7 +87,7 @@
                     <button class="nav-link admin-nav-background" id="addRoom-tab" data-toggle="tab" data-target="#addRoom" type="button" role="tab" aria-controls="addRoom" aria-selected="false" style="color: white;">Agregar Sala</button>
                 </li>
                 <li class="nav-item nowrap" role="presentation">
-                    <button class="nav-link admin-nav-background" id="deleteRoom-tab" data-toggle="tab" data-target="#deleteRoom" type="button" role="tab" aria-controls="deleteRoom" aria-selected="false" style="color: white;">Borrar Salon</button>
+                    <button class="nav-link admin-nav-background" id="deleteRoom-tab" data-toggle="tab" data-target="#deleteRoom" type="button" role="tab" aria-controls="deleteRoom" aria-selected="false" style="color: white;">Borrar Sala</button>
                 </li>
                 <li class="nav-item nowrap" role="presentation">
                     <button class="nav-link active admin-nav-background" id="addSnack-tab" data-toggle="tab" data-target="#addSnack" type="button" role="tab" aria-controls="addSnack" aria-selected="true" style="color: white;">Crear Snack</button>
@@ -463,7 +463,7 @@
                 <div th:each="film : ${films}" style="display: flex; flex-wrap: nowrap; justify-content: center;">
                 <div class="custom-item" style="display: flex; flex-wrap: nowrap;">
                     <div class="custom-item-right">
-                        <h2 class="custom-num" th:text="${#numbers.formatDecimal(film.score, 1, 1)+ '/5.0'}">rating</h2>
+                        <h2 class="custom-num" th:text="${#numbers.formatDecimal(film.score, 0, 0)+ '/5'}">rating</h2>
                         <p class="custom-day">Rating</p>
                     </div>
 
