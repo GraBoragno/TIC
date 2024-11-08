@@ -116,3 +116,7 @@ body {
     box-shadow: 0px 0px 7px 0px rgba(255, 255, 255, 1);
     margin: 10px 0;
 }
+
+.first-row-padding {
+    padding-top: 30px;
+}
