@@ -71,7 +71,7 @@ public class TicApplicationProyect {
 	}
 
 	public void runInCommandLine() throws DuplicateEntityException {
-		Client newClient = clientService.addClient("email@email.com","persona1","xd", "21/10/2024","123456789");
+//		Client newClient = clientService.addClient("email@email.com","persona1","xd", "21/10/2024","123456789");
 
 //		System.out.println("----------------1-------------------------");
 //		try {
@@ -221,9 +221,9 @@ public class TicApplicationProyect {
 //		filmService.rateFilm(1, 1);
 //		filmService.rateFilm(1, 5);
 
-//		for (int i = 0; i < filmService.getRatedFilms().size(); i++) {
-//			System.out.println(filmService.getRatedFilms().get(i).getFilmName());
-//		}
+		for (int i = 0; i < filmService.getRatedFilms().size(); i++) {
+			System.out.println(filmService.getRatedFilms().get(i).getFilmName());
+		}
 
 		System.out.println("Ejecutando programa...");
 	}

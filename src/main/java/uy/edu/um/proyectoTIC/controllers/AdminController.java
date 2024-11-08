@@ -41,7 +41,7 @@ public class AdminController {
 
         List<Snack> snacks = snackService.getAvailableSnacks();
 //        get rated films no anduvo :3
-        List<Film> films = filmService.getAvailableFilmsByDate();
+        List<Film> films = filmService.getRatedFilms();
         model.addAttribute("films", films);
         model.addAttribute("snacks", snacks);
         return "adminPage";
