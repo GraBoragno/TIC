@@ -10,6 +10,7 @@ import uy.edu.um.proyectoTIC.entities.Film;
 import uy.edu.um.proyectoTIC.entities.Ticket;
 import uy.edu.um.proyectoTIC.entities.users.Admin;
 import uy.edu.um.proyectoTIC.entities.users.Client;
+import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
 import uy.edu.um.proyectoTIC.services.ClientService;
 import uy.edu.um.proyectoTIC.services.FilmService;
 
@@ -29,15 +30,17 @@ public class TicketHistoryController {
     @GetMapping("/ticketHistory")
     public String history(Model model, HttpSession session) {
         Client client = (Client) session.getAttribute("user");
-        List<Ticket> tickets = client.getTicketsBought();
-        model.addAttribute("tickets", tickets);
+//        List<Ticket> tickets;
+//        try {
+//            tickets = clientService.getTicketByEmail(client.getEmail());
+////           List<Ticket> tickets = client.getTicketsBought();
+//        } catch (EntityNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//        model.addAttribute("tickets", tickets);
         Object user = session.getAttribute("user");
         model.addAttribute("user", user);
-//        client
-//        List<Ticket> tickets = ticketService.getAvailableFilmsByDate();
 //
-//        model.addAttribute("filmGroups", filmGroups);
-//        model.addAttribute("user", user);
         return "ticketHistory";
     }
 

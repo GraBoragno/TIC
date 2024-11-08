@@ -62,9 +62,9 @@
 
 <div class="custom-container">
     <h1 class="custom-upcoming textTicketHistory">Tickets</h1>
-    <div class="custom-item">
+    <div class="custom-item" th:each="ticket : ${tickets}">
         <div class="custom-item-right">
-            <h2 class="custom-num">07</h2>
+            <h2 class="custom-num" th:text="ticket.ticketBroadcast.dateTime">07</h2>
             <p class="custom-day">Dic</p>
             <span class="custom-up-border"></span>
             <span class="custom-down-border"></span>

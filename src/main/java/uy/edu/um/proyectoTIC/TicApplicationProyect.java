@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import uy.edu.um.proyectoTIC.entities.Combo;
 import uy.edu.um.proyectoTIC.entities.Film;
 import uy.edu.um.proyectoTIC.entities.Snack;
+import uy.edu.um.proyectoTIC.entities.Ticket;
 import uy.edu.um.proyectoTIC.entities.users.Admin;
 import uy.edu.um.proyectoTIC.exceptions.*;
 import uy.edu.um.proyectoTIC.entities.users.Client;
@@ -221,12 +222,25 @@ public class TicApplicationProyect {
 //		filmService.rateFilm(1, 1);
 //		filmService.rateFilm(1, 5);
 
-		for (int i = 0; i < filmService.getRatedFilms().size(); i++) {
-			System.out.println(filmService.getRatedFilms().get(i).getFilmName());
-		}
+//		Crear ticket
+//        List<Snack> allSnacks = snackRepository.findAll();
+//        List<Combo> allCombos = comboService.getAvailableCombos();
+//        ticketService.buyTicket(1, 1, 1, "email@email.com",  allCombos, allSnacks);
+//
 
-		System.out.println("Ejecutando programa...");
-	}
+//        try {
+//			Client client = clientService.findByEmail("email@email.com");
+//			List<Ticket> tickets = clientService.getTicketByEmail("email@email.com");
+////			tickets = clientService.getTicketByEmail(client.getEmail());
+//			System.out.println(tickets.get(1));
+//
+//
+//        } catch (EntityNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+
+        System.out.println("Ejecutando programa...");
+    }
 
 }
 
