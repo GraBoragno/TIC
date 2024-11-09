@@ -384,3 +384,57 @@ h1 {
     padding-top: 60px;
 }
 
+/* Resumen del pago */
+.payment-summary {
+    text-align: center;
+    font-size: 1.5em;
+    color: #FFFFFF;
+    margin: 20px 0;
+}
+
+.price {
+    color: #e60000;
+    font-weight: bold;
+}
+
+/* Opciones de pago */
+.payment-option {
+    background-color: #333333;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.payment-option h4 {
+    color: #cc0000;
+    margin-bottom: 10px;
+}
+
+/* Botones de confirmación y agregar tarjeta */
+.btn-confirm, .btn-add-card {
+    background-color: #cc0000;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.btn-confirm:hover, .btn-add-card:hover {
+    background-color: #e60000;
+}
+
+.input-card-number {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    text-align: center;
+}

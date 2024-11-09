@@ -46,7 +46,6 @@ public class TicketController {
             return "redirect:/log-in";
 
 
-
         Optional<Film> filmAux = filmRepository.findById(filmCode);
         Film film = filmAux.get(); //Usar el Service
 
@@ -74,16 +73,13 @@ public class TicketController {
         return "ticketNew";
     }
 
-
-
     //agregar el id de la peliculas que toma el boton de comprar
     @PostMapping("/ticketNew")
     public String chooseFunction(HttpSession Session, Model model, @RequestParam String neighborhood, @RequestParam String dateTime, @RequestParam List<Combo> combos, @RequestParam List<Snack> snacks) {
 
 //        get broadcast id and add it
-        return "seats";
+        return  "redirect:/seats"; // Redirigir a seats después de confirmar
     }
-
 
 
 //    @PostMapping("/ticketNew")

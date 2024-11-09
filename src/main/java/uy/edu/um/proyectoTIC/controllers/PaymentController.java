@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
 
-
 @Controller
 public class PaymentController {
 
@@ -21,23 +20,20 @@ public class PaymentController {
 
     @GetMapping("/payment")
     public String showPaymentPage(Model model, HttpSession session) throws EntityNotFoundException {
-        // Obtener el email del cliente desde la sesión
-        Object client = (Client) session.getAttribute("user");
-
-        // Asumimos que el usuario ya está autenticado y ha pasado por las páginas anteriores
-         // Buscar al cliente por su email
+        // Obtener el cliente desde la sesión
+        Client client = (Client) session.getAttribute("user");
 
         model.addAttribute("client", client); // Agregar el cliente al modelo para pasarlo a la vista
-        return "payment"; // Retorna el nombre de la plantilla Thymeleaf (payment.html)
+        return "payment";
     }
 
     @PostMapping("/add-card")
     public String addCard(@RequestParam("card-number") Long cardNumber, HttpSession session) throws EntityNotFoundException {
-        // Obtener el email del cliente desde la sesión
-        String email = (String) session.getAttribute("userEmail");
+        // Obtener el cliente desde la sesión
+        Client client = (Client) session.getAttribute("user");
 
-        // Actualiza el método de pago del cliente
-        clientService.UpdatePaymentMethod(email, cardNumber);
+        // Actualizar el método de pago del cliente
+        clientService.UpdatePaymentMethod(client.getEmail(), cardNumber);
         return "redirect:/payment"; // Redirigir a la página de pago después de agregar la tarjeta
     }
 }

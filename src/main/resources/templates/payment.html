@@ -20,36 +20,35 @@
     </button>
 </div>
 
-<div class="flex titleReg">
-    Elija su método de pago
+<!-- Título -->
+<h2 class="titleReg">Pago</h2>
+
+<!-- Resumen del precio ($0 porque WTF Cinema da las entradas gratis los 1ros meses) -->
+<div class="payment-summary">
+    <p>Precio total: <span class="price">$0</span></p>
 </div>
 
-<!-- Sección para mostrar tarjeta guardada -->
-<div id="saved-cards" class="mb-4">
+<!-- Sección para tarjeta guardada -->
+<div id="saved-cards" class="payment-option">
     <h4>Tarjeta Guardada</h4>
     <div th:if="${client.cardNbr != null}">
-        <p th:text="'**** **** **** ' + ${#numbers.format(client.cardNbr.toString().substring(client.cardNbr.toString().length() - 4))}"></p>
-        <button class="btn btn-primary" onclick="payWithSavedCard('${client.cardNbr}')">Confirmar</button>
+        <p>**** **** **** <span th:text="${client.cardNbr.toString().substring(client.cardNbr.toString().length() - 4)}"></span></p>
+        <button class="btn-confirm" onclick="payWithSavedCard('${client.cardNbr}')">Pagar con esta tarjeta</button>
     </div>
     <div th:if="${client.cardNbr == null}">
-        <p>Agrega una tarjeta para continuar.</p>
+        <p>No tienes una tarjeta guardada.</p>
     </div>
 </div>
 
-<!-- Sección para agregar tarjeta -->
-<div id="add-card" class="mb-4">
-    <h4>Agregar nueva Tarjeta</h4>
-    <form action="#" th:action="@{/add-card}" method="post">
-        <div class="mb-3">
-            <label for="card-number" class="form-label">Número de Tarjeta</label>
-            <input type="text" id="card-number" name="card-number" class="form-control" placeholder="Ingrese el número de tarjeta" required>
-        </div>
-        <button type="submit" class="btn btn-success">Agregar Tarjeta</button>
+<!-- Sección para agregar nueva tarjeta -->
+<div id="add-card" class="payment-option">
+    <h4>Agregar Nueva Tarjeta</h4>
+    <form th:action="@{/add-card}" method="post">
+        <label for="card-number">Número de Tarjeta</label>
+        <input type="text" id="card-number" name="card-number" class="input-card-number" placeholder="Ingresa el número de la tarjeta" required>
+        <button type="submit" class="btn-add-card">Agregar</button>
     </form>
 </div>
-
-<!-- Botón para proceder al pago -->
-<button id="proceed-to-payment" class="btn btn-warning">Pagar</button>
 
 </body>
 </html>
