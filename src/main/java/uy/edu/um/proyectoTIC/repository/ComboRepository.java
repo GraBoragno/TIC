@@ -12,6 +12,6 @@ public interface ComboRepository extends JpaRepository<Combo, Long> {
     @Query("""
         SELECT c
         FROM Combo c 
-        """)
+    """)
     List<Combo> findAvailableCombos();
 }

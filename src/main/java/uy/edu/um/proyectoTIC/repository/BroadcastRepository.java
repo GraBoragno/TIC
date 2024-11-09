@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface BroadcastRepository extends JpaRepository<Broadcast,Long> {
 
-    //query que filtre por pelicula
+    //filtra las pelis con fecha actual en adelante
     @Query("""
         SELECT b FROM Broadcast b
         WHERE b.broadcastFilm.filmName = :filmName
@@ -51,8 +51,8 @@ public interface BroadcastRepository extends JpaRepository<Broadcast,Long> {
         (b.dateTime <= :newStartTime AND b.dateTime + :durationMinutes MINUTE > :newStartTime) OR
         (b.dateTime < :newEndTime AND b.dateTime + :durationMinutes MINUTE >= :newEndTime) OR
         (b.dateTime >= :newStartTime AND b.dateTime + :durationMinutes MINUTE <= :newEndTime)
-    )
-""")
+        )
+    """)
     List<Broadcast> findConflictingBroadcasts(
             @Param("centralId") Long centralId,
             @Param("roomNbr") Integer roomNbr,
@@ -60,7 +60,5 @@ public interface BroadcastRepository extends JpaRepository<Broadcast,Long> {
             @Param("newEndTime") LocalDateTime newEndTime,
             @Param("durationMinutes") Long durationMinutes
     );
-
-
 
 }

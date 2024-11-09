@@ -12,7 +12,7 @@ public interface SnackRepository extends JpaRepository<Snack, String> {
     @Query("""
         SELECT s
         FROM Snack s 
-        """)
+    """)
     List<Snack> findAvailableSnacks();
 
 }

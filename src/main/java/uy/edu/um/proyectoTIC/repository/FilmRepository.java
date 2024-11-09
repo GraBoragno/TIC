@@ -14,7 +14,7 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
         FROM Film f 
         JOIN f.screening b 
         WHERE b.dateTime > :currentDate
-        """)
+    """)
     List<Film> findAvailableFilmsByDate(LocalDateTime currentDate);
 
     @Query("""
@@ -27,7 +27,7 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
     @Query("""
         SELECT f 
         FROM Film f 
-        """)
+    """)
     List<Film> findAvailableFilms();
 
     @Query("""

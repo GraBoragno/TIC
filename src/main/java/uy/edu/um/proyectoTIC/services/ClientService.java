@@ -40,7 +40,7 @@ public class ClientService {
                 .name(name)
                 .address(address)
                 .birthdate(birthDate)
-                .password(password)   //Se Prueba a verificar el largo con HTML
+                .password(password)
                 .build();
         return clientRepo.save(newClient);
     }
@@ -155,15 +155,12 @@ public class ClientService {
         return (sum % 10 == 0);
     }
 
-    //puntuar peli
 
     @Transactional
-    public List<Ticket> getTicketByEmail(String email) throws EntityNotFoundException {
-        Optional<Client> clientOptional = clientRepo.findById(email);
+    public List<Ticket> getTicketByEmail(String email){
 
-        Client client = clientOptional.get();
+        return(clientRepo.findTicketsByEmail(email));
 
-        return client.getTicketsBought();
     }
 
 }

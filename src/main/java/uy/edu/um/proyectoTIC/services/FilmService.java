@@ -28,9 +28,6 @@ public class FilmService {
     }
 
     // los generos se pasan como un string, dsps se separan por coma y se meten a una lista
-    // no estoy muy segura que chequee que la lista de generos no sea vacia
-    // HAY QUE ARRGELAR LA PK
-    // hay que ver si es nulo el film
     public Film addFilm(String filmName, String directorName, Integer duration, String releaseYearDate, String genres) throws DuplicateEntityException, EntityNotFoundException
     {
         Year releaseYear = Year.parse(releaseYearDate);

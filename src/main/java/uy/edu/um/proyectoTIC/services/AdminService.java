@@ -175,5 +175,9 @@ public class AdminService {
         roomRepository.delete(room);
     }
 
+    public List<Admin> getAllAdmins() {
+        return adminRepository.findAllAdmins();
+    }
+
     //Ver que en la pagina aparezca la lista de cada una de las entidades en su respectivo metodo (por ahora)
 }

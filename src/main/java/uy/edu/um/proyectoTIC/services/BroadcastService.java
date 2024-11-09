@@ -38,9 +38,9 @@ public class BroadcastService {
     @Autowired
     private RoomRepository roomRepository;
 
-    //solucion muy momentanea para el problema de las id
+
     @Transactional
-    public Long addBroadcastAux(Integer roomNbr, Integer centralId) throws EntityNotFoundException
+    public Long addBroadcastAux(Integer roomNbr, Integer centralId)
     {
         return (roomRepository.findRoomIdByCentralIdAndRoomNbr((long)centralId, roomNbr));
     }
@@ -63,22 +63,9 @@ public class BroadcastService {
         if (newRoomNbr == null){
             throw new EntityNotFoundException("No existe la sala");
         }
-//        System.out.println(newRoomNbr);
 
         Cinema cinema = cinemaAux.get();
 
-//        int index = -1;
-//        for (int i = 0; i < cinema.getRoomsCollection().size(); i++) {
-//            if (newRoomNbr.intValue() == cinema.getRoomsCollection().get(i).getRoomNbr()){
-//                index = i;
-//            }
-//        }
-//
-////        System.out.println(roomNbr);
-//        if (index == -1)
-//            throw new EntityNotFoundException("No existe la sala");
-
-//        System.out.println(index);
         Room room = roomRepository.findRoomByCentralIdAndId((long)centralId, newRoomNbr);
 
         Optional<Film> filmAux = filmRepository.findById((long)filmCode);
