@@ -36,7 +36,8 @@ public class TicketService {
         Optional<Client> clientAux = clientRepository.findById(email);
         Client client = clientAux.get();
 
-        long ticketPrice = calculatePrice(combos,snacks);
+
+        long ticketPrice = calculatePrice(combos,snacks, broadcast.getBroadcastPrice());
 
         List<Seat> seats = seatRepository.findAll();
         Seat selectedSeat = null;
@@ -59,9 +60,9 @@ public class TicketService {
         return ticketRepository.save(ticket);
     }
 
-    private long calculatePrice(List<Combo> combos, List<Snack> snacks)
+    private long calculatePrice(List<Combo> combos, List<Snack> snacks, Long broadcastPrice)
     {
-        long price = 0;
+        long price = broadcastPrice;
 
         for (int i = 0; i < combos.size(); i++) {
             price += combos.get(i).getComboPrice();

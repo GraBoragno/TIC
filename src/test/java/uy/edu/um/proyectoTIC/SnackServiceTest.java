@@ -6,21 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import uy.edu.um.proyectoTIC.entities.*;
-import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.exceptions.DuplicateEntityException;
-import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
-import uy.edu.um.proyectoTIC.exceptions.InvalidAttributeException;
 import uy.edu.um.proyectoTIC.exceptions.InvalidIdException;
 import uy.edu.um.proyectoTIC.repository.*;
 import uy.edu.um.proyectoTIC.services.*;
 
-import java.time.Year;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

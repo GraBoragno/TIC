@@ -73,7 +73,7 @@ public class TicApplicationProyect {
 
 	public void runInCommandLine() throws DuplicateEntityException {
 //		Client newClient = clientService.addClient("email@email.com","persona1","xd", "21/10/2024","123456789");
-
+//
 //		System.out.println("----------------1-------------------------");
 //		try {
 //			filmService.addFilm("The Grand Budapest Hotel", "Wes Anderson", 99, "2014", "comedia, drama");
@@ -169,7 +169,7 @@ public class TicApplicationProyect {
 //		System.out.println("----------------8-------------------------");
 //
 //		try {
-////			broadcastService.addBroadcast("10/11/2024 18:00", 250, 1, 1, 1);
+//			broadcastService.addBroadcast("10/11/2024 18:00", 250, 1, 1, 1);
 //			broadcastService.addBroadcast("10/11/2024 20:30", 300, 1, 7, 2);
 //			broadcastService.addBroadcast("11/11/2024 19:00", 200, 1, 3, 3);
 //			broadcastService.addBroadcast("11/11/2024 21:30", 280, 8, 1, 4);
@@ -221,13 +221,12 @@ public class TicApplicationProyect {
 //		filmService.rateFilm(1, 5);
 //		filmService.rateFilm(1, 1);
 //		filmService.rateFilm(1, 5);
-
-//		Crear ticket
+//
 //        List<Snack> allSnacks = snackRepository.findAll();
 //        List<Combo> allCombos = comboService.getAvailableCombos();
 //        ticketService.buyTicket(1, 1, 1, "email@email.com",  allCombos, allSnacks);
 //
-
+//
 //        try {
 //			Client client = clientService.findByEmail("email@email.com");
 //			List<Ticket> tickets = clientService.getTicketByEmail("email@email.com");
