@@ -62,33 +62,42 @@
 
 <div class="custom-container">
     <h1 class="custom-upcoming textTicketHistory">Tickets</h1>
-    <div class="custom-item" >
+    <div  th:each="ticket : ${tickets}" class="custom-item" >
         <div class="custom-item-right">
-            <h2 class="custom-num" >07</h2>
-            <p class="custom-day">Dic</p>
+            <h2 class="custom-num" th:text="${ticket.getTicketBroadcast().getDateTime().getDayOfMonth()}">07</h2>
+            <p class="custom-day" th:text="${ticket.getTicketBroadcast().getDateTime().getMonth()}">Dic</p>
             <span class="custom-up-border"></span>
             <span class="custom-down-border"></span>
         </div>
 
         <div class="custom-item-left">
             <p class="custom-event">Ticket</p>
-            <h2 class="custom-title">Sausage Party</h2>
+            <h2 class="custom-title" th:text="${ticket.getTicketBroadcast().getBroadcastFilm().getFilmName()}">Sausage Party</h2>
 
             <div class="custom-sce">
                 <div class="custom-icon">
                     <i class="fa fa-table"></i>
                 </div>
-                <p> 07/12/2024 <br/> Hora: 15:20 </p>
+                <script>
+
+                </script>
+                <p> <span th:text="${ticket.getTicketBroadcast().getDateTime()}"></span> <br/> <span th:text="${ticket.getTicketBroadcast().getCentralId()}"></span>  </p>
             </div>
             <div class="custom-fix"></div>
             <div class="custom-loc">
                 <div class="custom-icon">
                     <i class="fa fa-map-marker"></i>
                 </div>
-                <p>La casa de tu vieja <br/> Sala: 205</p>
+                <p> <span th:text="'Row: ' + ${ticket.getAssignedSeat().getSeatRow()} + ' Column: ' + ${ticket.getAssignedSeat().getSeatColumn()}"> seats </span> <br/> <span th:text="${ticket.getTicketBroadcast().getCentralId()}"> </span></p>
             </div>
             <div class="custom-fix"></div>
-            <button class="custom-tickets">Cancel</button>
+            <form action="/cancelTicket" method="post">
+
+                <input type="hidden" name="ticketId" th:value="${ticket.ticketCode}" />
+                <span th:if="${ticket.getTicketBroadcast().getDateTime() < dateTime}">
+                    <button class="custom-tickets" type="submit">Cancel</button>
+                </span>
+            </form>
         </div>
     </div>
 </div>

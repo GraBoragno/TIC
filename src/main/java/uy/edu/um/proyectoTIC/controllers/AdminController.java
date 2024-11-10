@@ -60,6 +60,11 @@ public class AdminController {
         return "adminPage";
     }
 
+//    @PostMapping("/adminDeletSnack")
+//    public String deleteSnack(@RequestParam String snackName) {
+//        SnackService
+//    }
+
 //    @PostMapping("/adminDeleteSnack")
 //    public String deleteSnack(@RequestParam String snackName, RedirectAttributes redirectAttributes) {
 //        try {
