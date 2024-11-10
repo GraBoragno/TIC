@@ -36,34 +36,36 @@
 </ul>
 
 
-<div class="container px-4">
+    <div class="container px-4">
+        <div class="screen"></div>
 
-    <div class="screen"></div>
+        <!-- Filas de asientos -->
+        <div th:each="row, rowStat : ${seatsByRow}" class="row justify-content-center flex-nowrap">
+            <!-- (10 asientos por fila) -->
+            <div th:each="seat : ${row}" class="col-auto p-1">
+                <form action="/selectSeat" method="post">
+                    <input type="hidden" name="seatId" th:value="${seat.getSeatId()}" />
 
-    <!-- Filas de asientos -->
-    <div th:each="row, rowStat : ${seatsByRow}" class="row justify-content-center flex-nowrap">
-        <!-- (10 asientos por fila) -->
-        <div th:each="seat : ${row}" class="col-auto p-1">
-            <form action="/selectSeat" method="post">
-                <input type="hidden" name="seatId" th:value="${seat.getSeatId()}" />
-
-                <button type="submit"
-                        th:classappend="${notAvailableSeats.contains(seat.getSeatId()) ? 'seat occupied' : (seat.getSeatId() == selectedSeatId ? 'seat selected' : 'seat')}"
-                        th:id="'seat' + ${seat.getSeatId()}">
-                </button>
-            </form>
+                    <!-- Aseguramos que el botón de asiento esté deshabilitado si está ocupado -->
+                    <button type="submit"
+                            th:classappend="${notAvailableSeats.contains(seat.getSeatId()) ? 'seat occupied' : (seat.getSeatId() == selectedSeatId ? 'seat selected' : 'seat')}"
+                            th:id="'seat' + ${seat.getSeatId()}"
+                            th:attr="disabled=${notAvailableSeats.contains(seat.getSeatId())}">
+                        <!-- Aquí puedes agregar el número o información del asiento -->
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
 
-<div th:if="${selectedSeatId != null}">
-    <form action="/confirmSeat" method="post">
-        <button type="submit" class="client-button">
-            Confirmar
-        </button>
-    </form>
-</div>
+    <div th:if="${selectedSeatId != null}">
+        <form action="/confirmSeat" method="post">
+            <button type="submit" class="client-button">
+                Confirmar
+            </button>
+        </form>
+    </div>
 </div>
 </body>
 </html>
