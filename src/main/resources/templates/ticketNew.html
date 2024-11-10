@@ -117,7 +117,7 @@
         <p>Rating: <span th:text="${film.getScore()}">Rating</span></p>
     </div>
 
-    <form action="/ticket/ticketNew" method="GET">
+    <form action="/ticket/ticketNew" method="POST">
         <div class="flex titleReg">
             Elija su función y snacks
         </div>
@@ -139,10 +139,11 @@
         <div class="questionsTicket">
             <div class="registerQuestionsTicket">Snacks:</div>
             <div class="inputRegisterTicket">
-                <select class="form-select" name="snack">
+                <select id="snackSelect" class="form-select" name="snack">
                     <option th:each="snack : ${snacks}"
                             th:value="${snack.getSnackName()}"
-                            th:text="${snack.getSnackName()}">Snack</option>
+                            th:text="${snack.getSnackName()}"
+                            th:data-price="${snack.getSnackPrice()}">Snack</option>
                 </select>
             </div>
         </div>
@@ -150,21 +151,26 @@
         <div class="questionsTicket">
             <div class="registerQuestionsTicket">Combos:</div>
             <div class="inputRegisterTicket">
-                <select class="form-select" name="combos">
+                <select id="comboSelect" class="form-select" name="combos">
                     <option th:each="combo : ${combos}"
-                            th:value="${combo.getComboName()}"
-                            th:text="${combo.getComboName()}">Combo</option>
+                            th:value="${combo.getComboId()}"
+                            th:text="${combo.getComboName()}"
+                            th:data-price="${combo.getComboPrice()}">Combo</option>
                 </select>
             </div>
         </div>
 
+        <!-- Sirve para guardar el precio y pasarlo al back -->
+        <input type="hidden" id="totalPriceHidden" name="totalPrice" value="0">
+
         <div class="questions">
             <button type="submit" class="client-button">Confirmar</button>
+            <span id="totalPrice" style="margin-left: 15px; font-weight: bold;">Precio total: $0</span>
         </div>
     </form>
 </div>
 
-<script>
+<script> <!-- script para parsear la fecha al formato que queremos -->
     document.addEventListener("DOMContentLoaded", function() {
         // Obtener todas las opciones del select
         const options = document.querySelectorAll('#broadcastSelect option');
@@ -193,6 +199,28 @@
             }
         });
     });
+</script>
+
+<script>  <!-- script para calcular el precio -->
+document.addEventListener("DOMContentLoaded", function() {
+    const snackSelect = document.getElementById("snackSelect");
+    const comboSelect = document.getElementById("comboSelect");
+    const totalPriceElement = document.getElementById("totalPrice");
+    const totalPriceHidden = document.getElementById("totalPriceHidden");
+
+    function updateTotalPrice() {
+        const snackPrice = parseFloat(snackSelect.options[snackSelect.selectedIndex].getAttribute("data-price")) || 0;
+        const comboPrice = parseFloat(comboSelect.options[comboSelect.selectedIndex].getAttribute("data-price")) || 0;
+        const totalPrice = snackPrice + comboPrice;
+
+        totalPriceElement.textContent = `Precio total: $${totalPrice.toFixed(2)}`;
+        totalPriceHidden.value = totalPrice.toFixed(2);
+    }
+
+    // Actualizar el precio cada vez que el usuario cambie el snack o el combo seleccionado
+    snackSelect.addEventListener("change", updateTotalPrice);
+    comboSelect.addEventListener("change", updateTotalPrice);
+});
 </script>
 
 

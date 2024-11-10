@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import uy.edu.um.proyectoTIC.entities.*;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
 import uy.edu.um.proyectoTIC.repository.BroadcastRepository;
+import uy.edu.um.proyectoTIC.repository.ComboRepository;
 import uy.edu.um.proyectoTIC.repository.FilmRepository;
+import uy.edu.um.proyectoTIC.repository.SnackRepository;
 import uy.edu.um.proyectoTIC.services.*;
 
 import java.util.List;
@@ -37,6 +39,10 @@ public class TicketController {
     private BroadcastRepository broadcastRepository;
     @Autowired
     private CinemaService cinemaService;
+    @Autowired
+    private SnackRepository snackRepository;
+    @Autowired
+    private ComboRepository comboRepository;
 
     @GetMapping("/ticketNew")
     public String formulario(HttpSession session, @RequestParam("filmCode") Long filmCode, Model model)
@@ -73,12 +79,29 @@ public class TicketController {
         return "ticketNew";
     }
 
-    //agregar el id de la peliculas que toma el boton de comprar
-    @PostMapping("/ticketNew")
-    public String chooseFunction(HttpSession Session, Model model, @RequestParam String neighborhood, @RequestParam String dateTime, @RequestParam List<Combo> combos, @RequestParam List<Snack> snacks) {
 
-//        get broadcast id and add it
-        return  "redirect:/seats"; // Redirigir a seats después de confirmar
+    @PostMapping("/ticketNew")
+    public String confirmBroadcast(HttpSession session,
+                                 @RequestParam Long broadcastId,
+                                 @RequestParam String snack,
+                                 @RequestParam Long combos,
+                                 @RequestParam double totalPrice) {
+
+
+        Optional<Broadcast> brAux = broadcastRepository.findById(broadcastId);
+        Optional<Snack> skAux = snackRepository.findById(snack);
+        Optional<Combo> cbAux = comboRepository.findById(combos);
+        Broadcast broadcast = brAux.get();
+        Snack selectedSnack = skAux.get();
+        Combo selectedCombo = cbAux.get();
+
+        //Para usar despues
+        session.setAttribute("broadcast", broadcast);
+        session.setAttribute("selectedSnack", selectedSnack);
+        session.setAttribute("selectedCombo", selectedCombo);
+        session.setAttribute("totalPrice", totalPrice);
+
+        return "redirect:/seats";
     }
 
 

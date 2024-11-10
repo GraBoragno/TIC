@@ -22,19 +22,14 @@ public class SeatController {
     @GetMapping("/seats")
     public String seats(HttpSession session, Model model) {
 
+
         return "seats";
     }
 
     @PostMapping("/selectSeat")
     public String selectSeat(@RequestParam String seatId) {
-        System.out.println(seatId);
+
         return "redirect:/payment";
     }
-//    @PostMapping("/chooseSeats")
-//    public String chooseSeats(Model model, @RequestParam Long seatRow, @RequestParam Long seatColumn ,  @ModelAttribute(re)) {
-//        model.addAttribute("seatRow", seatRow);
-//        model.addAttribute("seatColumn", seatColumn);
-////        buyTicket(int broadcastId, int row, int column, String email, List<Combo> combos, List<Snack> snacks
-//        return "ticketBuy";
-//    }
+
 }
