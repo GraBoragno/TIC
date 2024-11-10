@@ -95,7 +95,8 @@ public class BroadcastService {
         return broadcastRepository.save(newBroadcast);
     }
 
-    public boolean isScheduleAvailable(LocalDateTime newStartTime, Long durationMinutes, Integer centralId, Integer roomNbr) {
+    public boolean isScheduleAvailable(LocalDateTime newStartTime, Long durationMinutes, Integer centralId, Integer roomNbr)
+    {
         LocalDateTime newEndTime = newStartTime.plusMinutes(durationMinutes);
         List<Broadcast> conflictingBroadcasts = broadcastRepository.findConflictingBroadcasts(
                 (long)centralId, roomNbr, newStartTime, newEndTime, durationMinutes);

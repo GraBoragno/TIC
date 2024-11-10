@@ -77,5 +77,28 @@ public class TicketService {
         return price;
     }
 
+    public Optional<Ticket> findTicketById(Long ticketCode)
+    {
+        return ticketRepository.findById(ticketCode);
+    }
+
+    public void deleteTicket(Long ticketId) throws EntityNotFoundException
+    {
+        Optional<Ticket> ticketAux = ticketRepository.findById(ticketId);
+
+        if (ticketAux == null){
+            throw new EntityNotFoundException("No se encontro el ticket");
+        }
+
+        Ticket ticket = ticketAux.get();
+
+        Client client = ticket.getClientTicket();
+        if (client != null) {
+            client.getTicketsBought().remove(ticket);
+            clientRepository.save(client);
+        }
+
+        ticketRepository.delete(ticket);
+    }
 
 }
