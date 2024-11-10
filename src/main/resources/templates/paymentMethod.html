@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <meta charset="UTF-8">
     <title>Pagar Entradas</title>
@@ -23,19 +23,22 @@
 <!-- Título -->
 <h2 class="titleReg">Pago</h2>
 
-<!-- Resumen del precio ($0 porque WTF Cinema da las entradas gratis los 1ros meses) -->
-<div class="payment-summary">
-    <p>Precio total: <span class="price">$0</span></p>
-</div>
 
+<div class="payment-summary">
+    <p>Precio total: <span class="price" th:text="'$' + ${totalPrice}"></span></p>
+</div>
 <!-- Sección para tarjeta guardada -->
+
 <div id="saved-cards" class="payment-option">
     <h4>Tarjeta Guardada</h4>
-    <div th:if="${client.cardNbr != null}">
-        <p>**** **** **** <span th:text="${client.cardNbr.toString().substring(client.cardNbr.toString().length() - 4)}"></span></p>
-        <button class="btn-confirm" onclick="payWithSavedCard('${client.cardNbr}')">Pagar con esta tarjeta</button>
+    <div th:if="${client.getCardNbr() != null}">
+        <p>**** **** **** <span th:text="${client.getCardNbr().toString().substring(client.getCardNbr().toString().length() - 4)}"></span></p>
+        <form th:action="@{/payment/payWithSavedCard}" method="post" >
+            <input type="hidden" name="cardNumber" th:value="${client.getCardNbr()}">
+            <button type="submit" class="btn-confirm">Pagar con esta tarjeta</button>
+        </form>
     </div>
-    <div th:if="${client.cardNbr == null}">
+    <div th:if="${client.getCardNbr() == null}">
         <p>No tienes una tarjeta guardada.</p>
     </div>
 </div>
@@ -49,6 +52,8 @@
         <button type="submit" class="btn-add-card">Agregar</button>
     </form>
 </div>
+
+
 
 </body>
 </html>

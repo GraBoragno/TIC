@@ -61,4 +61,7 @@ public interface BroadcastRepository extends JpaRepository<Broadcast,Long> {
             @Param("durationMinutes") Long durationMinutes
     );
 
+    @Query("SELECT b.assignedSeatsId FROM Broadcast b WHERE b.broadcastId = :broadcastId")
+    List<Long> findAssignedSeatsByBroadcastId(@Param("broadcastId") Long broadcastId);
+
 }

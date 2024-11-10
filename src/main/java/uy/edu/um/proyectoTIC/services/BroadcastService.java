@@ -118,4 +118,9 @@ public class BroadcastService {
         return broadcastRepository.findByFilmCodeAndCentralIdAndDateTime(filmCode, centralId, dateTime);
     }
 
+    public List<Long> getAssignedSeats(Long broadcastId)
+    {
+        return broadcastRepository.findAssignedSeatsByBroadcastId(broadcastId);
+    }
+
 }

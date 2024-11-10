@@ -34,7 +34,9 @@ public class LoginController {
         if (!email.endsWith("@wtf.com")) {
             Client client = clientService.findByEmail(email);
             if (client != null && client.getPassword() != null && client.getPassword().equals(password)) {
+
                 session.setAttribute("user", client); // Guarda el usuario en la sesión
+
                 Boolean purchaseIntent = (Boolean) session.getAttribute("purchaseIntent");
                 if (Boolean.TRUE.equals(purchaseIntent)) {
                     session.removeAttribute("purchaseIntent"); // Eliminar la intención de compra
@@ -48,7 +50,9 @@ public class LoginController {
         else if (email.endsWith("@wtf.com")) {
             Admin admin = adminService.findById(email);
             if (admin != null && admin.getPassword() != null && admin.getPassword().equals(password)){
+
                 session.setAttribute("user", admin);
+
                 return "redirect:/adminPage";
             } else {
                 return "redirect:/log-in?error=true";

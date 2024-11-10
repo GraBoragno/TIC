@@ -43,4 +43,9 @@ public class SeatService {
         return createSeat(row, column);
     }
 
+    public List<Seat> getAllSeats()
+    {
+        return seatRepository.findAll();
+    }
+
 }

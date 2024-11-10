@@ -2,6 +2,8 @@ package uy.edu.um.proyectoTIC.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,7 +26,8 @@ public class Broadcast {
     private Long centralId;
 
     @ElementCollection
-    List<Long> assignedSeatsId = new ArrayList<>();
+    @Fetch(FetchMode.JOIN)  // Indica que se debe realizar un fetch eager con un join
+    private List<Long> assignedSeatsId = new ArrayList<>();
 
 
     @ManyToOne(fetch = FetchType.LAZY)
