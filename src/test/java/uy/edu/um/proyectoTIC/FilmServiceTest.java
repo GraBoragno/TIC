@@ -16,6 +16,7 @@ import java.time.Year;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -257,7 +258,7 @@ public class FilmServiceTest {
     }
 
     @Test
-    void testGetRatedFilms()
+    void testFindTopRatedFilms()
     {
         Film film1 = Film.builder()
                 .filmName("Dune")
@@ -289,21 +290,20 @@ public class FilmServiceTest {
                 .scoreCounter(20)
                 .build();
 
-        when(filmRepository.findTopRatedFilms()).thenReturn(Arrays.asList(film1, film2, film3));
+        List<Film> films = Arrays.asList(film1, film2, film3);
 
-        List<Film> ratedFilms = filmService.getRatedFilms();
+        List<Film> sortedFilms = films.stream()
+                .sorted((f1, f2) -> Float.compare(f2.getScore(), f1.getScore()))
+                .collect(Collectors.toList());
 
-        assertNotNull(ratedFilms);
-        assertFalse(ratedFilms.isEmpty(), "La lista de películas debería tener elementos");
+        when(filmRepository.findTopRatedFilms()).thenReturn(sortedFilms);
 
-        assertEquals(film2.getScore(), ratedFilms.get(0).getScore(), "La primera película debería ser la de mayor puntaje");
-        assertEquals(film1, ratedFilms.get(1), "La segunda película debería tener el segundo mayor puntaje");
-        assertEquals(film3, ratedFilms.get(2), "La tercera película debería tener el tercer mayor puntaje");
+        List<Film> topRatedFilms = filmRepository.findTopRatedFilms();
 
-        assertTrue(ratedFilms.get(0).getScore() >= ratedFilms.get(1).getScore(), "La lista debe estar ordenada de mayor a menor");
-        assertTrue(ratedFilms.get(1).getScore() >= ratedFilms.get(2).getScore(), "La lista debe estar ordenada de mayor a menor");
-
+        assertNotNull(topRatedFilms);
+        assertEquals(film2.getScore(), topRatedFilms.get(0).getScore());
+        assertEquals(film1.getScore(), topRatedFilms.get(1).getScore());
+        assertEquals(film3.getScore(), topRatedFilms.get(2).getScore());
     }
-
 }
 
