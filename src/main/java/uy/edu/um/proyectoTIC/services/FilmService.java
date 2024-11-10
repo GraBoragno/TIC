@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import uy.edu.um.proyectoTIC.entities.Film;
 import uy.edu.um.proyectoTIC.exceptions.DuplicateEntityException;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
+import uy.edu.um.proyectoTIC.exceptions.InvalidAttributeException;
 import uy.edu.um.proyectoTIC.repository.FilmRepository;
 
 import java.time.LocalDateTime;
@@ -35,6 +36,12 @@ public class FilmService {
         if (genres.length() == 0)
             throw new EntityNotFoundException("No hay genero");
 
+        Optional<Film> existingFilm = filmRepository.findByFilmName(filmName);
+
+        if (existingFilm.isPresent()) {
+            throw new DuplicateEntityException("La película ya existe");
+        }
+
         List<String> genreList = parseGenres(genres);
 
         Film newFilm = Film.builder()
@@ -63,8 +70,12 @@ public class FilmService {
         return filmRepository.findAvailableFilms();
     }
 
-    public void rateFilm(Integer filmCode, float score)
+    public void rateFilm(Integer filmCode, float score) throws InvalidAttributeException
     {
+        if (score < 1 || score > 5) {
+            throw new InvalidAttributeException("El puntaje no es valido");
+        }
+
         Optional<Film> filmAux = filmRepository.findById((long)filmCode);
         Film film = filmAux.get();
         int prevCounter = film.getScoreCounter();

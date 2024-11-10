@@ -231,7 +231,7 @@ public class TicApplicationProyect {
 //        try {
 //			Client client = clientService.findByEmail("email@email.com");
 //			List<Ticket> tickets = clientService.getTicketByEmail("email@email.com");
-////			tickets = clientService.getTicketByEmail(client.getEmail());
+//			tickets = clientService.getTicketByEmail(client.getEmail());
 //			System.out.println(tickets.get(1));
 //
 //
