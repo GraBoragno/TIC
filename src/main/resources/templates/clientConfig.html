@@ -15,7 +15,7 @@
 
 <!-- Botón de volver -->
 <div id="home3" class="homeButton">
-    <button id="homeBtn" class="client-button" onclick="location.href='/seats.html'">
+    <button id="homeBtn" class="client-button" onclick="location.href='/home'">
         Volver
     </button>
 </div>
@@ -24,25 +24,25 @@
     Edite sus datos
 </div>
 
-<form action="#" th:action="@{/update-client}" method="post">
+<form action="/clientConfig" method="post">
     <div>
         <label for="email">Email:</label>
-        <input type="text" id="email" name="email" th:value="${client.email}" readonly />
+        <input type="text" id="email" name="email" th:value="${client.getEmail()}" />
     </div>
 
     <div>
         <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" th:value="${client.name}" />
+        <input type="text" id="name" name="name" th:value="${client.getName()}" />
     </div>
 
     <div>
         <label for="address">Dirección:</label>
-        <input type="text" id="address" name="address" th:value="${client.address}" />
+        <input type="text" id="address" name="address" th:value="${client.getAddress()}" />
     </div>
 
     <div>
         <label for="date">Fecha de Nacimiento:</label>
-        <input type="date" id="date" name="date" th:value="${#dates.format(client.birthdate, 'yyyy-MM-dd')}" />
+        <!--<input type="date" id="date" name="date" th:value="${#dates.format(client.getBirthdate(), 'yyyy-MM-dd')}" />-->
     </div>
 
     <div>
@@ -52,7 +52,7 @@
 
     <div>
         <label for="cardNbr">Número de Tarjeta:</label>
-        <input type="text" id="cardNbr" name="cardNbr" th:value="${client.cardNbr}" placeholder="Ingrese número de tarjeta" />
+        <input type="text" id="cardNbr" name="cardNbr" th:value="${client.getCardNbr()}" placeholder="Ingrese número de tarjeta" />
     </div>
 
     <button type="submit">Actualizar</button>

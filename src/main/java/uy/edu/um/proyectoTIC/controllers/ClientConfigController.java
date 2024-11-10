@@ -20,16 +20,15 @@ public class ClientConfigController {
 
     @GetMapping("/clientConfig")
     public String showClientConfig(Model model, HttpSession session) throws EntityNotFoundException {
-        // Obtener el email del cliente desde la sesión
-        String email = (String) session.getAttribute("userEmail");
 
-        Client client = clientService.findByEmail(email);
+
+        Client client = (Client) session.getAttribute("user");
 
         model.addAttribute("client", client); // Agregar el cliente al modelo para pasarlo a la vista
         return "clientConfig"; // Retorna la vista clientConfig.html
     }
 
-    @PostMapping("/update-client")
+    @PostMapping("/clientConfig")
     public String updateClient(
             @RequestParam String name,
             @RequestParam String address,

@@ -30,17 +30,14 @@ public class TicketHistoryController {
     @GetMapping("/ticketHistory")
     public String history(Model model, HttpSession session) {
         Client client = (Client) session.getAttribute("user");
-//        List<Ticket> tickets;
-//        try {
-//            tickets = clientService.getTicketByEmail(client.getEmail());
-////           List<Ticket> tickets = client.getTicketsBought();
-//        } catch (EntityNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
-//        model.addAttribute("tickets", tickets);
+        List<Ticket> tickets;
+
+        tickets = clientService.getTicketByEmail(client.getEmail());
+
+        model.addAttribute("tickets", tickets);
         Object user = session.getAttribute("user");
         model.addAttribute("user", user);
-//
+
         return "ticketHistory";
     }
 
