@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Configuración</title>
@@ -25,37 +25,37 @@
 </div>
 
 <form action="/clientConfig" method="post">
-    <div>
+    <div class="form-group">
         <label for="email">Email:</label>
-        <input type="text" id="email" name="email" th:value="${client.getEmail()}" />
+        <span id="email" th:text="${client.getEmail()}"></span> <!-- Email como texto, no editable -->
     </div>
 
-    <div>
+    <div class="form-group">
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name" th:value="${client.getName()}" />
     </div>
 
-    <div>
+    <div class="form-group">
         <label for="address">Dirección:</label>
         <input type="text" id="address" name="address" th:value="${client.getAddress()}" />
     </div>
 
-    <div>
+    <div class="form-group">
         <label for="date">Fecha de Nacimiento:</label>
-        <!--<input type="date" id="date" name="date" th:value="${#dates.format(client.getBirthdate(), 'yyyy-MM-dd')}" />-->   <!-- Esta notacion no funciona -->
+        <input type="date" id="date" name="date" th:value="${#dates.format(client.getBirthdate(), 'yyyy-MM-dd')}" />
     </div>
 
-    <div>
+    <div class="form-group">
         <label for="password">Contraseña:</label>
         <input type="password" id="password" name="password" placeholder="Ingrese nueva contraseña" />
     </div>
 
-    <div>
+    <div class="form-group">
         <label for="cardNbr">Número de Tarjeta:</label>
         <input type="text" id="cardNbr" name="cardNbr" th:value="${client.getCardNbr()}" placeholder="Ingrese número de tarjeta" />
     </div>
 
-    <button type="submit">Actualizar</button>
+    <button type="submit" class="update-button">Actualizar</button>
 </form>
 
 </body>

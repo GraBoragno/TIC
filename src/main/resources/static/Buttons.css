@@ -44,3 +44,19 @@ body {
     align-items: center; /* Alinear verticalmente */
     gap: 5px; /* Añadir espacio entre los botones */
 }
+
+
+.update-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #cc0000;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.update-button:hover {
+    background-color: #e60000;
+}
