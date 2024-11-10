@@ -3,6 +3,7 @@ package uy.edu.um.proyectoTIC.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uy.edu.um.proyectoTIC.entities.Combo;
+import uy.edu.um.proyectoTIC.entities.Film;
 import uy.edu.um.proyectoTIC.entities.Snack;
 import uy.edu.um.proyectoTIC.exceptions.DuplicateEntityException;
 import uy.edu.um.proyectoTIC.exceptions.InvalidIdException;
@@ -38,8 +39,20 @@ public class SnackService {
         return snackRepository.save(newSnack);
     }
 
-    public List<Snack> getAvailableSnacks() {
+    public List<Snack> getAvailableSnacks()
+    {
         return snackRepository.findAvailableSnacks();
+    }
+
+    public Optional<Snack> findSnackByName(String name)
+    {
+        return snackRepository.findById(name);
+    }
+
+    public void deleteSnack(String name)
+    {
+        Optional<Snack> snack = snackRepository.findById(name);
+        snackRepository.delete(snack.get());
     }
 
 }
