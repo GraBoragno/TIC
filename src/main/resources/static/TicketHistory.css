@@ -55,7 +55,7 @@
 }
 
 .custom-container .custom-item-right .custom-down-border {
-    bottom: -35px;
+    bottom: -20px;
     right: -35px;
 }
 
@@ -68,13 +68,13 @@
 .custom-container .custom-item-right .custom-day,
 .custom-container .custom-item-left .custom-event {
     color: #555;
-    font-size: 10px;
+    font-size: 20px;
     margin-bottom: 9px;
 }
 
 .custom-container .custom-item-right .custom-day {
     text-align: center;
-    font-size: 25px;
+    font-size: 15px;
 }
 
 .custom-container .custom-item-left {
@@ -133,7 +133,7 @@
 }
 
 .custom-container .custom-item .custom-tickets {
-    background: #777;
+    background: #cc0000;
 }
 
 .custom-container .custom-item .custom-booked {

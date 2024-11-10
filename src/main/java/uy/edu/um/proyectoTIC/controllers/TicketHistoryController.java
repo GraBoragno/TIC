@@ -6,15 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import uy.edu.um.proyectoTIC.entities.Broadcast;
-import uy.edu.um.proyectoTIC.entities.Cinema;
-import uy.edu.um.proyectoTIC.entities.Film;
-import uy.edu.um.proyectoTIC.entities.Ticket;
+import org.springframework.web.bind.annotation.RequestParam;
+import uy.edu.um.proyectoTIC.entities.*;
 import uy.edu.um.proyectoTIC.entities.users.Admin;
 import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
+import uy.edu.um.proyectoTIC.services.CinemaService;
 import uy.edu.um.proyectoTIC.services.ClientService;
 import uy.edu.um.proyectoTIC.services.FilmService;
+import uy.edu.um.proyectoTIC.services.TicketService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -26,8 +26,10 @@ public class TicketHistoryController {
     @Autowired
     private ClientService clientService;
 
-
-
+    @Autowired
+    private CinemaService cinemaService;
+    @Autowired
+    private TicketService ticketService;
 
 
     @GetMapping("/ticketHistory")
@@ -36,7 +38,7 @@ public class TicketHistoryController {
         List<Ticket> tickets;
 
         tickets = clientService.getTicketByEmail(client.getEmail());
-
+        System.out.println(tickets.size());
         List<Broadcast> broadcasts = new ArrayList<>();
         for (Ticket ticket : tickets) {
             broadcasts.add(ticket.getTicketBroadcast());
@@ -44,9 +46,23 @@ public class TicketHistoryController {
 
 //        List<Cinema> cinemas = new ArrayList<>();
 //        for (Broadcast broadcast : broadcasts) {
-//            Cinema cinema = broadcast.getCentralId();
-//            cinemas.add(broadcast);
+//            Long cinemaId = broadcast.getCentralId();
+//            List<Long> newList = new ArrayList<>();
+//            newList.add(cinemaId);
+//            Cinema cinema = cinemaService.findCinemasByCentralIds(newList).get(0);
+//            cinemas.add(cinema);
 //        }
+
+//            List<Seat> seats;
+//        for (Broadcast broadcast : broadcasts) {
+//            Long cinemaId = broadcast.getCentralId();
+//            List<Long> newList = new ArrayList<>();
+//            newList.add(cinemaId);
+//            Cinema cinema = cinemaService.findCinemasByCentralIds(newList).get(0);
+//            cinemas.add(cinema);
+//        }
+
+
 
         LocalDateTime dateTime = LocalDateTime.now();
         model.addAttribute("dateTime", dateTime);
@@ -57,6 +73,13 @@ public class TicketHistoryController {
 
         return "ticketHistory";
     }
+
+    @PostMapping("/cancelTicket")
+    public String cancelTicket(HttpSession session, @RequestParam Long ticketId) throws EntityNotFoundException {
+        ticketService.deleteTicket(ticketId);
+        return "redirect:/ticketHistory";
+    }
+
 
 //    @PostMapping("/log-out")
 //    public String logout(HttpSession session)

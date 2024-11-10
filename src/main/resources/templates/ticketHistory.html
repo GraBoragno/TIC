@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/static/ticketHistory.css">
 
 
+
 </head>
 <body class="bodyHome">
 
@@ -65,7 +66,7 @@
     <div  th:each="ticket : ${tickets}" class="custom-item" >
         <div class="custom-item-right">
             <h2 class="custom-num" th:text="${ticket.getTicketBroadcast().getDateTime().getDayOfMonth()}">07</h2>
-            <p class="custom-day" th:text="${ticket.getTicketBroadcast().getDateTime().getMonth()}">Dic</p>
+            <p class="custom-day custom-month" th:custom-month="${ticket.getTicketBroadcast().dateTime}">Dia</p>
             <span class="custom-up-border"></span>
             <span class="custom-down-border"></span>
         </div>
@@ -81,26 +82,65 @@
                 <script>
 
                 </script>
-                <p> <span th:text="${ticket.getTicketBroadcast().getDateTime()}"></span> <br/> <span th:text="${ticket.getTicketBroadcast().getCentralId()}"></span>  </p>
+                <p> <span th:data-date="${ticket.getTicketBroadcast().dateTime}"></span> </p>
             </div>
             <div class="custom-fix"></div>
             <div class="custom-loc">
                 <div class="custom-icon">
                     <i class="fa fa-map-marker"></i>
                 </div>
-                <p> <span th:text="'Row: ' + ${ticket.getAssignedSeat().getSeatRow()} + ' Column: ' + ${ticket.getAssignedSeat().getSeatColumn()}"> seats </span> <br/> <span th:text="${ticket.getTicketBroadcast().getCentralId()}"> </span></p>
+                <p> <span th:text="'Fila: ' + ${ticket.getAssignedSeat().getSeatRow()} + ' Columna: ' + ${ticket.getAssignedSeat().getSeatColumn()}"> seats </span> <br/> <span th:text="'Local: ' + ${ticket.getTicketBroadcast().getHasRoom().getCinemaRoom().getNeighborhood()}"> </span></p>
             </div>
             <div class="custom-fix"></div>
             <form action="/cancelTicket" method="post">
 
                 <input type="hidden" name="ticketId" th:value="${ticket.ticketCode}" />
-                <span th:if="${ticket.getTicketBroadcast().getDateTime() < dateTime}">
-                    <button class="custom-tickets" type="submit">Cancel</button>
+                <span th:if="${ticket.getTicketBroadcast().getDateTime() > dateTime}">
+                    <button class="custom-tickets client-button" type="submit">Cancelar</button>
                 </span>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Target all elements containing date attributes (replace #broadcastSelect if needed)
+        const dateElements = document.querySelectorAll('[data-date]');
+        const monthElements = document.querySelectorAll('[custom-month]');
+
+        const optionsDateFormat = {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        };
+
+        const optionsMonthFormat = {
+            month: 'short'
+        };
+
+        dateElements.forEach(function(element) {
+            const dateTimeString = element.getAttribute('data-date');
+            if (dateTimeString) {
+                const date = new Date(dateTimeString);
+                const formattedDate = new Intl.DateTimeFormat('es-ES', optionsDateFormat).format(date);
+                element.textContent = formattedDate;
+            }
+        });
+
+        monthElements.forEach(function(element) {
+            const dateTimeString = element.getAttribute('data-month');
+            if (dateTimeString) {
+                const date = new Date(dateTimeString);
+                const formattedMonth = new Intl.DateTimeFormat('es-ES', optionsMonthFormat).format(date);
+                element.textContent = formattedMonth;
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
