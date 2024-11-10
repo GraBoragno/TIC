@@ -46,12 +46,10 @@
                 <form action="/selectSeat" method="post">
                     <input type="hidden" name="seatId" th:value="${seat.getSeatId()}" />
 
-                    <!-- Aseguramos que el botón de asiento esté deshabilitado si está ocupado -->
                     <button type="submit"
                             th:classappend="${notAvailableSeats.contains(seat.getSeatId()) ? 'seat occupied' : (seat.getSeatId() == selectedSeatId ? 'seat selected' : 'seat')}"
                             th:id="'seat' + ${seat.getSeatId()}"
                             th:attr="disabled=${notAvailableSeats.contains(seat.getSeatId())}">
-                        <!-- Aquí puedes agregar el número o información del asiento -->
                     </button>
                 </form>
             </div>
