@@ -23,6 +23,9 @@ public class Broadcast {
     private Long broadcastPrice;
     private Long centralId;
 
+    @ElementCollection
+    List<Long> assignedSeatsId = new ArrayList<>();
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "roomNbr") //No va el Buider.Default porque se especifica el cine al crearla
@@ -36,7 +39,7 @@ public class Broadcast {
     private List<Ticket> ticketsIncluded = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "broadcastSeat", joinColumns = @JoinColumn(name = "broadcastId"), inverseJoinColumns = @JoinColumn(name = "rowColumn"))
+    @JoinTable(name = "broadcastSeat", joinColumns = @JoinColumn(name = "broadcastId"), inverseJoinColumns = @JoinColumn(name = "seatId"))
     private List<Seat> availableSeats = new ArrayList<>();
 
 }

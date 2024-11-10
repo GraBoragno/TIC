@@ -25,8 +25,10 @@ public class Ticket {
     @JoinColumn(name = "broadcastId")
     private Broadcast ticketBroadcast;
 
+
+    //Esta es la que se usa
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rowColumn")
+    @JoinColumn(name = "seatId")
     private Seat assignedSeat;
 
     @ManyToOne(fetch = FetchType.LAZY)
