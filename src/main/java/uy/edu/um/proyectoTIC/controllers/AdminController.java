@@ -18,6 +18,7 @@ import uy.edu.um.proyectoTIC.entities.users.Admin;
 import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.exceptions.DuplicateEntityException;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
+import uy.edu.um.proyectoTIC.repository.SnackRepository;
 import uy.edu.um.proyectoTIC.services.*;
 
 import java.util.List;
@@ -60,10 +61,17 @@ public class AdminController {
         return "adminPage";
     }
 
-//    @PostMapping("/adminDeletSnack")
-//    public String deleteSnack(@RequestParam String snackName) {
-//        SnackService
-//    }
+    @PostMapping("/adminDeleteSnack")
+public String deleteSnack(@RequestParam String snackName, RedirectAttributes redirectAttributes) {
+    Snack snack = SnackRepository.findById(snackName).orElse(null);
+    if (snack != null) {
+        adminService.deleteSnack(snack); // Llamada al servicio con el objeto completo
+        redirectAttributes.addFlashAttribute("okMessage", "Snack eliminado");
+    } else {
+        redirectAttributes.addFlashAttribute("errorMessage", "Snack no encontrado");
+    }
+    return "adminPage";
+}
 
 //    @PostMapping("/adminDeleteSnack")
 //    public String deleteSnack(@RequestParam String snackName, RedirectAttributes redirectAttributes) {
