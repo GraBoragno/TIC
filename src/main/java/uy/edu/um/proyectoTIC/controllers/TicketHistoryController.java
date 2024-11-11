@@ -30,6 +30,8 @@ public class TicketHistoryController {
     private CinemaService cinemaService;
     @Autowired
     private TicketService ticketService;
+    @Autowired
+    private FilmService filmService;
 
 
     @GetMapping("/ticketHistory")
@@ -77,6 +79,13 @@ public class TicketHistoryController {
     @PostMapping("/cancelTicket")
     public String cancelTicket(HttpSession session, @RequestParam Long ticketId) throws EntityNotFoundException {
         ticketService.deleteTicket(ticketId);
+        return "redirect:/ticketHistory";
+    }
+
+    @PostMapping("/rateFilm")
+    public String calificarPelicula(HttpSession session, @RequestParam Float rating, @RequestParam Integer ticketId) throws EntityNotFoundException {
+
+        filmService.rateFilm(ticketId,rating);
         return "redirect:/ticketHistory";
     }
 
