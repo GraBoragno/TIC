@@ -98,10 +98,14 @@ public class AdminService {
         return snackService.addSnack(snackName,snackPrice);
     }
 
+    // no la probe pero deberia andar!! pero si hay una forma mas facil nice
     @Transactional
-    public void deleteSnack(Snack snack)
-    {
-        snackRepository.delete(snack);
+    public void deleteSnackById(String snackName) throws EntityNotFoundException {
+        Optional<Snack> snack = snackRepository.findById(snackName);
+        if (snack.isEmpty()) {
+            throw new EntityNotFoundException("Snack no encontrado");
+        }
+        snackRepository.delete(snack.get());
     }
 
     //Quizas es necesario un trimm o algo para los nombres

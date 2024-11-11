@@ -62,16 +62,15 @@ public class AdminController {
     }
 
     @PostMapping("/adminDeleteSnack")
-public String deleteSnack(@RequestParam String snackName, RedirectAttributes redirectAttributes) {
-    Snack snack = SnackRepository.findById(snackName).orElse(null);
-    if (snack != null) {
-        adminService.deleteSnack(snack); // Llamada al servicio con el objeto completo
-        redirectAttributes.addFlashAttribute("okMessage", "Snack eliminado");
-    } else {
-        redirectAttributes.addFlashAttribute("errorMessage", "Snack no encontrado");
+    public String deleteSnack(@RequestParam String snackName, RedirectAttributes redirectAttributes) {
+        try {
+            adminService.deleteSnackById(snackName);
+            redirectAttributes.addFlashAttribute("okMessage", "Snack eliminado");
+        } catch (EntityNotFoundException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+        }
+        return "adminPage";
     }
-    return "adminPage";
-}
 
 //    @PostMapping("/adminDeleteSnack")
 //    public String deleteSnack(@RequestParam String snackName, RedirectAttributes redirectAttributes) {
