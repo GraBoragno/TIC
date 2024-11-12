@@ -1,5 +1,6 @@
 package uy.edu.um.proyectoTIC.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -21,9 +22,9 @@ public class Snack {
 
     private String snackPrice;
 
-    @ManyToMany(mappedBy = "snacks")
+    @ManyToMany(mappedBy = "snacks", cascade = CascadeType.ALL)
     private List<Ticket> tickets = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "snacksIncluded")
+    @ManyToMany(mappedBy = "snacksIncluded", cascade = CascadeType.ALL)
     private List<Combo> combos = new ArrayList<>();
 }

@@ -22,7 +22,7 @@ public class Combo {
 
     private Long comboPrice;
 
-    @ManyToMany(mappedBy = "admittedCombos")
+    @ManyToMany(mappedBy = "admittedCombos", cascade = CascadeType.ALL)
     private List<Ticket> tickets = new ArrayList<>();
 
     @ManyToMany

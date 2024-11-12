@@ -74,9 +74,7 @@
                 <li class="nav-item nowrap" role="presentation">
                     <button class="nav-link admin-nav-background" id="addMovies-tab" data-toggle="tab" data-target="#addMovies" type="button" role="tab" aria-controls="addMovies" aria-selected="false" style="color: white;">Agregar Pelicula</button>
                 </li>
-                <li class="nav-item nowrap" role="presentation">
-                    <button class="nav-link admin-nav-background" id="deleteFilm-tab" data-toggle="tab" data-target="#deleteFilm" type="button" role="tab" aria-controls="deleteFilm" aria-selected="false" style="color: white;">Borrar Pelicula</button>
-                </li>
+
                 <li class="nav-item nowrap" role="presentation">
                     <button class="nav-link admin-nav-background" id="addRoom-tab" data-toggle="tab" data-target="#addRoom" type="button" role="tab" aria-controls="addRoom" aria-selected="false" style="color: white;">Agregar Sala</button>
                 </li>
@@ -246,12 +244,12 @@
         </div>
         <div class="tab-pane fade" id="deleteAdmin" role="tabpanel" aria-labelledby="deleteAdmin-tab" tabindex="0">
 
-            <form action="falta path" method="POST">
+            <form action="/adminDeleteAdmin" method="POST">
                 <div class="questions">
                     <div class="registerQuestions">Seleccione Admin:</div>
                     <div class="inputRegister">
-                        <select id="adminSelect" name="adminId" required>
-                            <option value="">Seleccione un admin para borrar</option>
+                        <select id="adminSelect" name="adminEmail" required>
+                            <option th:each="admin : ${admins}" th:value="${admin.getEmail()}" th:text="${admin.getName()} + ' | ' + ${admin.getEmail()}">Seleccione un admin para borrar</option>
                         </select>
                     </div>
                 </div>
@@ -263,12 +261,12 @@
 
         <div class="tab-pane fade" id="deleteRoom" role="tabpanel" aria-labelledby="deleteRoom-tab" tabindex="0">
 
-            <form action="falta path" method="POST">
+            <form action="/adminDeleteRoom" method="POST">
                 <div class="questions">
                     <div class="registerQuestions">Seleccionar Sala:</div>
                     <div class="inputRegister">
                         <select id="roomSelect" name="roomId" required>
-                            <option value="">Seleccione una Sala</option>
+                            <option th:each="room : ${rooms}" th:value="${room.getId()}" th:text="${room.getCinemaRoom().getNeighborhood()} + ' | ' + 'Sala: ' + ${room.getRoomNbr()}">Seleccione una Sala</option>
                         </select>
                     </div>
                 </div>
@@ -321,12 +319,12 @@
 
         <div class="tab-pane fade" id="deleteCombo" role="tabpanel" aria-labelledby="deleteCombo-tab" tabindex="0">
 
-            <form action="falta path" method="POST">
+            <form action="/adminDeleteCombo" method="POST">
                 <div class="questions">
                     <div class="registerQuestions">Seleccione Combo:</div>
                     <div class="inputRegister">
                         <select id="comboSelect" name="comboId" required>
-                            <option value="">Seleccione un combo</option>
+                            <option th:each="combo : ${combos}" th:value="${combo.getComboId()}" th:text="${combo.getComboName()} + ' $' + ${combo.getComboPrice()}">Seleccione un combo</option>
                         </select>
                     </div>
                 </div>
@@ -389,8 +387,8 @@
                 <div class="questions">
                     <div class="registerQuestions">Seleccione Snack:</div>
                     <div class="inputRegister">
-                        <select id="snackSelect" name="snackId" required>
-                            <option th:each="snack : ${snacks}" th:value="${snack.snackName}" th:text="${snack.snackName}">Snack Name</option>
+                        <select id="snackSelect" name="snackName" required>
+                            <option th:each="snack : ${snacks}" th:value="${snack.getSnackName()}" th:text="${snack.getSnackName()} + ' $' + ${snack.getSnackPrice()}">Snack Name</option>
                         </select>
                     </div>
                 </div>
@@ -402,12 +400,12 @@
 
         <div class="tab-pane fade" id="deleteBroadcast" role="tabpanel" aria-labelledby="deleteBroadcast-tab" tabindex="0">
 
-            <form action="falta path" method="POST">
+            <form action="/adminDeleteBroadcast" method="POST">
                 <div class="questions">
                     <div class="registerQuestions">Seleccione Funcion:</div>
                     <div class="inputRegister">
                         <select id="broadcastSelect" name="broadcastId" required>
-                            <option value="">Seleccione una funcion</option>
+                            <option th:each="broadcast : ${broadcasts}" th:data-date="${broadcast.getDateTime()}" th:value="${broadcast.getBroadcastId()}" th:text="${broadcast.getBroadcastFilm().getFilmName()} + ' | ' + ${broadcast.getHasRoom().getCinemaRoom().getNeighborhood()} + ' | '">Seleccione una funcion</option>
                         </select>
                     </div>
                 </div>
@@ -419,12 +417,12 @@
 
         <div class="tab-pane fade" id="deleteCinema" role="tabpanel" aria-labelledby="deleteCinema-tab" tabindex="0">
 
-            <form action="falta path" method="POST">
+            <form action="/adminDeleteCinema" method="POST">
                 <div class="questions">
                     <div class="registerQuestions">Seleccione Cine:</div>
                     <div class="inputRegister">
                         <select id="cinemaSelect" name="cinemaId" required>
-                            <option value="">Seleccione un cine</option>
+                            <option th:each="cinema : ${cinemas}" th:value="${cinema.getCentralId()}" th:text="${cinema.getNeighborhood()}">Seleccione un cine</option>
                         </select>
                     </div>
                 </div>
@@ -434,22 +432,6 @@
             </form>
         </div>
 
-        <div class="tab-pane fade" id="deleteFilm" role="tabpanel" aria-labelledby="deleteFilm-tab" tabindex="0">
-
-            <form action="falta path" method="POST">
-                <div class="questions">
-                    <div class="registerQuestions">Seleccione Pelicula:</div>
-                    <div class="inputRegister">
-                        <select id="filmSelect" name="filmId" required>
-                            <option value="">Seleccione una pelicula</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="questions">
-                    <button type="submit" class="client-button">Confirmar</button>
-                </div>
-            </form>
-        </div>
         <div class="tab-pane fade" id="allFilms" role="tabpanel" aria-labelledby="allFilms-tab" tabindex="0">
 
             <div class="custom-container">
@@ -472,6 +454,39 @@
 
     </div>
 </div>
+
+<script> <!-- script para parsear la fecha al formato que queremos -->
+document.addEventListener("DOMContentLoaded", function() {
+    // Obtener todas las opciones del select
+    const options = document.querySelectorAll('#broadcastSelect option');
+
+    // Formato deseado (por ejemplo, "dd MMM yyyy, HH:mm")
+    const optionsDateFormat = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    };
+
+    options.forEach(function(option) {
+        // Obtener la fecha desde el atributo data-date
+        const dateTimeString = option.getAttribute('data-date');
+        if (dateTimeString) {
+            const date = new Date(dateTimeString); // Crear un objeto Date con el string
+
+            // Usar Intl.DateTimeFormat para formatear la fecha
+            const formattedDate = new Intl.DateTimeFormat('es-ES', optionsDateFormat).format(date);
+
+            // Actualizar el texto del option con el formato de fecha
+            option.textContent = `${option.textContent.split(' - ')[0]}  ${formattedDate}`;
+        }
+    });
+});
+</script>
+
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

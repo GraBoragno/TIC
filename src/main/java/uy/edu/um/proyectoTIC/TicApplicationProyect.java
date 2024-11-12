@@ -91,18 +91,18 @@ public class TicApplicationProyect {
 //
 //		System.out.println("----------------2-------------------------");
 //
-//		try {
+		try {
 //			cinemaService.addCinema(1, 8, "Punta Carretas");
 //			cinemaService.addCinema(2, 5, "Ciudad Vieja");
 //			cinemaService.addCinema(3, 7, "Pocitos");
 //			cinemaService.addCinema(4, 4, "Carrasco");
 //			cinemaService.addCinema(5, 6, "Tres Cruces");
-//			cinemaService.addCinema(6, 10, "Centro");
+			cinemaService.addCinema(6, 10, "Centro");
 //			cinemaService.addCinema(7, 3, "Malvín");
 //			cinemaService.addCinema(8, 6, "Buceo");
-//		} catch (DuplicateEntityException e) {
-//			System.out.println("Error: Ya existe un cine con los mismos datos.");
-//		}
+		} catch (DuplicateEntityException e) {
+			System.out.println("Error: Ya existe un cine con los mismos datos.");
+		}
 //
 //		System.out.println("----------------3-------------------------");
 //
@@ -117,10 +117,10 @@ public class TicApplicationProyect {
 //		System.out.println("----------------4-------------------------");
 //
 //		try {
-//			snackService.addSnack("Pop dulce", "200");
-//			snackService.addSnack("Nachos", "250");
+////			snackService.addSnack("Pop dulce", "200");
+////			snackService.addSnack("Nachos", "250");
 //			snackService.addSnack("Pop salado", "150");
-//			snackService.addSnack("Nachos", "300");
+////			snackService.addSnack("Nachos", "300");
 //		} catch (DuplicateEntityException e) {
 //			System.out.println("Error: Ya existe un snack con el mismo nombre.");
 //		}

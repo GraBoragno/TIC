@@ -20,6 +20,9 @@ import uy.edu.um.proyectoTIC.exceptions.DuplicateEntityException;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
 import uy.edu.um.proyectoTIC.exceptions.InvalidAttributeException;
 import uy.edu.um.proyectoTIC.exceptions.InvalidIdException;
+import uy.edu.um.proyectoTIC.repository.BroadcastRepository;
+import uy.edu.um.proyectoTIC.repository.CinemaRepository;
+import uy.edu.um.proyectoTIC.repository.RoomRepository;
 import uy.edu.um.proyectoTIC.repository.SnackRepository;
 import uy.edu.um.proyectoTIC.services.*;
 
@@ -38,6 +41,20 @@ public class AdminController {
 
     @Autowired
     private FilmService filmService;
+    @Autowired
+    private RoomService roomService;
+    @Autowired
+    private RoomRepository roomRepository;
+    @Autowired
+    private ComboService comboService;
+    @Autowired
+    private CinemaService cinemaService;
+    @Autowired
+    private CinemaRepository cinemaRepository;
+    @Autowired
+    private BroadcastService broadcastService;
+    @Autowired
+    private BroadcastRepository broadcastRepository;
 
 
     @GetMapping("/adminPage")
@@ -45,8 +62,18 @@ public class AdminController {
 
         List<Snack> snacks = snackService.getAvailableSnacks();
         List<Film> films = filmService.getRatedFilms();
+        List<Room> rooms = roomRepository.findAll();
+        List<Combo> combos = comboService.getAvailableCombos();
+        List<Cinema> cinemas = cinemaRepository.findAll();
+        List<Broadcast> broadcasts = broadcastRepository.findAll();
+        List<Admin> admins = adminService.getAllAdmins();
         model.addAttribute("films", films);
         model.addAttribute("snacks", snacks);
+        model.addAttribute("rooms", rooms);
+        model.addAttribute("combos", combos);
+        model.addAttribute("cinemas", cinemas);
+        model.addAttribute("broadcasts", broadcasts);
+        model.addAttribute("admins", admins);
         return "adminPage";
     }
 
@@ -60,7 +87,7 @@ public class AdminController {
         } catch (DuplicateEntityException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "adminPage";
+        return "redirect:/adminPage";
     }
 
 
@@ -72,7 +99,7 @@ public class AdminController {
         } catch (EntityNotFoundException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "adminPage";
+        return "redirect:/adminPage";
     }
 
     // Films
@@ -84,7 +111,7 @@ public class AdminController {
         } catch (DuplicateEntityException | EntityNotFoundException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage()); // tira el error correspondiente
         }
-        return "adminPage";
+        return "redirect:/adminPage";
     }
 
     // deleteFilm al final no
@@ -98,7 +125,7 @@ public class AdminController {
         } catch (DuplicateEntityException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "adminPage";
+        return "redirect:/adminPage";
     }
 
     @PostMapping("/adminDeleteCinema")
@@ -109,7 +136,7 @@ public class AdminController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "No se pudo eliminar el cine: " + e.getMessage());
         }
-        return "adminPage";
+        return "redirect:/adminPage";
     }
 
     // Rooms
@@ -122,7 +149,7 @@ public class AdminController {
         } catch (EntityNotFoundException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "adminPage";
+        return "redirect:/adminPage";
     }
 
     @PostMapping("/adminDeleteRoom")
@@ -133,7 +160,7 @@ public class AdminController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "No se pudo eliminar la sala: " + e.getMessage());
         }
-        return "adminPage";
+        return "redirect:/adminPage";
     }
 
     // Combos
@@ -146,7 +173,7 @@ public class AdminController {
         } catch (EntityNotFoundException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
-        return "adminPage";
+        return "redirect:/adminPage";
     }
 
     @PostMapping("/adminDeleteCombo")
@@ -157,7 +184,7 @@ public class AdminController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "No se pudo eliminar el combo: " + e.getMessage());
         }
-        return "adminPage";
+        return "redirect:/adminPage";
     }
 
 
@@ -189,7 +216,7 @@ public class AdminController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "No se pudo eliminar el broadcast: " + e.getMessage());
         }
-        return "adminPage";
+        return "redirect:/adminPage";
     }
 
 
@@ -216,14 +243,14 @@ public class AdminController {
     }
 
     @PostMapping("/adminDeleteAdmin")
-    public String deleteAdmin(@RequestParam String email, RedirectAttributes redirectAttributes) {
+    public String deleteAdmin(@RequestParam String adminEmail, RedirectAttributes redirectAttributes) {
         try {
-            adminService.deleteAdmin(email);
+            adminService.deleteAdmin(adminEmail);
             redirectAttributes.addFlashAttribute("okMessage", "Administrador eliminado");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "No se pudo eliminar el administrador: " + e.getMessage());
         }
-        return "adminPage";
+        return "redirect:/adminPage";
     }
 }
 
