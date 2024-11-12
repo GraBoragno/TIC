@@ -22,7 +22,6 @@ import uy.edu.um.proyectoTIC.services.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -92,18 +91,18 @@ public class TicApplicationProyect {
 //
 //		System.out.println("----------------2-------------------------");
 //
-//		try {
+		try {
 //			cinemaService.addCinema(1, 8, "Punta Carretas");
 //			cinemaService.addCinema(2, 5, "Ciudad Vieja");
 //			cinemaService.addCinema(3, 7, "Pocitos");
 //			cinemaService.addCinema(4, 4, "Carrasco");
 //			cinemaService.addCinema(5, 6, "Tres Cruces");
-//			cinemaService.addCinema(6, 10, "Centro");
+			cinemaService.addCinema(6, 10, "Centro");
 //			cinemaService.addCinema(7, 3, "Malvín");
 //			cinemaService.addCinema(8, 6, "Buceo");
-//		} catch (DuplicateEntityException e) {
-//			System.out.println("Error: Ya existe un cine con los mismos datos.");
-//		}
+		} catch (DuplicateEntityException e) {
+			System.out.println("Error: Ya existe un cine con los mismos datos.");
+		}
 //
 //		System.out.println("----------------3-------------------------");
 //
@@ -239,134 +238,6 @@ public class TicApplicationProyect {
 //        } catch (EntityNotFoundException e) {
 //            throw new RuntimeException(e);
 //        }
-//
-//		System.out.println("------------------14----------------------");
-//		try {
-//			filmService.addFilm("My Neighbor Totoro", "Hayao Miyazaki", 86, "1988", "anime, familia, fantasía");
-//			filmService.addFilm("Princess Mononoke", "Hayao Miyazaki", 134, "1997", "anime, fantasía, aventura");
-//			filmService.addFilm("Howl's Moving Castle", "Hayao Miyazaki", 119, "2004", "anime, fantasía, romance");
-//			filmService.addFilm("Castle in the Sky", "Hayao Miyazaki", 124, "1986", "anime, aventura, fantasía");
-//			filmService.addFilm("Kiki's Delivery Service", "Hayao Miyazaki", 103, "1989", "anime, familia, aventura");
-//			filmService.addFilm("The Tale of the Princess Kaguya", "Isao Takahata", 137, "2013", "anime, drama, fantasía");
-//			filmService.addFilm("Ponyo", "Hayao Miyazaki", 101, "2008", "anime, familia, fantasía");
-//			filmService.addFilm("Whisper of the Heart", "Yoshifumi Kondō", 111, "1995", "anime, romance, drama");
-//			filmService.addFilm("Hereditary", "Ari Aster", 127, "2018", "terror, drama, suspenso");
-//			filmService.addFilm("Get Out", "Jordan Peele", 104, "2017", "terror, misterio, suspenso");
-//			filmService.addFilm("The Shining", "Stanley Kubrick", 146, "1980", "terror, misterio, suspenso");
-//			filmService.addFilm("It", "Andy Muschietti", 135, "2017", "terror, suspenso");
-//			filmService.addFilm("Toy Story", "John Lasseter", 81, "1995", "animación, comedia, aventura");
-//			filmService.addFilm("Inside Out", "Pete Docter", 95, "2015", "animación, comedia, drama");
-//			filmService.addFilm("Coco", "Lee Unkrich, Adrian Molina", 105, "2017", "animación, familia, fantasía");
-//			filmService.addFilm("Shrek", "Andrew Adamson, Vicky Jenson", 90, "2001", "animación, comedia, aventura");
-//
-//		} catch (DuplicateEntityException | EntityNotFoundException e) {
-//			System.out.println("Error: Ya existe una pelicula con ese nombre.");
-//		}
-
-//		try {
-//			roomService.createRoom(4, 7);
-//			roomService.createRoom(4, 3);
-//			roomService.createRoom(5, 1);
-//			roomService.createRoom(3, 2);
-//		} catch (EntityNotFoundException | InvalidRoomQtyException e) {
-//			System.out.println("Error: El cine no existe");
-//		}
-
-//		try {
-//			broadcastService.addBroadcast("19/11/2024 17:00", 250, 2, 1, 1);
-//			broadcastService.addBroadcast("19/11/2024 19:30", 300, 8, 1, 7);
-//			broadcastService.addBroadcast("19/11/2024 21:00", 220, 4, 3, 3);
-
-//			broadcastService.addBroadcast("20/11/2024 16:00", 200, 5, 1, 8);
-//			broadcastService.addBroadcast("20/11/2024 18:30", 280, 1, 3, 2);
-//			broadcastService.addBroadcast("20/11/2024 20:00", 250, 3, 2, 14);
-//
-//			broadcastService.addBroadcast("21/11/2024 15:30", 220, 2, 1, 4);
-//			broadcastService.addBroadcast("21/11/2024 18:00", 275, 8, 1, 5);
-//			broadcastService.addBroadcast("21/11/2024 20:30", 260, 10, 1, 28);
-//
-//			broadcastService.addBroadcast("22/11/2024 14:00", 300, 4, 3, 19);
-//			broadcastService.addBroadcast("22/11/2024 17:00", 240, 5, 1, 22);
-//			broadcastService.addBroadcast("22/11/2024 19:30", 280, 3, 2, 6);
-//
-//			broadcastService.addBroadcast("23/11/2024 16:30", 220, 2, 1, 15);
-//			broadcastService.addBroadcast("23/11/2024 19:00", 275, 8, 1, 14);
-//			broadcastService.addBroadcast("23/11/2024 21:30", 300, 4, 3, 13);
-//
-//			broadcastService.addBroadcast("24/11/2024 15:00", 200, 1, 3, 16);
-//			broadcastService.addBroadcast("24/11/2024 18:30", 250, 10, 1, 19);
-//			broadcastService.addBroadcast("24/11/2024 20:45", 280, 5, 1, 17);
-//
-//		} catch (EntityNotFoundException e) {
-//			System.out.println("Error al agregar la emisión: " + e.getMessage());
-//		}
-//
-//		try {
-//			snackService.addSnack("Pancho", "350");
-//			snackService.addSnack("Papas Fritas", "200");
-//			snackService.addSnack("Chocolate", "250");
-//			snackService.addSnack("Helado", "300");
-//			snackService.addSnack("Caramelos", "100");
-//			snackService.addSnack("Pizza", "400");
-//			snackService.addSnack("Coca comun", "150");
-//			snackService.addSnack("Coca light", "150");
-//			snackService.addSnack("Coca zero", "150");
-//			snackService.addSnack("Sprite zero", "150");
-//			snackService.addSnack("Fanta", "150");
-//			snackService.addSnack("Agua", "100");
-//			snackService.addSnack("Jugo", "200");
-//			snackService.addSnack("Galletas", "150");
-//			snackService.addSnack("Agua con gas", "100");
-//		} catch (DuplicateEntityException e) {
-//			System.out.println("Error: Ya existe un snack con el mismo nombre.");
-//		}
-
-//		try {
-//			List<Snack> basicComboSnacks = Arrays.asList(
-//					snackRepository.findByName("Pop dulce").orElseThrow(() -> new EntityNotFoundException("Snack no encontrado: Pop dulce")),
-//					snackRepository.findByName("Coca comun").orElseThrow(() -> new EntityNotFoundException("Snack no encontrado: Coca comun"))
-//			);
-//			Combo combo2 = comboService.addCombo(300, basicComboSnacks, "Combo 2");
-//
-//			List<Snack> familyComboSnacks = Arrays.asList(
-//					snackRepository.findByName("Pizza").orElseThrow(() -> new EntityNotFoundException("Snack no encontrado: Pizza")),
-//					snackRepository.findByName("Papas Fritas").orElseThrow(() -> new EntityNotFoundException("Snack no encontrado: Papas Fritas")),
-//					snackRepository.findByName("Coca light").orElseThrow(() -> new EntityNotFoundException("Snack no encontrado: Coca light"))
-//			);
-//			Combo combo3 = comboService.addCombo(700, familyComboSnacks, "Combo 3");
-//
-//			List<Snack> sweetComboSnacks = Arrays.asList(
-//					snackRepository.findByName("Chocolate").orElseThrow(() -> new EntityNotFoundException("Snack no encontrado: Chocolate")),
-//					snackRepository.findByName("Caramelos").orElseThrow(() -> new EntityNotFoundException("Snack no encontrado: Caramelos")),
-//					snackRepository.findByName("Sprite zero").orElseThrow(() -> new EntityNotFoundException("Snack no encontrado: Sprite zero"))
-//			);
-//			Combo combo4 = comboService.addCombo(400, sweetComboSnacks, "Combo 4");
-//
-//			List<Snack> refreshingComboSnacks = Arrays.asList(
-//					snackRepository.findByName("Agua").orElseThrow(() -> new EntityNotFoundException("Snack no encontrado: Agua")),
-//					snackRepository.findByName("Coca light").orElseThrow(() -> new EntityNotFoundException("Snack no encontrado: Coca light")),
-//					snackRepository.findByName("Fanta").orElseThrow(() -> new EntityNotFoundException("Snack no encontrado: Fanta"))
-//			);
-//			Combo combo5 = comboService.addCombo(250, refreshingComboSnacks, "Combo 5");
-//
-//			List<Snack> classicComboSnacks = Arrays.asList(
-//					snackRepository.findByName("Nachos").orElseThrow(() -> new EntityNotFoundException("Snack no encontrado: Nachos")),
-//					snackRepository.findByName("Jugo").orElseThrow(() -> new EntityNotFoundException("Snack no encontrado: Jugo"))
-//			);
-//			Combo combo6 = comboService.addCombo(350, classicComboSnacks, "Combo 6");
-//
-//		} catch (EntityNotFoundException e) {
-//			System.out.println("Error: No se encontraron algunos snacks.");
-//		}
-
-//		try {
-//			broadcastService.addBroadcast("19/11/2024 13:30", 250, 2, 1, 1);
-//			broadcastService.addBroadcast("19/11/2024 13:30", 250, 1, 7, 1);
-//			broadcastService.addBroadcast("19/11/2024 19:30", 300, 1, 1, 7);
-//
-//		} catch (EntityNotFoundException e) {
-//			System.out.println("Error al agregar la emisión: " + e.getMessage());
-//		}
 
         System.out.println("Ejecutando programa...");
     }
