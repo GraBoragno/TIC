@@ -27,4 +27,5 @@ public class Snack {
 
     @ManyToMany(mappedBy = "snacksIncluded", cascade = CascadeType.ALL)
     private List<Combo> combos = new ArrayList<>();
+
 }

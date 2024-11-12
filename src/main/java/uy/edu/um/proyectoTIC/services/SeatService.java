@@ -14,7 +14,7 @@ public class SeatService {
     @Autowired
     private SeatRepository seatRepository;
 
-    private Seat createSeat(int row, int column) throws DuplicateEntityException
+    public Seat createSeat(int row, int column) throws DuplicateEntityException
     {
         List<Seat> allSeats = seatRepository.findAll();
         for (int i = 0; i < allSeats.size(); i++) {
@@ -39,9 +39,9 @@ public class SeatService {
         }
     }
 
-    public Seat createSeatForTest(int row, int column) throws DuplicateEntityException {
-        return createSeat(row, column);
-    }
+//    public Seat createSeatForTest(int row, int column) throws DuplicateEntityException {
+//        return createSeat(row, column);
+//    }
 
     public List<Seat> getAllSeats()
     {

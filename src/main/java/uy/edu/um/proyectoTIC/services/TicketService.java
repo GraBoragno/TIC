@@ -63,7 +63,7 @@ public class TicketService {
         return ticketRepository.save(ticket);
     }
 
-    private long calculatePrice(List<Combo> combos, List<Snack> snacks, Long broadcastPrice)
+    public long calculatePrice(List<Combo> combos, List<Snack> snacks, Long broadcastPrice)
     {
         long price = broadcastPrice;
 

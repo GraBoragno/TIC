@@ -45,7 +45,7 @@ public class SeatServiceTest {
         when(seatRepository.findAll()).thenReturn(new ArrayList<>());
         when(seatRepository.save(any(Seat.class))).thenReturn(newSeat);
 
-        Seat result = seatService.createSeatForTest(row, column);
+        Seat result = seatService.createSeat(row, column);
 
         assertNotNull(result);
         assertEquals((long) row, result.getSeatRow());
@@ -66,7 +66,7 @@ public class SeatServiceTest {
 
         when(seatRepository.findAll()).thenReturn(List.of(existingSeat));
 
-        assertThrows(DuplicateEntityException.class, () -> seatService.createSeatForTest(row, column));
+        assertThrows(DuplicateEntityException.class, () -> seatService.createSeat(row, column));
     }
 
     @Test
