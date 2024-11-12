@@ -18,6 +18,8 @@ import uy.edu.um.proyectoTIC.entities.users.Admin;
 import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.exceptions.DuplicateEntityException;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
+import uy.edu.um.proyectoTIC.exceptions.InvalidAttributeException;
+import uy.edu.um.proyectoTIC.exceptions.InvalidIdException;
 import uy.edu.um.proyectoTIC.repository.SnackRepository;
 import uy.edu.um.proyectoTIC.services.*;
 
@@ -39,7 +41,7 @@ public class AdminController {
 
 
     @GetMapping("/adminPage")
-    public String admin(Model model , HttpSession session) {
+    public String admin(Model model, HttpSession session) {
 
         List<Snack> snacks = snackService.getAvailableSnacks();
         List<Film> films = filmService.getRatedFilms();
@@ -72,17 +74,6 @@ public class AdminController {
         return "adminPage";
     }
 
-//    @PostMapping("/adminDeleteSnack")
-//    public String deleteSnack(@RequestParam String snackName, RedirectAttributes redirectAttributes) {
-//        try {
-//            adminService.deleteSnack(snackName);
-//            redirectAttributes.addFlashAttribute("okMessage", "Snack eliminado");
-//        } catch (EntityNotFoundException e) {
-//            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
-//        }
-//        return "adminPage";
-//    }
-
     // Films
     @PostMapping("/adminCreateFilm")
     public String addFilm(@RequestParam String filmName, @RequestParam String directorName, @RequestParam Integer duration, @RequestParam String releaseYearDate, @RequestParam String genres, RedirectAttributes redirectAttributes) {
@@ -95,11 +86,11 @@ public class AdminController {
         return "adminPage";
     }
 
-        // deleteFilm al final no
+    // deleteFilm al final no
 
     // Cinemas
     @PostMapping("/adminCreateCinema")
-    public String addCinema(@RequestParam Integer  centralId, @RequestParam Integer roomQty, @RequestParam String neighborhood, RedirectAttributes redirectAttributes) {
+    public String addCinema(@RequestParam Integer centralId, @RequestParam Integer roomQty, @RequestParam String neighborhood, RedirectAttributes redirectAttributes) {
         try {
             adminService.createCinema(centralId, roomQty, neighborhood);
             redirectAttributes.addFlashAttribute("okMessage", "Cine agregado");
@@ -109,17 +100,16 @@ public class AdminController {
         return "adminPage";
     }
 
-//    @PostMapping("/adminDeleteCinema")
-//    public String deleteCinema(@RequestParam Long centralId, RedirectAttributes redirectAttributes) {
-//        try {
-//            adminService.deleteCinema(centralId);
-//            redirectAttributes.addFlashAttribute("successMessage", "Cine eliminado");
-//        } catch (EntityNotFoundException e) {
-//            redirectAttributes.addFlashAttribute("errorMessage", "El cine no existe.");
-//        }
-//        return "adminPage";
-//    }
-
+    @PostMapping("/adminDeleteCinema")
+    public String deleteCinema(@RequestParam Long cinemaId, RedirectAttributes redirectAttributes) {
+        try {
+            adminService.deleteCinema(cinemaId);
+            redirectAttributes.addFlashAttribute("okMessage", "Cine eliminado");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "No se pudo eliminar el cine: " + e.getMessage());
+        }
+        return "adminPage";
+    }
 
     // Rooms
     @PostMapping("/adminAddRoom")
@@ -134,16 +124,16 @@ public class AdminController {
         return "adminPage";
     }
 
-//    @PostMapping("/adminDeleteRoom")
-//    public String deleteRoom(@RequestParam Long roomId, @RequestParam Long centralId, RedirectAttributes redirectAttributes) {
-//        try {
-//            adminService.deleteRoom(roomId, centralId);
-//            redirectAttributes.addFlashAttribute("success", "Sala eliminada");
-//        } catch (EntityNotFoundException e) {
-//            redirectAttributes.addFlashAttribute("error", e.getMessage());
-//        }
-//        return "redirect:/admin/rooms";
-//    }
+    @PostMapping("/adminDeleteRoom")
+    public String deleteRoom(@RequestParam Integer roomId, RedirectAttributes redirectAttributes) {
+        try {
+            adminService.deleteRoom(roomId);
+            redirectAttributes.addFlashAttribute("okMessage", "Sala eliminada");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "No se pudo eliminar la sala: " + e.getMessage());
+        }
+        return "adminPage";
+    }
 
     // Combos
     @PostMapping("/adminAddCombo")
@@ -158,22 +148,83 @@ public class AdminController {
         return "adminPage";
     }
 
-//    @PostMapping("/deleteCombo")
-//    public String deleteCombo(@RequestParam Long comboId, RedirectAttributes redirectAttributes) {
-//        try {
-//            adminService.deleteCombo(comboId);
-//            redirectAttributes.addFlashAttribute("success", "Combo eliminado");
-//        } catch (EntityNotFoundException e) {
-//            redirectAttributes.addFlashAttribute("error", e.getMessage());
-//        }
-//        return "adminPage";
-//    }
+    @PostMapping("/adminDeleteCombo")
+    public String deleteCombo(@RequestParam Long comboId, RedirectAttributes redirectAttributes) {
+        try {
+            adminService.deleteCombo(comboId);
+            redirectAttributes.addFlashAttribute("okMessage", "Combo eliminado");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "No se pudo eliminar el combo: " + e.getMessage());
+        }
+        return "adminPage";
+    }
 
+
+    // Broadcasts
+    @PostMapping("/adminAddBroadcast")
+    public String addBroadcast(
+            @RequestParam String dateTimeS,
+            @RequestParam Integer broadcastPrice,
+            @RequestParam Integer roomNbr,
+            @RequestParam Integer centralId,
+            @RequestParam Integer filmCode,
+            RedirectAttributes redirectAttributes) {
+        try {
+            adminService.createBroadcast(dateTimeS, broadcastPrice, roomNbr, centralId, filmCode);
+            redirectAttributes.addFlashAttribute("okMessage", "Broadcast creado correctamente.");
+        } catch (EntityNotFoundException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error al crear el broadcast: " + e.getMessage());
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error inesperado: " + e.getMessage());
+        }
+        return "redirect:/adminPage";
+    }
+
+    @PostMapping("/adminDeleteBroadcast")
+    public String deleteBroadcast(@RequestParam Long broadcastId, RedirectAttributes redirectAttributes) {
+        try {
+            adminService.deleteBroadcast(broadcastId);
+            redirectAttributes.addFlashAttribute("okMessage", "Broadcast eliminado");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "No se pudo eliminar el broadcast: " + e.getMessage());
+        }
+        return "adminPage";
+    }
+
+
+    // Admins
+    @PostMapping("/adminAddAdmin")
+    public String addAdmin(
+            @RequestParam String email,
+            @RequestParam String name,
+            @RequestParam String address,
+            @RequestParam String birthdate,
+            @RequestParam String password,
+            RedirectAttributes redirectAttributes) {
+        try {
+            adminService.createAdmin(email, name, address, birthdate, password);
+            redirectAttributes.addFlashAttribute("okMessage", "Administrador creado correctamente.");
+        } catch (DuplicateEntityException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error: Ya existe un administrador con ese email.");
+        } catch (InvalidIdException | InvalidAttributeException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error en los datos: " + e.getMessage());
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error inesperado: " + e.getMessage());
+        }
+        return "redirect:/adminPage";
+    }
+
+    @PostMapping("/adminDeleteAdmin")
+    public String deleteAdmin(@RequestParam String email, RedirectAttributes redirectAttributes) {
+        try {
+            adminService.deleteAdmin(email);
+            redirectAttributes.addFlashAttribute("okMessage", "Administrador eliminado");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "No se pudo eliminar el administrador: " + e.getMessage());
+        }
+        return "adminPage";
+    }
 }
-
-// Broadcast
-
-
 
 
 

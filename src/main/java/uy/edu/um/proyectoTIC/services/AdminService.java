@@ -91,7 +91,6 @@ public class AdminService {
         return snackService.addSnack(snackName,snackPrice);
     }
 
-    // no la probe pero deberia andar!! pero si hay una forma mas facil nice
     @Transactional
     public void deleteSnackById(String snackName) throws EntityNotFoundException {
         snackRepository.deleteById(snackName);
