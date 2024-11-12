@@ -34,6 +34,28 @@ body {
 }
 
 /* Carrusel de películas */
+.carousel-inner {
+    position: relative;
+    animation: waveEffect 5s linear infinite;
+    background: linear-gradient(90deg, #161616 25%, #1c1c1c 50%, #2b2b2b 75%, #161616 100%);
+    background-size: 200% 100%;
+    height: 100%;
+}
+
+@keyframes waveEffect {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+.carousel-item {
+    background-color: transparent; /* Asegura que el fondo del item no sobrepase el del contenedor */
+}
+
+
 .movies-carousel {
     display: flex;
     align-items: center;
