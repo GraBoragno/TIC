@@ -18,7 +18,6 @@ public class Combo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long comboId;
 
-    //Agregar comboName
     private String comboName;
 
     private Long comboPrice;

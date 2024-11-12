@@ -31,8 +31,8 @@ body {
 }
 
 .client-button:hover, .login-button:hover, .register-button:hover, .home-button:hover {
-    background-color: #ff4d4d; /* Color de fondo más claro al pasar el ratón */
-    box-shadow: 0 0 12px 6px rgba(204, 0, 0, 0.3); /* Resplandor rojo */
+    background-color: #e60000; /* Color de fondo más claro al pasar el ratón */
+    box-shadow: 0 0 12px 6px rgba(204, 0, 0, 0.2); /* Resplandor rojo */
 }
 
 /* Grupo de botones */

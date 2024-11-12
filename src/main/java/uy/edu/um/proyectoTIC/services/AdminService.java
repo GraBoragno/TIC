@@ -62,22 +62,15 @@ public class AdminService {
         return filmService.addFilm(filmName, directorName, duration, releaseYearDate, genres);
     }
 
-    //Quizas este no
-    @Transactional
-    public void deleteFilm(Film film)
-    {
-        filmRepository.delete(film);
-    }
-
     public Cinema createCinema(Integer centralId, Integer roomQty, String neighborhood) throws DuplicateEntityException
     {
         return cinemaService.addCinema(centralId, roomQty, neighborhood);
     }
 
     @Transactional
-    public void deleteCinema(Cinema cinema)
+    public void deleteCinema(Long cinemaId)
     {
-        cinemaRepository.delete(cinema);
+        cinemaRepository.deleteById(cinemaId);
     }
 
     public Broadcast createBroadcast(String dateTimeS, Integer broadcastPrice, Integer roomNbr, Integer centralId, Integer filmCode) throws EntityNotFoundException
@@ -86,9 +79,9 @@ public class AdminService {
     }
 
     @Transactional
-    public void deleteBroadcast(Broadcast broadcast)
+    public void deleteBroadcast(Long broadcastId)
     {
-        broadcastRepository.delete(broadcast);
+        broadcastRepository.deleteById(broadcastId);
     }
 
     public Snack createSnack(String snackName, String snackPrice) throws DuplicateEntityException
@@ -101,11 +94,7 @@ public class AdminService {
     // no la probe pero deberia andar!! pero si hay una forma mas facil nice
     @Transactional
     public void deleteSnackById(String snackName) throws EntityNotFoundException {
-        Optional<Snack> snack = snackRepository.findById(snackName);
-        if (snack.isEmpty()) {
-            throw new EntityNotFoundException("Snack no encontrado");
-        }
-        snackRepository.delete(snack.get());
+        snackRepository.deleteById(snackName);
     }
 
     //Quizas es necesario un trimm o algo para los nombres
@@ -129,9 +118,9 @@ public class AdminService {
     }
 
     @Transactional
-    public void deleteCombo(Combo combo)
+    public void deleteCombo(Long comboId)
     {
-        comboRepository.delete(combo);
+        comboRepository.deleteById(comboId);
     }
 
     public Admin createAdmin(String email, String name, String address, String birthdate, String password) throws DuplicateEntityException
@@ -163,9 +152,9 @@ public class AdminService {
     }
 
     @Transactional
-    public void deleteAdmin(Admin admin)
+    public void deleteAdmin(String email)
     {
-        adminRepository.delete(admin);
+        adminRepository.deleteById(email);
     }
 
     public Room createRoom(Integer roomNbr, Integer centralId) throws EntityNotFoundException
@@ -174,9 +163,9 @@ public class AdminService {
     }
 
     @Transactional
-    public void deleteRoom(Room room)
+    public void deleteRoom(Integer roomId)
     {
-        roomRepository.delete(room);
+        roomRepository.deleteById(roomId);
     }
 
     public List<Admin> getAllAdmins() {
