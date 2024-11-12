@@ -159,48 +159,48 @@
 /* buttons */
 
 
-.client-button, .login-button, .register-button {
-    background-color: #cc0000; /* Color de fondo para los botones */
-    color: white; /* Color del texto */
-    padding: 10px 20px; /* Ajustar padding */
-    text-align: center; /* Centrar el texto */
-    border: 1px solid #e60000; /* Borde */
-    cursor: pointer; /* Cambiar el cursor al pasar por encima */
-    transition: background-color 0.3s; /* Transición suave al cambiar el color */
-    font-size: 14px; /* Ajustar tamaño de fuente */
-    border-radius: 20px; /* Bordes redondeados */
-    margin: 5px; /* Espacio entre los botones */
-    text-decoration: none;
-}
+/*.client-button, .login-button, .register-button {*/
+/*    background-color: #cc0000; !* Color de fondo para los botones *!*/
+/*    color: white; !* Color del texto *!*/
+/*    padding: 10px 20px; !* Ajustar padding *!*/
+/*    text-align: center; !* Centrar el texto *!*/
+/*    border: 1px solid #e60000; !* Borde *!*/
+/*    cursor: pointer; !* Cambiar el cursor al pasar por encima *!*/
+/*    transition: background-color 0.3s; !* Transición suave al cambiar el color *!*/
+/*    font-size: 14px; !* Ajustar tamaño de fuente *!*/
+/*    border-radius: 20px; !* Bordes redondeados *!*/
+/*    margin: 5px; !* Espacio entre los botones *!*/
+/*    text-decoration: none;*/
+/*}*/
 
-.home-button {
-    background-color: #cc0000; /* Color de fondo para los botones */
-    color: white; /* Color del texto */
-    padding: 10px 20px; /* Ajustar padding */
-    text-align: center; /* Centrar el texto */
-    border: 1px solid #e60000; /* Borde */
-    cursor: pointer; /* Cambiar el cursor al pasar por encima */
-    transition: background-color 0.3s; /* Transición suave al cambiar el color */
-    font-size: 14px; /* Ajustar tamaño de fuente */
-    border-radius: 20px; /* Bordes redondeados */
-    display: flex;
-    justify-content: flex-start; /* Alinear a la izquierda */
-}
+/*.home-button {*/
+/*    background-color: #cc0000; !* Color de fondo para los botones *!*/
+/*    color: white; !* Color del texto *!*/
+/*    padding: 10px 20px; !* Ajustar padding *!*/
+/*    text-align: center; !* Centrar el texto *!*/
+/*    border: 1px solid #e60000; !* Borde *!*/
+/*    cursor: pointer; !* Cambiar el cursor al pasar por encima *!*/
+/*    transition: background-color 0.3s; !* Transición suave al cambiar el color *!*/
+/*    font-size: 14px; !* Ajustar tamaño de fuente *!*/
+/*    border-radius: 20px; !* Bordes redondeados *!*/
+/*    display: flex;*/
+/*    justify-content: flex-start; !* Alinear a la izquierda *!*/
+/*}*/
 
-.client-button:hover, .login-button:hover, .register-button:hover, .home-button:hover {
-    background-color: #ff4d4d; /* Color de fondo más claro al pasar el ratón */
-}
+/*!*.client-button:hover, .login-button:hover, .register-button:hover, .home-button:hover {*!*/
+/*!*    background-color: #ff4d4d; !* Color de fondo más claro al pasar el ratón *!*!*/
+/*!*}*!*/
 
-/* Grupo de botones */
-.account {
-    position: absolute; /* Posicionamos el grupo de botones */
-    top: 10px; /* Espacio desde la parte superior */
-    right: 10px; /* Espacio desde la derecha */
-    display: flex; /* Disposición en línea para los botones */
-    flex-direction: row; /* Alineación horizontal de los botones */
-    align-items: center; /* Alinear verticalmente */
-    gap: 5px; /* Añadir espacio entre los botones */
-}
+/*!* Grupo de botones *!*/
+/*.account {*/
+/*    position: absolute; !* Posicionamos el grupo de botones *!*/
+/*    top: 10px; !* Espacio desde la parte superior *!*/
+/*    right: 10px; !* Espacio desde la derecha *!*/
+/*    display: flex; !* Disposición en línea para los botones *!*/
+/*    flex-direction: row; !* Alineación horizontal de los botones *!*/
+/*    align-items: center; !* Alinear verticalmente *!*/
+/*    gap: 5px; !* Añadir espacio entre los botones *!*/
+/*}*/
 
 /* sesion */
 .bodyHome {
