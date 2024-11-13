@@ -26,6 +26,7 @@ import uy.edu.um.proyectoTIC.repository.RoomRepository;
 import uy.edu.um.proyectoTIC.repository.SnackRepository;
 import uy.edu.um.proyectoTIC.services.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -165,16 +166,34 @@ public class AdminController {
 
     // Combos
     @PostMapping("/adminAddCombo")
-    public String addCombo(@RequestParam Integer comboPrice, @RequestParam List<String> snacks,
+    public String addCombo(@RequestParam Integer comboPrice, @RequestParam List<Integer> snackQuantities,
                            @RequestParam String comboName, RedirectAttributes redirectAttributes) {
-        try {
-            adminService.createCombo(comboPrice, snacks, comboName);
-            redirectAttributes.addFlashAttribute("success", "Combo agregado");
-        } catch (EntityNotFoundException e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
+
+            List<String> selectedSnacks = new ArrayList<>();
+
+            try {
+
+                List<Snack> allSnacks = snackService.getAvailableSnacks();
+
+
+                for (int i = 0; i < allSnacks.size(); i++) {
+                    String snack = allSnacks.get(i).getSnackName();
+                    int quantity = snackQuantities.get(i);
+
+
+                    for (int j = 0; j < quantity; j++) {
+                        selectedSnacks.add(snack);
+                    }
+                }
+
+                adminService.createCombo(comboPrice, selectedSnacks, comboName);
+                redirectAttributes.addFlashAttribute("success", "Combo agregado");
+            } catch (EntityNotFoundException e) {
+                redirectAttributes.addFlashAttribute("error", e.getMessage());
+            }
+
+            return "redirect:/adminPage";
         }
-        return "redirect:/adminPage";
-    }
 
     @PostMapping("/adminDeleteCombo")
     public String deleteCombo(@RequestParam Long comboId, RedirectAttributes redirectAttributes) {

@@ -34,6 +34,7 @@ public class PaymentController {
     @Autowired
     private SeatRepository seatRepository;
 
+
     @GetMapping("/paymentMethod")
     public String showPaymentPage(Model model, HttpSession session) throws EntityNotFoundException {
         Client client = (Client) session.getAttribute("user");

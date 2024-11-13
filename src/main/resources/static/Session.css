@@ -279,6 +279,8 @@ h1 {
     border: #FFFFFF;
 }
 
+
+
 .registerQuestions {
     font-size: 15px;
     width: 100px;
@@ -405,6 +407,10 @@ h1 {
     border-radius: 8px;
     border: 1px solid #ccc;
     padding: 5px 10px;
+}
+
+.custom-input-counter {
+    width: 114px !important;
 }
 
 .quantity-control button {
@@ -575,4 +581,8 @@ form {
 .register-prompt p {
     font-size: 16px;
     color: #FFFFFF;
+}
+
+.custom-form-funcion {
+    max-width: 700px !important;
 }

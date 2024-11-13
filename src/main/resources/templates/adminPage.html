@@ -169,9 +169,9 @@
 
             <form action="falta path" method="POST">
                 <div class="questions">
-                    <div class="registerQuestions"> Tiempo y Fecha: </div>
+                    <div class="registerQuestions"> Fecha y Hora: </div>
                     <div class="inputRegister">
-                        <input type="text" id="dateTimeS" name="dateTimeS" placeholder="Ingresar fecha y hora" required><br>
+                        <input type="text" id="dateTimeS" name="dateTimeS" placeholder="yyyy-MM-dd'T'HH:mm:ss" required><br>
                     </div>
                 </div>
                 <div class="questions">
@@ -335,28 +335,35 @@
         </div>
 
         <div class="tab-pane fade" id="createCombo" role="tabpanel" aria-labelledby="createCombo-tab" tabindex="0">
-            <form action="falta path" method="POST">
-                <div class="snack-selection">
-                    <div class="snack-label">Seleccione Snack:</div>
-                    <div class="dropdown-container">
-                        <select id="snackDropdown" name="snackId">
-                            <option value="" disabled selected>Seleccione un snack</option>
-                        </select>
+            <form action="/adminAddCombo" method="POST">
+                    <div th:each="snack : ${snacks}">
+                        <div class="questions">
+                            <div class="registerQuestions" th:text="${snack.snackName}+':'">Snack</div>
+
+                            <div>
+                                <button type="button" onclick="this.nextElementSibling.stepDown()">-</button>
+                                <input class="quantity-input custom-input-counter" type="number" name="snackQuantities[]" value="0" min="0">
+                                <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="quantity-control">
-                        <button type="button" id="decreaseBtn">-</button>
-                        <input class="quantity-input" type="text" id="snackCounter" name="snackQuantity" value="0" readonly>
-                        <button type="button" id="increaseBtn">+</button>
-                    </div>
-                </div>
 
                 <div class="questions">
                     <div class="registerQuestions">Nombre del pack:</div>
                     <div class="inputRegister">
-                        <input type="text" id="comboName" name="combo" placeholder="Nombre del Combo" required>
+                        <input type="text" id="comboName" name="comboName" placeholder="Nombre del Combo" required>
                     </div>
                 </div>
+
+                <div class="questions">
+                    <div class="registerQuestions"> Precio: </div>
+                    <div class="inputRegister">
+                        <input type="number" id="comboPrice" name="comboPrice" placeholder="Ingresar precio" required><br>
+                    </div>
+                </div>
+
+
 
                 <div class="questions">
                     <button type="submit" class="client-button">Confirmar</button>
@@ -364,21 +371,23 @@
             </form>
         </div>
 
-        <script th:inline="javascript">
-            let counter = /*[[${snackCounterValue}]]*/ 0;
+<!--        <script th:inline="javascript">-->
+<!--            let counter = /*[[${snackCounterValue}]]*/ 0;-->
 
-            document.getElementById('increaseBtn').addEventListener('click', function() {
-                counter++;
-                document.getElementById('snackCounter').value = counter;
-            });
+<!--            document.getElementById('increaseBtn').addEventListener('click', function() {-->
+<!--                counter++;-->
+<!--                document.getElementById('snackCounter').value = counter;-->
+<!--            });-->
 
-            document.getElementById('decreaseBtn').addEventListener('click', function() {
-                if (counter > 0) {
-                    counter--;
-                    document.getElementById('snackCounter').value = counter;
-                }
-            });
-        </script>
+<!--            document.getElementById('decreaseBtn').addEventListener('click', function() {-->
+<!--                if (counter > 0) {-->
+<!--                    counter&#45;&#45;;-->
+<!--                    document.getElementById('snackCounter').value = counter;-->
+<!--                }-->
+<!--            });-->
+<!--        </script>-->
+
+
 
 
         <div class="tab-pane fade" id="deleteSnack" role="tabpanel" aria-labelledby="deleteSnack-tab" tabindex="0">
@@ -400,7 +409,7 @@
 
         <div class="tab-pane fade" id="deleteBroadcast" role="tabpanel" aria-labelledby="deleteBroadcast-tab" tabindex="0">
 
-            <form action="/adminDeleteBroadcast" method="POST">
+            <form class="custom-form-funcion" action="/adminDeleteBroadcast" method="POST">
                 <div class="questions">
                     <div class="registerQuestions">Seleccione Funcion:</div>
                     <div class="inputRegister">

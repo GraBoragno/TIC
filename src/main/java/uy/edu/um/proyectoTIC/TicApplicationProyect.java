@@ -91,18 +91,18 @@ public class TicApplicationProyect {
 //
 //		System.out.println("----------------2-------------------------");
 //
-		try {
-//			cinemaService.addCinema(1, 8, "Punta Carretas");
-//			cinemaService.addCinema(2, 5, "Ciudad Vieja");
-//			cinemaService.addCinema(3, 7, "Pocitos");
-//			cinemaService.addCinema(4, 4, "Carrasco");
-//			cinemaService.addCinema(5, 6, "Tres Cruces");
-			cinemaService.addCinema(6, 10, "Centro");
-//			cinemaService.addCinema(7, 3, "Malvín");
-//			cinemaService.addCinema(8, 6, "Buceo");
-		} catch (DuplicateEntityException e) {
-			System.out.println("Error: Ya existe un cine con los mismos datos.");
-		}
+//		try {
+////			cinemaService.addCinema(1, 8, "Punta Carretas");
+////			cinemaService.addCinema(2, 5, "Ciudad Vieja");
+////			cinemaService.addCinema(3, 7, "Pocitos");
+////			cinemaService.addCinema(4, 4, "Carrasco");
+////			cinemaService.addCinema(5, 6, "Tres Cruces");
+//			cinemaService.addCinema(6, 10, "Centro");
+////			cinemaService.addCinema(7, 3, "Malvín");
+////			cinemaService.addCinema(8, 6, "Buceo");
+//		} catch (DuplicateEntityException e) {
+//			System.out.println("Error: Ya existe un cine con los mismos datos.");
+//		}
 //
 //		System.out.println("----------------3-------------------------");
 //
