@@ -34,7 +34,7 @@ public class ClientService {
             throw new InvalidAttributeException("Atributo no valido");
         }
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate birthDate = LocalDate.parse(date, formatter);
 
         String hashedPassword = passwordService.hashPassword(password);

@@ -1,0 +1,49 @@
+/* error messages  */
+
+
+.input-group__input {
+    border: 2px solid rgb(177, 177, 177);
+
+
+}
+
+
+
+.input-group__input:is(
+      :focus,
+      :not(:placeholder-shown)
+    )
+    ~ .input-group__label {
+    top: calc(var(--y) - 20px);
+    font-size: 0.7rem;
+    border-color: black;
+    color: var(--color-valid);
+}
+
+
+
+.input-group__error {
+    color: var(--color-invalid);
+    display: block;
+    visibility: hidden;
+    margin-left: var(--x);
+
+}
+
+.input-group__input:not(:focus):invalid {
+    color: var(--color-invalid);
+
+    border: 2px solid var(--color-invalid);
+}
+
+.input-group__input:not(:focus):invalid ~ .input-group__error {
+    visibility: visible;
+
+}
+
+
+
+.input-group__input:not(:focus):invalid ~ .input-group__label {
+    color: var(--color-invalid);
+    border-color: var(--color-invalid);
+}

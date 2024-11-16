@@ -7,6 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/static/Session.css" />
 <link rel="stylesheet" href="/static/Buttons.css"/>
+<link rel="stylesheet" href="/static/ErrorMessages.css"/>
 <body class="body">
 
 <!-- Encabezado con imagen -->
@@ -28,22 +29,34 @@
     <div class="questionsLogin">
         <div class="registerQuestions"> Email </div>
         <div class="inputRegister">
-            <input type="text" id="email" name="email" placeholder="Ingresar email" required><br>
+            <input type="text" id="email" name="email" class="form-control" placeholder="Ingresar email" required>
         </div>
+    </div>
+
+
+    <div class="invalid-feedback register-prompt flex" th:if="${errorEmail}">
+        <p th:text="${errorEmail}"></p>
     </div>
 
     <div class="questions">
         <div class="registerQuestions"> Contraseña </div>
         <div class="inputRegister">
-            <input type="password" id="password" name="password" placeholder="Ingresar contraseña" required><br>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Ingresar contraseña" required>
         </div>
     </div>
+
+
+
+    <div class="invalid-feedback register-prompt flex" th:if="${errorPassword}">
+        <p th:text="${errorPassword}"></p>
+    </div>
+
 
     <div class="questions">
         <input type="submit" class="client-button" value="Confirmar"> <!-- Aplicar la clase de estilo -->
     </div>
 
-    <!-- Sección de registro -->
+
     <div class="register-prompt flex">
         <p>¿No tienes una cuenta?</p>
         <button class="register-button" onclick="location.href='/register/registerNew'">Registrarse</button>
