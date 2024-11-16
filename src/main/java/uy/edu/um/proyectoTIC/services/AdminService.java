@@ -139,7 +139,7 @@ public class AdminService {
         }
 
         //Cambiar el birthdate a String
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate birthDate = LocalDate.parse(birthdate, formatter);
 
         String hashedPassword = passwordService.hashPassword(password);

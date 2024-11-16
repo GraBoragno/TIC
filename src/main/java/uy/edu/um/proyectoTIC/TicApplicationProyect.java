@@ -148,7 +148,7 @@ public class TicApplicationProyect {
 //		System.out.println("----------------7-------------------------");
 //
 //
-//		Admin admin = adminService.createAdmin("admin1@wtf.com","Pablo","casa de pablo","10/10/2000","pablo1234");
+//		Admin admin = adminService.createAdmin("admin2@wtf.com","noPablo","casa de pablo","10/10/2000","pablo1234");
 //
 //		for (int i = 0; i < filmService.getAvailableFilms().size(); i++) {
 //			System.out.println(filmService.getAvailableFilms().get(i).getFilmName());

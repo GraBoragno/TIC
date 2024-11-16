@@ -41,7 +41,7 @@ public class PaymentController {
         Double totalPrice = (Double) session.getAttribute("totalPrice");
 
         if (client == null) {
-            return "redirect:/log-in";  // Redirigir si no hay cliente en la sesión
+            return "redirect:/log-in";
         }
 
         model.addAttribute("user", client);
@@ -51,15 +51,13 @@ public class PaymentController {
 
     @PostMapping("/add-card")
     public String addCard(@RequestParam("card-number") Long cardNumber, HttpSession session) throws EntityNotFoundException {
-        // Obtener el cliente desde la sesión
         Client client = (Client) session.getAttribute("user");
 
-        // Actualizar el método de pago del cliente
         clientService.UpdatePaymentMethod(client.getEmail(), cardNumber);
 
         Client updatedClient = clientService.findByEmail(client.getEmail());
         session.setAttribute("user", updatedClient);
-        return "redirect:/payment/paymentMethod"; // Redirigir a la página de pago después de agregar la tarjeta
+        return "redirect:/payment/paymentMethod";
     }
 
     @PostMapping("/payWithSavedCard")

@@ -81,7 +81,8 @@ public class AdminController {
 
     // Snacks
     @PostMapping("/adminAddSnack")
-    public String addSnack(@RequestParam String snackName, @RequestParam String snackPrice, RedirectAttributes redirectAttributes) throws DuplicateEntityException {
+    public String addSnack(@RequestParam String snackName, @RequestParam String snackPrice, RedirectAttributes redirectAttributes) throws DuplicateEntityException
+    {
         try {
             adminService.createSnack(snackName, snackPrice);
             redirectAttributes.addFlashAttribute("okMessage", "Snack agregado");
@@ -93,7 +94,8 @@ public class AdminController {
 
 
     @PostMapping("/adminDeleteSnack")
-    public String deleteSnack(@RequestParam String snackName, RedirectAttributes redirectAttributes) {
+    public String deleteSnack(@RequestParam String snackName, RedirectAttributes redirectAttributes)
+    {
         try {
             adminService.deleteSnackById(snackName);
             redirectAttributes.addFlashAttribute("okMessage", "Snack eliminado");
@@ -105,7 +107,8 @@ public class AdminController {
 
     // Films
     @PostMapping("/adminCreateFilm")
-    public String addFilm(@RequestParam String filmName, @RequestParam String directorName, @RequestParam Integer duration, @RequestParam String releaseYearDate, @RequestParam String genres, RedirectAttributes redirectAttributes) {
+    public String addFilm(@RequestParam String filmName, @RequestParam String directorName, @RequestParam Integer duration, @RequestParam String releaseYearDate, @RequestParam String genres, RedirectAttributes redirectAttributes)
+    {
         try {
             adminService.createFilm(filmName, directorName, duration, releaseYearDate, genres);
             redirectAttributes.addFlashAttribute("okMessage", "Pelicula agregada");
@@ -119,9 +122,10 @@ public class AdminController {
 
     // Cinemas
     @PostMapping("/adminCreateCinema")
-    public String addCinema(@RequestParam Integer centralId, @RequestParam Integer roomQty, @RequestParam String neighborhood, RedirectAttributes redirectAttributes) {
+    public String addCinema(@RequestParam Integer centralIdNewCinema, @RequestParam Integer roomQty, @RequestParam String neighborhood, RedirectAttributes redirectAttributes)
+    {
         try {
-            adminService.createCinema(centralId, roomQty, neighborhood);
+            adminService.createCinema(centralIdNewCinema, roomQty, neighborhood);
             redirectAttributes.addFlashAttribute("okMessage", "Cine agregado");
         } catch (DuplicateEntityException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
@@ -130,7 +134,8 @@ public class AdminController {
     }
 
     @PostMapping("/adminDeleteCinema")
-    public String deleteCinema(@RequestParam Long cinemaId, RedirectAttributes redirectAttributes) {
+    public String deleteCinema(@RequestParam Long cinemaId, RedirectAttributes redirectAttributes)
+    {
         try {
             adminService.deleteCinema(cinemaId);
             redirectAttributes.addFlashAttribute("okMessage", "Cine eliminado");
@@ -142,9 +147,10 @@ public class AdminController {
 
     // Rooms
     @PostMapping("/adminAddRoom")
-    public String addRoom(@RequestParam Integer roomNbr, @RequestParam Integer centralId, RedirectAttributes redirectAttributes) {
+    public String addRoom(@RequestParam Integer roomNbrRoom, @RequestParam Integer centralIdRoom, RedirectAttributes redirectAttributes)
+    {
         try {
-            adminService.createRoom(roomNbr, centralId);
+            adminService.createRoom(roomNbrRoom, centralIdRoom);
             redirectAttributes.addFlashAttribute("successMessage", "Sala agregada");
         } catch (EntityNotFoundException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
@@ -165,7 +171,8 @@ public class AdminController {
 
     // Combos
     @PostMapping("/adminAddCombo")
-    public String addCombo(@RequestParam Integer comboPrice, @RequestParam List<Integer> snackQuantities, @RequestParam String comboName, RedirectAttributes redirectAttributes) {
+    public String addCombo(@RequestParam Integer comboPrice, @RequestParam List<Integer> snackQuantities, @RequestParam String comboName, RedirectAttributes redirectAttributes)
+    {
 
             List<String> selectedSnacks = new ArrayList<>();
 
@@ -207,10 +214,10 @@ public class AdminController {
 
     // Broadcasts
     @PostMapping("/adminAddBroadcast")
-    public String addBroadcast(@RequestParam String dateTimeS, @RequestParam Integer broadcastPrice, @RequestParam Integer roomNbr, @RequestParam Integer centralId, @RequestParam Integer filmCode, RedirectAttributes redirectAttributes) {
+    public String addBroadcast(@RequestParam String dateTimeS, @RequestParam Integer broadcastPrice, @RequestParam Integer roomNbrBroadcast, @RequestParam Integer centralIdBroadcast, @RequestParam Integer filmCode, RedirectAttributes redirectAttributes) {
         try {
             //Verificar
-            adminService.createBroadcast(dateTimeS, broadcastPrice, roomNbr, centralId, filmCode);
+            adminService.createBroadcast(dateTimeS, broadcastPrice, roomNbrBroadcast, centralIdBroadcast, filmCode);
             redirectAttributes.addFlashAttribute("okMessage", "Broadcast creado correctamente.");
         } catch (EntityNotFoundException e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Error al crear el broadcast: " + e.getMessage());
