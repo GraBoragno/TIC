@@ -47,6 +47,8 @@ public class AdminService {
     private RoomService roomService;
     @Autowired
     private RoomRepository roomRepository;
+    @Autowired
+    private passwordService passwordService;
 
     public Admin findById(String email) throws EntityNotFoundException
     {
@@ -92,7 +94,8 @@ public class AdminService {
     }
 
     @Transactional
-    public void deleteSnackById(String snackName) throws EntityNotFoundException {
+    public void deleteSnackById(String snackName) throws EntityNotFoundException
+    {
         snackRepository.deleteById(snackName);
     }
 
@@ -139,12 +142,14 @@ public class AdminService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate birthDate = LocalDate.parse(birthdate, formatter);
 
+        String hashedPassword = passwordService.hashPassword(password);
+
         Admin admin = Admin.builder()
                 .email(email)
                 .name(name)
                 .address(address)
                 .birthdate(birthDate)
-                .password(password)
+                .password(hashedPassword)
                 .build();
 
         return adminRepository.save(admin);

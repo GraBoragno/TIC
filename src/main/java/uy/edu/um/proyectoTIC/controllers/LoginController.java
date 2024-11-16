@@ -14,6 +14,7 @@ import uy.edu.um.proyectoTIC.repository.AdminRepository;
 import uy.edu.um.proyectoTIC.repository.ClientRepository;
 import uy.edu.um.proyectoTIC.services.AdminService;
 import uy.edu.um.proyectoTIC.services.ClientService;
+import uy.edu.um.proyectoTIC.services.passwordService;
 
 @Controller
 public class LoginController {
@@ -22,6 +23,8 @@ public class LoginController {
     private ClientService clientService;
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private passwordService passwordService;
 
     @GetMapping("/log-in")
     public String showLoginForm() {
@@ -33,7 +36,7 @@ public class LoginController {
     {
         if (!email.endsWith("@wtf.com")) {
             Client client = clientService.findByEmail(email);
-            if (client != null && client.getPassword() != null && client.getPassword().equals(password)) {
+            if (client != null && client.getPassword() != null && passwordService.checkPassword(password, client.getPassword())) {
 
                 session.setAttribute("user", client); // Guarda el usuario en la sesión
 
@@ -54,7 +57,7 @@ public class LoginController {
         }
         else if (email.endsWith("@wtf.com")) {
             Admin admin = adminService.findById(email);
-            if (admin != null && admin.getPassword() != null && admin.getPassword().equals(password)){
+            if (admin != null && admin.getPassword() != null && passwordService.checkPassword(password, admin.getPassword())){
 
                 session.setAttribute("user", admin);
 

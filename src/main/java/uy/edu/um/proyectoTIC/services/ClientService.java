@@ -24,6 +24,8 @@ public class ClientService {
     private ClientRepository clientRepo;
     @Autowired
     private TicketRepository ticketRepository;
+    @Autowired
+    private passwordService passwordService;
 
 
     public Client addClient(String email, String name, String address, String date,String password)
@@ -35,12 +37,14 @@ public class ClientService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate birthDate = LocalDate.parse(date, formatter);
 
+        String hashedPassword = passwordService.hashPassword(password);
+
         Client newClient = Client.builder()
                 .email(email)
                 .name(name)
                 .address(address)
                 .birthdate(birthDate)
-                .password(password)
+                .password(hashedPassword)
                 .build();
         return clientRepo.save(newClient);
     }

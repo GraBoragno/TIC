@@ -142,8 +142,7 @@ public class AdminController {
 
     // Rooms
     @PostMapping("/adminAddRoom")
-    public String addRoom(@RequestParam Integer roomNbr, @RequestParam Integer centralId,
-                          RedirectAttributes redirectAttributes) {
+    public String addRoom(@RequestParam Integer roomNbr, @RequestParam Integer centralId, RedirectAttributes redirectAttributes) {
         try {
             adminService.createRoom(roomNbr, centralId);
             redirectAttributes.addFlashAttribute("successMessage", "Sala agregada");
@@ -166,8 +165,7 @@ public class AdminController {
 
     // Combos
     @PostMapping("/adminAddCombo")
-    public String addCombo(@RequestParam Integer comboPrice, @RequestParam List<Integer> snackQuantities,
-                           @RequestParam String comboName, RedirectAttributes redirectAttributes) {
+    public String addCombo(@RequestParam Integer comboPrice, @RequestParam List<Integer> snackQuantities, @RequestParam String comboName, RedirectAttributes redirectAttributes) {
 
             List<String> selectedSnacks = new ArrayList<>();
 
@@ -209,14 +207,9 @@ public class AdminController {
 
     // Broadcasts
     @PostMapping("/adminAddBroadcast")
-    public String addBroadcast(
-            @RequestParam String dateTimeS,
-            @RequestParam Integer broadcastPrice,
-            @RequestParam Integer roomNbr,
-            @RequestParam Integer centralId,
-            @RequestParam Integer filmCode,
-            RedirectAttributes redirectAttributes) {
+    public String addBroadcast(@RequestParam String dateTimeS, @RequestParam Integer broadcastPrice, @RequestParam Integer roomNbr, @RequestParam Integer centralId, @RequestParam Integer filmCode, RedirectAttributes redirectAttributes) {
         try {
+            //Verificar
             adminService.createBroadcast(dateTimeS, broadcastPrice, roomNbr, centralId, filmCode);
             redirectAttributes.addFlashAttribute("okMessage", "Broadcast creado correctamente.");
         } catch (EntityNotFoundException e) {
@@ -241,13 +234,7 @@ public class AdminController {
 
     // Admins
     @PostMapping("/adminAddAdmin")
-    public String addAdmin(
-            @RequestParam String email,
-            @RequestParam String name,
-            @RequestParam String address,
-            @RequestParam String birthdate,
-            @RequestParam String password,
-            RedirectAttributes redirectAttributes) {
+    public String addAdmin(@RequestParam String email, @RequestParam String name, @RequestParam String address, @RequestParam String birthdate, @RequestParam String password, RedirectAttributes redirectAttributes) {
         try {
             adminService.createAdmin(email, name, address, birthdate, password);
             redirectAttributes.addFlashAttribute("okMessage", "Administrador creado correctamente.");
