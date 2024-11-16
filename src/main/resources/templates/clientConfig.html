@@ -27,22 +27,22 @@
 <form action="/clientConfig" method="post">
     <div class="form-group">
         <label for="email">Email:</label>
-        <span id="email" th:text="${client.getEmail()}"></span> <!-- Email como texto, no editable -->
+        <span id="email" th:text="${user.getEmail()}"></span> <!-- Email como texto, no editable -->
     </div>
 
     <div class="form-group">
         <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" th:value="${client.getName()}" />
+        <input type="text" id="name" name="name" th:value="${user.getName()}" />
     </div>
 
     <div class="form-group">
         <label for="address">Dirección:</label>
-        <input type="text" id="address" name="address" th:value="${client.getAddress()}" />
+        <input type="text" id="address" name="address" th:value="${user.getAddress()}" />
     </div>
 
     <div class="form-group">
         <label for="date">Fecha de Nacimiento:</label>
-        <input type="date" id="date" name="date" th:value="${client.getBirthdate()}" />
+        <input type="date" id="date" name="date" th:value="${user.getBirthdate()}" />
     </div>
 
     <div class="form-group">
@@ -52,7 +52,7 @@
 
     <div class="form-group">
         <label for="cardNbr">Número de Tarjeta:</label>
-        <input type="text" id="cardNbr" name="cardNbr" th:value="${client.getCardNbr()}" placeholder="Ingrese número de tarjeta" />
+        <input type="text" id="cardNbr" name="cardNbr" th:value="${user.getCardNbr()}" placeholder="Ingrese número de tarjeta" />
     </div>
 
     <button type="submit" class="update-button">Actualizar</button>

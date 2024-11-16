@@ -42,10 +42,15 @@ public class LoginController {
                     session.removeAttribute("purchaseIntent"); // Eliminar la intención de compra
                     return "redirect:/ticket/ticketNew"; // Redirigir a la primera página del flujo de compra
                 }
+
                 return "redirect:/home"; // Redirigir a home si no hay intención de compra
-            } else {
+
+            }
+            else
+            {
                 return "redirect:/log-in?error=true"; // Redirige a login con mensaje de error
             }
+
         }
         else if (email.endsWith("@wtf.com")) {
             Admin admin = adminService.findById(email);

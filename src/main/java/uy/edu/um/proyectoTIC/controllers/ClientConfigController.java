@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 @Controller
 public class ClientConfigController {
 
@@ -24,36 +28,39 @@ public class ClientConfigController {
 
         Client client = (Client) session.getAttribute("user");
 
-        model.addAttribute("client", client); // Agregar el cliente al modelo para pasarlo a la vista
-        return "clientConfig"; // Retorna la vista clientConfig.html
+        model.addAttribute("user", client);
+        return "clientConfig";
     }
 
     @PostMapping("/clientConfig")
-    public String updateClient(
-            @RequestParam String name,
-            @RequestParam String address,
-            @RequestParam String date,
-            @RequestParam String password,
-            @RequestParam Long cardNbr,
-            HttpSession session) throws EntityNotFoundException {
+    public String updateClient(@RequestParam String name, @RequestParam String address, @RequestParam String date, @RequestParam String password, @RequestParam Long cardNbr, HttpSession session, Model model) throws EntityNotFoundException {
 
-        String email = (String) session.getAttribute("userEmail");
+        Client client = (Client) session.getAttribute("user");
 
-        // Actualiza los datos del cliente
-        clientService.UpdateName(email, name);
-        clientService.UpdateAddress(email, address);
+        clientService.UpdateName(client.getEmail(), name);
+        clientService.UpdateAddress(client.getEmail(), address);
 
         if (!date.isEmpty()) {
-            clientService.UpdateDate(email, date); // Solo actualizar si se proporciona una nueva fecha
+            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            LocalDate parsedDate = LocalDate.parse(date, inputFormatter);
+            String formattedDate = parsedDate.format(outputFormatter);
+
+            clientService.UpdateDate(client.getEmail(), formattedDate);
         }
 
         if (!password.isEmpty()) {
-            clientService.UpdatePassword(email, password); // Solo actualizar si se proporciona una nueva contraseña
+            clientService.UpdatePassword(client.getEmail(), password);
         }
 
         if (cardNbr != null) {
-            clientService.UpdatePaymentMethod(email, cardNbr); // Actualizar método de pago si se proporciona
+            clientService.UpdatePaymentMethod(client.getEmail(), cardNbr);
         }
-        return "redirect:/clientConfig"; // Redirigir a la página de configuración después de actualizar
+
+        Client udatedClient = clientService.findByEmail(client.getEmail());
+        session.setAttribute("user", udatedClient);
+
+        return "redirect:/clientConfig";
     }
 }
