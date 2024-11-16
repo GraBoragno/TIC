@@ -44,7 +44,7 @@ public class PaymentController {
             return "redirect:/log-in";  // Redirigir si no hay cliente en la sesión
         }
 
-        model.addAttribute("client", client);
+        model.addAttribute("user", client);
         model.addAttribute("totalPrice", totalPrice);
         return "paymentMethod";
     }
@@ -56,6 +56,9 @@ public class PaymentController {
 
         // Actualizar el método de pago del cliente
         clientService.UpdatePaymentMethod(client.getEmail(), cardNumber);
+
+        Client updatedClient = clientService.findByEmail(client.getEmail());
+        session.setAttribute("user", updatedClient);
         return "redirect:/payment/paymentMethod"; // Redirigir a la página de pago después de agregar la tarjeta
     }
 

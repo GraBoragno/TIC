@@ -31,14 +31,14 @@
 
 <div id="saved-cards" class="payment-option">
     <h4>Tarjeta Guardada</h4>
-    <div th:if="${client.getCardNbr() != null}">
-        <p>**** **** **** <span th:text="${client.getCardNbr().toString().substring(client.getCardNbr().toString().length() - 4)}"></span></p>
+    <div th:if="${user.getCardNbr() != null}">
+        <p>**** **** **** <span th:text="${user.getCardNbr().toString().substring(user.getCardNbr().toString().length() - 4)}"></span></p>
         <form th:action="@{/payment/payWithSavedCard}" method="post" >
-            <input type="hidden" name="cardNumber" th:value="${client.getCardNbr()}">
+            <input type="hidden" name="cardNumber" th:value="${user.getCardNbr()}">
             <button type="submit" class="btn-confirm">Pagar con esta tarjeta</button>
         </form>
     </div>
-    <div th:if="${client.getCardNbr() == null}">
+    <div th:if="${user.getCardNbr() == null}">
         <p>No tienes una tarjeta guardada.</p>
     </div>
 </div>
@@ -46,7 +46,7 @@
 <!-- Sección para agregar nueva tarjeta -->
 <div id="add-card" class="payment-option">
     <h4>Agregar Nueva Tarjeta</h4>
-    <form th:action="@{/add-card}" method="post">
+    <form th:action="@{/payment/add-card}" method="post">
         <label for="card-number">Número de Tarjeta</label>
         <input type="text" id="card-number" name="card-number" class="input-card-number" placeholder="Ingresa el número de la tarjeta" required>
         <button type="submit" class="btn-add-card">Agregar</button>
