@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Configuración Admin</title>
+    <link rel="stylesheet" href="/static/Session.css">
+    <link rel="stylesheet" href="/static/Buttons.css">
+</head>
+<body>
+
+<!-- Encabezado con imagen -->
+<div class="header">
+    <img src="/static/header.png" alt="WTF Cinema" class="header-logo">
+</div>
+
+<!-- Botón de volver -->
+<div id="home3" class="homeButton">
+    <button id="homeBtn" class="client-button" onclick="location.href='/home'">
+        Volver
+    </button>
+</div>
+
+<div class="flex titleReg">
+    Edite sus datos
+</div>
+
+<form action="/adminConfig" method="post">
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <span id="email" th:text="${user.getEmail()}"></span> <!-- Email como texto, no editable -->
+    </div>
+
+    <div class="form-group">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" th:value="${user.getName()}" />
+    </div>
+
+    <div class="form-group">
+        <label for="address">Dirección:</label>
+        <input type="text" id="address" name="address" th:value="${user.getAddress()}" />
+    </div>
+
+    <div class="form-group">
+        <label for="date">Fecha de Nacimiento:</label>
+        <input type="date" id="date" name="date" th:value="${user.getBirthdate()}" />
+    </div>
+
+    <div class="form-group">
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" placeholder="Ingrese nueva contraseña" />
+    </div>
+
+    <button type="submit" class="update-button">Actualizar</button>
+</form>
+
+</body>
+</html>
