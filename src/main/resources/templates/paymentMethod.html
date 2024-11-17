@@ -29,7 +29,7 @@
 </div>
 <!-- Sección para tarjeta guardada -->
 
-<div id="saved-cards" class="payment-option">
+<div id="saved-cards" class="payment-option" style="box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);">
     <h4>Tarjeta Guardada</h4>
     <div th:if="${user.getCardNbr() != null}">
         <p>**** **** **** <span th:text="${user.getCardNbr().toString().substring(user.getCardNbr().toString().length() - 4)}"></span></p>
@@ -44,7 +44,7 @@
 </div>
 
 <!-- Sección para agregar nueva tarjeta -->
-<div id="add-card" class="payment-option">
+<div id="add-card" class="payment-option" style="box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);">
     <h4>Agregar Nueva Tarjeta</h4>
     <form th:action="@{/payment/add-card}" method="post">
         <label for="card-number">Número de Tarjeta</label>

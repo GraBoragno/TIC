@@ -1,6 +1,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
     <title>Compra de entrada</title>
     <style>
         body {
@@ -20,18 +21,35 @@
         }
 
         .movie-info {
-            width: 40%;              /* Toma el 40% del ancho */
-            margin-right: 20px;      /* Espacio entre la película y el formulario */
+            width: 40%;
+            margin-right: 20px;
+            padding: 20px;
+            background-color: #1e1e1e;
+            background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.4));
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
         }
 
+        .movie-info h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .movie-info p {
+            font-size: 16px;
+            color: #fff;
+            line-height: 1.6;
+        }
 
         .movie-info h3 {
             font-size: 20px;
-            color: #fff;             /* Color de texto blanco */
+            color: #fff;
             text-align: center;
             margin-top: 10px;
-            z-index: 15;
         }
+
 
         form {
             display: flex;
@@ -40,7 +58,8 @@
             max-width: 600px;
             padding: 20px;
             border-radius: 8px;
-            background-color: #333333;
+            background-color: #333333;  /* Mantener el color de fondo oscuro */
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.1); /* Sombra suave y resplandor sutil */
         }
 
         .questionsTicket {
@@ -99,7 +118,7 @@
 <div class="form-container">
 
     <input type="hidden" id="filmCode" th:value="${film.filmCode}">
-    <div class="movie-info">
+    <div class="movie-info" >
         <h3 th:text="${film.getFilmName()}"></h3>
         <p>Director: <span th:text="${film.getDirectorName()}">Director</span></p>
         <p>Géneros: <span th:text="${#strings.arrayJoin(film.getGenres(), ', ')}">Géneros</span></p>

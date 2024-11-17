@@ -5,6 +5,8 @@
     <title>Configuración</title>
     <link rel="stylesheet" href="/static/Session.css">
     <link rel="stylesheet" href="/static/Buttons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
@@ -24,7 +26,7 @@
     Edite sus datos
 </div>
 
-<form action="/clientConfig" method="post">
+<form action="/clientConfig" method="post" style="box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);">
     <div class="form-group">
         <label for="email">Email:</label>
         <span id="email" th:text="${user.getEmail()}"></span> <!-- Email como texto, no editable -->
