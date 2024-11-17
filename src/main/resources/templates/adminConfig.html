@@ -5,6 +5,21 @@
     <title>Configuración Admin</title>
     <link rel="stylesheet" href="/static/Session.css">
     <link rel="stylesheet" href="/static/Buttons.css">
+    <style>
+        .success-message {
+            text-align: center;
+            color: lightgreen;
+            font-weight: lighter;
+            margin: 10px 0;
+        }
+
+        .error-message {
+            text-align: center;
+            color: red;
+            font-weight: lighter;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
 
@@ -22,6 +37,14 @@
 
 <div class="flex titleReg">
     Edite sus datos
+</div>
+
+<div>
+    <!-- Mensaje de exito -->
+    <p th:if="${successMessage}" th:text="${successMessage}" class="success-message"></p>
+
+    <!-- Mensaje de error -->
+    <p th:if="${errorMessage}" th:text="${errorMessage}" class="error-message"></p>
 </div>
 
 <form action="/adminConfig" method="post">

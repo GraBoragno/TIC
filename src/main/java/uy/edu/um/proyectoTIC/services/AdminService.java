@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uy.edu.um.proyectoTIC.entities.*;
 import uy.edu.um.proyectoTIC.entities.users.Admin;
+import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.exceptions.DuplicateEntityException;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
 import uy.edu.um.proyectoTIC.exceptions.InvalidAttributeException;
@@ -174,6 +175,58 @@ public class AdminService {
 
     public List<Admin> getAllAdmins() {
         return adminRepository.findAllAdmins();
+    }
+
+    public Admin findByEmail(String email) throws EntityNotFoundException
+    {
+        Optional<Admin> client = adminRepository.findById(email);
+        if(client.isEmpty())
+            throw new EntityNotFoundException("No existe el administrador");
+        Admin adminTemp = client.get();
+
+        return adminTemp;
+    }
+
+    public Admin UpdateName(String email,String name) throws EntityNotFoundException
+    {
+        if (name == null)
+            throw new InvalidIdException("El nombre no puede ser vacio");
+
+        Admin admin = this.findByEmail(email);
+        admin.setName(name);
+        return adminRepository.save(admin);
+    }
+
+    public Admin UpdateAddress(String email,String address) throws EntityNotFoundException
+    {
+        if (address == null)
+            throw new InvalidIdException("El nombre no puede ser vacio");
+
+        Admin admin = this.findByEmail(email);
+        admin.setAddress(address);
+        return adminRepository.save(admin);
+    }
+
+    public Admin UpdateDate(String email,String date) throws EntityNotFoundException
+    {
+        if (date == null)
+            throw new InvalidIdException("Fecha no valida");
+
+        Admin admin = this.findByEmail(email);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate birthDate = LocalDate.parse(date, formatter);
+        admin.setBirthdate(birthDate);
+        return adminRepository.save(admin);
+    }
+
+    public Admin UpdatePassword(String email, String password) throws EntityNotFoundException
+    {
+        if (password == null || password.length() < 8)
+            throw new InvalidIdException("Contraseña no apta");
+
+        Admin admin = this.findByEmail(email);
+        admin.setPassword(password);
+        return adminRepository.save(admin);
     }
 
 }

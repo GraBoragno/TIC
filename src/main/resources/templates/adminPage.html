@@ -112,14 +112,22 @@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasUser" aria-labelledby="offcanvasUserLabel">
     <div class="offcanvas-header d-flex justify-content-between w-100">
         <h5 class="offcanvas-title" id="offcanvasUserLabel">Mi cuenta</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="client-button" data-bs-dismiss="offcanvas" aria-label="Close"> X </button>
     </div>
     <div class="offcanvas-body">
+
+        <div class="offcanvas-item">
+            <a href="/adminConfig" class="logout-link">
+                Mis datos
+            </a>
+        </div>
+
         <div class="offcanvas-item">
             <a href="/log-out" class="logout-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 Cerrar sesión
             </a>
         </div>
+
         <form id="logout-form" action="/log-out" method="POST" style="display: none;">
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
@@ -133,10 +141,10 @@
     <div class="navbar">
         <ul class="nav nav-tabs d-flex justify-content-between w-100" id="myTab" role="tablist">
                 <li class="nav-item nowrap" role="presentation">
-                    <button class="nav-link active admin-nav-background" id="createAdmin-tab" data-toggle="tab" data-target="#createAdmin" type="button" role="tab" aria-controls="createAdmin" aria-selected="false" style="color: white;">Crear Admin</button>
+                    <button class="nav-link active admin-nav-background" id="createAdmin-tab" data-toggle="tab" data-target="#createAdmin" type="button" role="tab" aria-controls="createAdmin" aria-selected="true" style="color: white;">Crear Admin</button>
                 </li>
                 <li class="nav-item nowrap" role="presentation">
-                    <button class="nav-link admin-nav-background" id="deleteAdmin-tab" data-toggle="tab" data-target="#deleteAdmin" type="button" role="tab" aria-controls="deleteAdmin" aria-selected="true" style="color: white;">Borrar Admin</button>
+                    <button class="nav-link admin-nav-background" id="deleteAdmin-tab" data-toggle="tab" data-target="#deleteAdmin" type="button" role="tab" aria-controls="deleteAdmin" aria-selected="false" style="color: white;">Borrar Admin</button>
                 </li>
                 <li class="nav-item nowrap" role="presentation">
                     <button class="nav-link admin-nav-background" id="addBroadcast-tab" data-toggle="tab" data-target="#addBroadcast" type="button" role="tab" aria-controls="addBroadcast" aria-selected="false" style="color: white;">Agregar Funcion</button>
@@ -189,7 +197,7 @@
     </div>
 
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="addSnack" role="tabpanel" aria-labelledby="addSnack-tab" tabindex="0">
+        <div class="tab-pane fade" id="addSnack" role="tabpanel" aria-labelledby="addSnack-tab" tabindex="0">
 
 
             <form action="/adminAddSnack" method="POST">
@@ -369,7 +377,7 @@
             </form>
         </div>
 
-        <div class="tab-pane fade" id="createAdmin" role="tabpanel" aria-labelledby="createAdmin-tab" tabindex="0">
+        <div class="tab-pane fade show active" id="createAdmin" role="tabpanel" aria-labelledby="createAdmin-tab" tabindex="0">
 
             <form action="/adminAddAdmin" method="POST">
                 <div class="questions">
