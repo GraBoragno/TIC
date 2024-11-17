@@ -59,13 +59,6 @@
             width: 65%;  /* Ancho para los selects */
         }
 
-        .titleRegTicket {
-            font-size: 24px;       /* Ajusta el tamaño de la fuente */
-            color: #fff;           /* Blanco para contraste con el fondo oscuro */
-            font-weight: bold;     /* Hace que el texto sea en negrita */
-            text-align: center;    /* Centra el texto */
-            margin-bottom: 20px;   /* Espacio entre el texto y el formulario */
-        }
         .header {
             width: 100%;               /* Ancho completo */
             position: fixed;           /* Fijo en la parte superior */
@@ -81,12 +74,6 @@
             z-index: 15;   /* Da espacio para que el botón no se tape con el header (ajusta según el alto del header) */
         }
 
-        #showSchedule {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
 
     </style>
 </head>
@@ -103,7 +90,7 @@
 
 
 <div id="home3" class="homeButton">
-    <button id="homeBtn" class="client-button" onclick="location.href='/home'"> <!-- Aplicar la clase de estilo -->
+    <button id="homeBtn" class="client-button" onclick="location.href='/home'">
         Volver
     </button>
 </div>
@@ -143,6 +130,8 @@
             <div class="registerQuestionsTicket">Snacks:</div>
             <div class="inputRegisterTicket">
                 <select id="snackSelect" class="form-select" name="snack">
+                    <option value="" disabled selected>Seleccione un snack</option>
+                    <option value="none">Ninguno</option>
                     <option th:each="snack : ${snacks}"
                             th:value="${snack.getSnackName()}"
                             th:text="${snack.getSnackName()}"
@@ -155,6 +144,8 @@
             <div class="registerQuestionsTicket">Combos:</div>
             <div class="inputRegisterTicket">
                 <select id="comboSelect" class="form-select" name="combos">
+                    <option value="" disabled selected>Seleccione un combo</option>
+                    <option value="none">Ninguno</option>
                     <option th:each="combo : ${combos}"
                             th:value="${combo.getComboId()}"
                             th:text="${combo.getComboName()}"
@@ -175,10 +166,8 @@
 
 <script> <!-- script para parsear la fecha al formato que queremos -->
     document.addEventListener("DOMContentLoaded", function() {
-        // Obtener todas las opciones del select
         const options = document.querySelectorAll('#broadcastSelect option');
 
-        // Formato deseado (por ejemplo, "dd MMM yyyy, HH:mm")
         const optionsDateFormat = {
             year: 'numeric',
             month: 'short',
@@ -189,15 +178,12 @@
         };
 
         options.forEach(function(option) {
-            // Obtener la fecha desde el atributo data-date
             const dateTimeString = option.getAttribute('data-date');
             if (dateTimeString) {
-                const date = new Date(dateTimeString); // Crear un objeto Date con el string
+                const date = new Date(dateTimeString);
 
-                // Usar Intl.DateTimeFormat para formatear la fecha
                 const formattedDate = new Intl.DateTimeFormat('es-ES', optionsDateFormat).format(date);
 
-                // Actualizar el texto del option con el formato de fecha
                 option.textContent = `${option.textContent.split(' - ')[0]} - ${formattedDate}`;
             }
         });

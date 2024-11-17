@@ -84,16 +84,29 @@ public class TicketController {
     public String confirmBroadcast(HttpSession session,
                                  @RequestParam Long broadcastId,
                                  @RequestParam String snack,
-                                 @RequestParam Long combos,
+                                 @RequestParam String combos,
                                  @RequestParam double totalPrice) {
 
 
         Optional<Broadcast> brAux = broadcastRepository.findById(broadcastId);
-        Optional<Snack> skAux = snackRepository.findById(snack);
-        Optional<Combo> cbAux = comboRepository.findById(combos);
+
+        Snack selectedSnack;
+        if ("none".equals(snack)){
+            selectedSnack = null;
+        }else{
+            Optional<Snack> skAux = snackRepository.findById(snack);
+            selectedSnack = skAux.get();
+        }
+
+        Combo selectedCombo;
+        if ("none".equals(combos)){
+            selectedCombo = null;
+        }else{
+            Optional<Combo> cbAux = comboRepository.findById(Long.valueOf(combos));
+            selectedCombo = cbAux.get();
+        }
+
         Broadcast broadcast = brAux.get();
-        Snack selectedSnack = skAux.get();
-        Combo selectedCombo = cbAux.get();
 
         //Para usar despues
         session.setAttribute("broadcast", broadcast);
@@ -105,10 +118,4 @@ public class TicketController {
     }
 
 
-//    @PostMapping("/ticketNew")
-//    public String buyTicket(int broadcastId, int row, int column, String email, List<Combo> combos, List<Snack> snacks)
-//    {
-//        Ticket newTicket = ticketService.buyTicket(broadcastId, row, column, email, combos, snacks);
-//        return "redirect:/log-in";
-//    }
 }

@@ -75,9 +75,12 @@ public class PaymentController {
         int column = selectedSeat.getSeatColumn().intValue();
 
         List<Snack> selectedSnacks = new ArrayList<>();
-        selectedSnacks.add(snack);
+        if (snack != null)
+            selectedSnacks.add(snack);
+
         List<Combo> selectedCombo = new ArrayList<>();
-        selectedCombo.add(combo);
+        if (combo != null)
+            selectedCombo.add(combo);
 
 
         Ticket newTicket = ticketService.buyTicket(broadcast.getBroadcastId().intValue(),row,column,client.getEmail(),selectedCombo,selectedSnacks);

@@ -94,21 +94,25 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <div class="offcanvas-item">
-            <a href="/log-out" class="logout-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                Cerrar sesión
-            </a>
-        </div>
-        <div class="offcanvas-item">
-            <a href="/ticketHistory" class="logout-link">
-                Tickets
-            </a>
-        </div>
+
         <div class="offcanvas-item">
             <a href="/clientConfig" class="logout-link">
                 Mis datos
             </a>
         </div>
+
+        <div class="offcanvas-item">
+            <a href="/ticketHistory" class="logout-link">
+                Tickets
+            </a>
+        </div>
+
+        <div class="offcanvas-item">
+            <a href="/log-out" class="logout-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Cerrar sesión
+            </a>
+        </div>
+
         <form id="logout-form" action="/log-out" method="POST" style="display: none;">
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>

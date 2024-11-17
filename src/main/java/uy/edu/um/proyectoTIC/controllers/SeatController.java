@@ -44,8 +44,10 @@ public class SeatController {
 
         model.addAttribute("seatsByRow", seatsByRow);
         model.addAttribute("notAvailableSeats", notAvailableSeats);
+
         Long selectedSeatId = (Long) session.getAttribute("selectedSeat");
-        model.addAttribute("selectedSeatId", selectedSeatId);  // Puede ser null si no hay ningún asiento seleccionado
+
+        model.addAttribute("selectedSeatId", selectedSeatId);
 
         return "seats";
     }
@@ -53,11 +55,9 @@ public class SeatController {
     @PostMapping("/selectSeat")
     public String selectSeat(HttpSession session, @RequestParam Long seatId)
     {
-        // Guardar el asiento seleccionado en la sesión
         session.setAttribute("selectedSeat", seatId);
 
-        // Redirigir a la página de asientos (o donde quieras después de confirmar)
-        return "redirect:/seats";  // O a la página que desees
+        return "redirect:/seats";
     }
 
 
