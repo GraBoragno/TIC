@@ -50,7 +50,7 @@ public class BroadcastService {
     @Transactional
     public Broadcast addBroadcast(String dateTimeS, Integer broadcastPrice, Integer roomNbr, Integer centralId, Integer filmCode) throws EntityNotFoundException
     {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(dateTimeS, formatter);
 
         Optional<Cinema> cinemaAux = cinemaRepository.findById((long)centralId);

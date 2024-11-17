@@ -59,7 +59,7 @@ public class AdminController {
 
 
     @GetMapping("/adminPage")
-    public String admin(Model model, HttpSession session) {
+    public String admin(Model model) {
 
         List<Snack> snacks = snackService.getAvailableSnacks();
         List<Film> films = filmService.getRatedFilms();
@@ -149,7 +149,7 @@ public class AdminController {
     {
         try {
             adminService.createRoom(roomNbrRoom, centralIdRoom);
-            redirectAttributes.addFlashAttribute("successMessage", "Sala agregada");
+            redirectAttributes.addFlashAttribute("okMessage", "Sala agregada");
         } catch (EntityNotFoundException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
@@ -190,9 +190,9 @@ public class AdminController {
                 }
 
                 adminService.createCombo(comboPrice, selectedSnacks, comboName);
-                redirectAttributes.addFlashAttribute("success", "Combo agregado");
+                redirectAttributes.addFlashAttribute("okMessage", "Combo agregado");
             } catch (EntityNotFoundException e) {
-                redirectAttributes.addFlashAttribute("error", e.getMessage());
+                redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             }
 
             return "redirect:/adminPage";
