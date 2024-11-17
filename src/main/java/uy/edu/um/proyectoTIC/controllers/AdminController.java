@@ -215,9 +215,9 @@ public class AdminController {
     public String addBroadcast(@RequestParam String dateTimeS, @RequestParam Integer broadcastPrice, @RequestParam Integer roomNbrBroadcast, @RequestParam Integer centralIdBroadcast, @RequestParam Integer filmCode, RedirectAttributes redirectAttributes) {
         try {
             adminService.createBroadcast(dateTimeS, broadcastPrice, roomNbrBroadcast, centralIdBroadcast, filmCode);
-            redirectAttributes.addFlashAttribute("okMessage", "Broadcast creado correctamente.");
+            redirectAttributes.addFlashAttribute("okMessage", "Función creada correctamente.");
         } catch (EntityNotFoundException e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Error al crear el broadcast: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "Error al crear la función: " + e.getMessage());
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Error inesperado: " + e.getMessage());
         }
@@ -228,9 +228,9 @@ public class AdminController {
     public String deleteBroadcast(@RequestParam Long broadcastId, RedirectAttributes redirectAttributes) {
         try {
             adminService.deleteBroadcast(broadcastId);
-            redirectAttributes.addFlashAttribute("okMessage", "Broadcast eliminado");
+            redirectAttributes.addFlashAttribute("okMessage", "Función eliminada");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "No se pudo eliminar el broadcast: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "No se pudo eliminar la función: " + e.getMessage());
         }
         return "redirect:/adminPage";
     }
