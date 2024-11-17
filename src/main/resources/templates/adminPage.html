@@ -261,7 +261,7 @@
                 <div class="questions">
                     <div class="registerQuestions"> Fecha y Hora: </div>
                     <div class="inputRegister">
-                        <input type="text" id="dateTimeS" name="dateTimeS" placeholder="yyyy-MM-dd'T'HH:mm:ss" required><br>
+                        <input type="datetime-local" id="dateTimeS" name="dateTimeS" placeholder="yyyy-MM-dd'T'HH:mm:ss" required><br>
                     </div>
                 </div>
                 <div class="questions">
@@ -318,7 +318,7 @@
                 <div class="questions">
                     <div class="registerQuestions"> Año de estreno: </div>
                     <div class="inputRegister">
-                        <input type="text" id="releaseYearDate" name="releaseYearDate" placeholder="Ingresar Año de estreno" required><br>
+                        <input type="date" id="releaseYearDate" name="releaseYearDate" placeholder="Ingresar Año de estreno" required><br>
                     </div>
                 </div>
                 <div class="questions">
@@ -426,8 +426,8 @@
 
         <div class="tab-pane fade" id="createCombo" role="tabpanel" aria-labelledby="createCombo-tab" tabindex="0">
             <form action="/adminAddCombo" method="POST">
-                    <div th:each="snack : ${snacks}">
-                        <div class="questions">
+                    <div class="questions" th:each="snack : ${snacks}">
+
                             <div class="registerQuestions" th:text="${snack.snackName}+':'">Snack</div>
 
                             <div class="inputRegister">
@@ -435,7 +435,7 @@
                                 <input class="quantity-input custom-input-counter " type="number" name="snackQuantities[]" value="0" min="0">
                                 <button class="client-button" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
                             </div>
-                        </div>
+
                     </div>
 
 
@@ -445,6 +445,7 @@
                         <input type="text" id="comboName" name="comboName" placeholder="Nombre del Combo" required>
                     </div>
                 </div>
+
 
                 <div class="questions">
                     <div class="registerQuestions"> Precio: </div>
