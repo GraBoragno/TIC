@@ -113,7 +113,7 @@ public class AdminController {
             adminService.createFilm(filmName, directorName, duration, releaseYearDate, genres);
             redirectAttributes.addFlashAttribute("okMessage", "Pelicula agregada");
         } catch (DuplicateEntityException | EntityNotFoundException e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage()); // tira el error correspondiente
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
         return "redirect:/adminPage";
     }
@@ -214,7 +214,6 @@ public class AdminController {
     @PostMapping("/adminAddBroadcast")
     public String addBroadcast(@RequestParam String dateTimeS, @RequestParam Integer broadcastPrice, @RequestParam Integer roomNbrBroadcast, @RequestParam Integer centralIdBroadcast, @RequestParam Integer filmCode, RedirectAttributes redirectAttributes) {
         try {
-            //Verificar
             adminService.createBroadcast(dateTimeS, broadcastPrice, roomNbrBroadcast, centralIdBroadcast, filmCode);
             redirectAttributes.addFlashAttribute("okMessage", "Broadcast creado correctamente.");
         } catch (EntityNotFoundException e) {

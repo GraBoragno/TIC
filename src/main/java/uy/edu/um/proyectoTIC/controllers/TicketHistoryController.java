@@ -46,25 +46,6 @@ public class TicketHistoryController {
             broadcasts.add(ticket.getTicketBroadcast());
         }
 
-//        List<Cinema> cinemas = new ArrayList<>();
-//        for (Broadcast broadcast : broadcasts) {
-//            Long cinemaId = broadcast.getCentralId();
-//            List<Long> newList = new ArrayList<>();
-//            newList.add(cinemaId);
-//            Cinema cinema = cinemaService.findCinemasByCentralIds(newList).get(0);
-//            cinemas.add(cinema);
-//        }
-
-//            List<Seat> seats;
-//        for (Broadcast broadcast : broadcasts) {
-//            Long cinemaId = broadcast.getCentralId();
-//            List<Long> newList = new ArrayList<>();
-//            newList.add(cinemaId);
-//            Cinema cinema = cinemaService.findCinemasByCentralIds(newList).get(0);
-//            cinemas.add(cinema);
-//        }
-
-
 
         LocalDateTime dateTime = LocalDateTime.now();
         model.addAttribute("dateTime", dateTime);
@@ -85,17 +66,11 @@ public class TicketHistoryController {
     @PostMapping("/rateFilm")
     public String calificarPelicula(HttpSession session, @RequestParam Float rating, @RequestParam Integer ticketId) throws EntityNotFoundException {
 
-        filmService.rateFilm(ticketId,rating);
+        Ticket ticket = ticketService.findTicketById(ticketId.longValue()).get();
+        filmService.rateFilm(ticket.getTicketBroadcast().getBroadcastFilm().getFilmCode().intValue(),rating);
         return "redirect:/ticketHistory";
     }
 
-
-//    @PostMapping("/log-out")
-//    public String logout(HttpSession session)
-//    {
-//        session.invalidate();
-//        return "redirect:/log-in";
-//    }
 }
 
 

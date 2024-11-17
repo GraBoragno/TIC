@@ -57,10 +57,6 @@ public class HomeController {
         return "redirect:/log-in";
     }
 
-    private boolean isAdmin(String email)
-    {
-        return email.endsWith("@wtf.com");
-    }
 }
 
 

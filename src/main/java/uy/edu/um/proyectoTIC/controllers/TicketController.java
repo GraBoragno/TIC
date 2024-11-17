@@ -54,11 +54,11 @@ public class TicketController {
 
 
         Optional<Film> filmAux = filmRepository.findById(filmCode);
-        Film film = filmAux.get(); //Usar el Service
+        Film film = filmAux.get();
 
         List<Snack> snacks = snackService.getAvailableSnacks();
         List<Combo> combos = comboService.getAvailableCombos();
-        List<Broadcast> broadcasts = broadcastService.getBroadcastsByFilmName(film.getFilmName()); //No funciona
+        List<Broadcast> broadcasts = broadcastService.getBroadcastsByFilmName(film.getFilmName());
 
         List<Long> centralIds = broadcasts.stream()
                 .map(Broadcast::getCentralId)
@@ -67,13 +67,13 @@ public class TicketController {
 
         List<Cinema> cinemas = cinemaService.findCinemasByCentralIds(centralIds);
 
-        // Crear un Map de centralId a Cinema
+
         Map<Long, Cinema> cinemaMap = cinemas.stream()
                 .collect(Collectors.toMap(Cinema::getCentralId, cinema -> cinema));
 
         model.addAttribute("film", film);
-        model.addAttribute("broadcasts", broadcasts); // Cambio de "broadcast" a "broadcasts"
-        model.addAttribute("cinemaMap", cinemaMap); // Cambio de "cinema" a "cinemaMap"
+        model.addAttribute("broadcasts", broadcasts);
+        model.addAttribute("cinemaMap", cinemaMap);
         model.addAttribute("snacks", snacks);
         model.addAttribute("combos", combos);
         model.addAttribute("filmCode", filmCode);

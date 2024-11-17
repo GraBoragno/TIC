@@ -48,7 +48,7 @@ public class LoginController {
 
             try {
             if (client != null && client.getPassword() != null && passwordService.checkPassword(password, client.getPassword())) {
-                session.setAttribute("user", client); // Store user in session
+                session.setAttribute("user", client);
 
                 Boolean purchaseIntent = (Boolean) session.getAttribute("purchaseIntent");
                 if (Boolean.TRUE.equals(purchaseIntent)) {

@@ -61,7 +61,7 @@ public class PaymentController {
     }
 
     @PostMapping("/payWithSavedCard")
-    public String payWithSavedCard(HttpSession session, Model model) throws EntityNotFoundException
+    public String payWithSavedCard(HttpSession session) throws EntityNotFoundException
     {
         Client client = (Client) session.getAttribute("user");
         Double totalPrice = (Double) session.getAttribute("totalPrice");

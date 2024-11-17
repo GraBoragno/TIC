@@ -46,7 +46,6 @@ public class BroadcastService {
     }
 
 
-    // Verificar que no se agregue mas de una vez
     @Transactional
     public Broadcast addBroadcast(String dateTimeS, Integer broadcastPrice, Integer roomNbr, Integer centralId, Integer filmCode) throws EntityNotFoundException
     {
