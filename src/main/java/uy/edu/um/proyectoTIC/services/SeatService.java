@@ -39,10 +39,6 @@ public class SeatService {
         }
     }
 
-//    public Seat createSeatForTest(int row, int column) throws DuplicateEntityException {
-//        return createSeat(row, column);
-//    }
-
     public List<Seat> getAllSeats()
     {
         return seatRepository.findAll();

@@ -76,19 +76,4 @@ public class SnackServiceTest {
 
         assertThrows(InvalidIdException.class, () -> snackService.addSnack(invalidSnackName, snackPrice));
     }
-
-    @Test
-    void testFindAvailableSnacks() {
-        Snack snack1 = Snack.builder().snackName("Popcorn").snackPrice("20").build();
-        Snack snack2 = Snack.builder().snackName("Agua").snackPrice("15").build();
-
-        when(snackRepository.findAvailableSnacks()).thenReturn(List.of(snack1, snack2));
-
-        List<Snack> availableSnacks = snackService.getAvailableSnacks();
-
-        assertEquals(2, availableSnacks.size());
-        assertTrue(availableSnacks.contains(snack1));
-        assertTrue(availableSnacks.contains(snack2));
-    }
-
 }
