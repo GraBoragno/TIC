@@ -73,6 +73,18 @@
                 background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 1) 50%, rgba(255, 0, 0, 0));
             }
         }
+
+        .success-message {
+            color: lightgreen;
+            font-weight: lighter;
+            margin: 10px 0;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: lighter;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body class = "bodyHome">
@@ -106,6 +118,8 @@
         </form>
     </div>
 </div>
+
+
 
 <div class="container mt-4 ">
     <h2 class = "flex">Servicios</h2>
@@ -157,6 +171,14 @@
         </ul>
 
 
+    </div>
+
+    <div>
+        <!-- Mensaje de exito -->
+        <p th:if="${okMessage}" th:text="${okMessage}" class="success-message"></p>
+
+        <!-- Mensaje de error -->
+        <p th:if="${errorMessage}" th:text="${errorMessage}" class="error-message"></p>
     </div>
 
     <div class="tab-content" id="myTabContent">
