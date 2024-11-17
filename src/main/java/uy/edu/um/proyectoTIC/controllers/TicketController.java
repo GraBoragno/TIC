@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uy.edu.um.proyectoTIC.entities.*;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
 import uy.edu.um.proyectoTIC.repository.BroadcastRepository;
@@ -75,38 +76,22 @@ public class TicketController {
         model.addAttribute("cinemaMap", cinemaMap); // Cambio de "cinema" a "cinemaMap"
         model.addAttribute("snacks", snacks);
         model.addAttribute("combos", combos);
+        model.addAttribute("filmCode", filmCode);
 
         return "ticketNew";
     }
 
 
     @PostMapping("/ticketNew")
-    public String confirmBroadcast(HttpSession session,
-                                 @RequestParam Long broadcastId,
-                                 @RequestParam String snack,
-                                 @RequestParam String combos,
-                                 @RequestParam double totalPrice) {
+    public String confirmBroadcast(HttpSession session, @RequestParam(required = false) Long broadcastId, @RequestParam(required = false) String snack, @RequestParam(required = false) String combos, @RequestParam double totalPrice) {
+
 
 
         Optional<Broadcast> brAux = broadcastRepository.findById(broadcastId);
+        Snack selectedSnack = ("none".equals(snack)) ? null : snackRepository.findById(snack).orElse(null);
+        Combo selectedCombo = ("none".equals(combos)) ? null : comboRepository.findById(Long.valueOf(combos)).orElse(null);
 
-        Snack selectedSnack;
-        if ("none".equals(snack)){
-            selectedSnack = null;
-        }else{
-            Optional<Snack> skAux = snackRepository.findById(snack);
-            selectedSnack = skAux.get();
-        }
-
-        Combo selectedCombo;
-        if ("none".equals(combos)){
-            selectedCombo = null;
-        }else{
-            Optional<Combo> cbAux = comboRepository.findById(Long.valueOf(combos));
-            selectedCombo = cbAux.get();
-        }
-
-        Broadcast broadcast = brAux.get();
+        Broadcast broadcast = brAux.orElse(null);
 
         //Para usar despues
         session.setAttribute("broadcast", broadcast);

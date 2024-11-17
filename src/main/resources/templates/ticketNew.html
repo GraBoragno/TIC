@@ -6,17 +6,17 @@
     <style>
         body {
             display: flex;
-            justify-content: center;  /* Centra el contenido horizontalmente */
-            align-items: center;      /* Centra el contenido verticalmente */
-            height: 100vh;            /* Hace que el body ocupe toda la altura de la ventana */
-            margin: 0;                /* Elimina los márgenes por defecto */
-            background-color: #f4f4f4; /* Fondo claro para el body */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
         }
 
         .form-container {
-            display: flex;          /* Para mostrar la película y el formulario en fila */
-            width: 80%;              /* Ancho máximo de la sección */
-            max-width: 1000px;       /* Ancho máximo para la pantalla */
+            display: flex;
+            width: 80%;
+            max-width: 1000px;
             padding-top: 120px;
         }
 
@@ -58,8 +58,8 @@
             max-width: 600px;
             padding: 20px;
             border-radius: 8px;
-            background-color: #333333;  /* Mantener el color de fondo oscuro */
-            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.1); /* Sombra suave y resplandor sutil */
+            background-color: #333333;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.1);
         }
 
         .questionsTicket {
@@ -71,26 +71,26 @@
 
         .registerQuestionsTicket {
             font-size: 16px;
-            width: 30%;  /* Ancho fijo para las preguntas */
+            width: 30%;
         }
 
         .inputRegisterTicket {
-            width: 65%;  /* Ancho para los selects */
+            width: 65%;
         }
 
         .header {
-            width: 100%;               /* Ancho completo */
-            position: fixed;           /* Fijo en la parte superior */
-            top: 0;                    /* En la parte superior de la ventana */
-            left: 0;                   /* Alineado a la izquierda */
-            z-index: 0;               /* Asegura que esté encima de otros elementos */
-            background-color: #333333; /* Fondo oscuro para el encabezado */
-            padding: 10px 0;           /* Espaciado en el encabezado */
-            text-align: center;        /* Centrado del texto */
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background-color: #333333;
+            padding: 10px 0;
+            text-align: center;
             margin-bottom: 20px;
         }
         .homeButton {
-            z-index: 15;   /* Da espacio para que el botón no se tape con el header (ajusta según el alto del header) */
+            z-index: 15;
         }
 
 
@@ -126,14 +126,19 @@
         <p>Rating: <span th:text="${film.getScore()}">Rating</span></p>
     </div>
 
-    <form action="/ticket/ticketNew" method="POST" style="z-index: 15">
+    <form action="/ticket/ticketNew" method="POST" style="z-index: 15" onsubmit="return validateForm()">
         <div class="flex titleReg">
             Elija su función y snacks
         </div>
+
+        <div id="error-message" class="error-message" style="color: red; font-weight: lighter; display: none;">
+            <p id="error-text"></p>
+        </div>
+
         <div class="questionsTicket">
             <div class="registerQuestionsTicket">Función:</div>
             <div class="inputRegisterTicket">
-                <select id="broadcastSelect"  name="broadcastId" >
+                <select id="broadcastSelect" name="broadcastId">
                     <option value="" selected>Seleccione la función</option>
                     <option th:each="broadcast : ${broadcasts}"
                             th:value="${broadcast.broadcastId}"
@@ -141,14 +146,12 @@
                             th:text="${cinemaMap[broadcast.centralId].neighborhood} + ' - ' + ${broadcast.dateTime}">
                     </option>
                 </select>
-
             </div>
         </div>
 
         <div class="questionsTicket">
             <div class="registerQuestionsTicket">Snacks:</div>
             <div class="inputRegisterTicket">
-
                 <select id="snackSelect" name="snack">
                     <option value="" disabled selected>Seleccione un snack</option>
                     <option value="none">Ninguno</option>
@@ -163,8 +166,7 @@
         <div class="questionsTicket">
             <div class="registerQuestionsTicket">Combos:</div>
             <div class="inputRegisterTicket">
-
-                <select id="comboSelect"name="combos">
+                <select id="comboSelect" name="combos">
                     <option value="" disabled selected>Seleccione un combo</option>
                     <option value="none">Ninguno</option>
                     <option th:each="combo : ${combos}"
@@ -183,7 +185,25 @@
             <span id="totalPrice" style="margin-left: 15px; font-weight: bold;">Precio total: $0</span>
         </div>
     </form>
-</div>
+
+    <script>
+        function validateForm() {
+
+            var broadcastId = document.getElementById('broadcastSelect').value;
+            var snack = document.getElementById('snackSelect').value;
+            var combos = document.getElementById('comboSelect').value;
+
+            if (broadcastId === "" || snack === "" || combos === "") {
+
+                document.getElementById('error-message').style.display = "block";
+                document.getElementById('error-text').textContent = "Por favor, seleccione una función, un snack y un combo.";
+
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 
 <script> <!-- script para parsear la fecha al formato que queremos -->
     document.addEventListener("DOMContentLoaded", function() {
@@ -227,7 +247,6 @@ document.addEventListener("DOMContentLoaded", function() {
         totalPriceHidden.value = totalPrice.toFixed(2);
     }
 
-    // Actualizar el precio cada vez que el usuario cambie el snack o el combo seleccionado
     snackSelect.addEventListener("change", updateTotalPrice);
     comboSelect.addEventListener("change", updateTotalPrice);
 });
