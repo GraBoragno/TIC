@@ -32,12 +32,14 @@
             <input type="text" id="name" name="name" placeholder="Ingresar nombre" required><br>
         </div>
     </div>
+
     <div class="questions">
         <div class="registerQuestions"> Email </div>
         <div class="inputRegister">
             <input type="text" id="email" name="email" placeholder="Ingresar email" required><br>
         </div>
     </div>
+
     <div class="questions">
         <div class="registerQuestions"> Fecha de nacimiento </div>
         <div class="inputRegister">
@@ -56,6 +58,11 @@
             <input type="password" id="password" name="password" placeholder="Ingresar contraseña" required><br>
         </div>
     </div>
+
+    <div class="invalid-feedback register-prompt flex" th:if="${error}">
+        <p th:text="${error}"></p>
+    </div>
+
     <div class="questions">
         <button type="submit" class="client-button">Confirmar</button> <!-- Aplicar la clase de estilo -->
     </div>

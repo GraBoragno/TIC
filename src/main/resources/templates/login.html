@@ -47,13 +47,13 @@
 
 
 
-    <div class="invalid-feedback register-prompt flex" th:if="${error}">
-        <p th:text="${error}"></p>
+    <div class="invalid-feedback register-prompt flex" th:if="${errorPassword}">
+        <p th:text="${errorPassword}"></p>
     </div>
 
 
     <div class="questions">
-        <input type="submit" class="client-button" value="Confirmar"> <!-- Aplicar la clase de estilo -->
+        <input type="submit" class="client-button" value="Confirmar">
     </div>
 
 

@@ -26,7 +26,15 @@ public class RegisterController {
         if (email.endsWith("@wtf.com"))
             return "registerNew";
 
+        try {
         Client newClient = clientService.addClient(email, name, address, birthdate, password);
         return "redirect:/log-in";
+    }catch (InvalidAttributeException e){
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/register/registerNew";
+    } catch (Exception e) {
+        redirectAttributes.addFlashAttribute("error", "Hubo un error al registrar el usuario ");
+        return "redirect:/register/registerNew";
+    }
     }
 }

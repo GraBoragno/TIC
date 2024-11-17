@@ -114,7 +114,7 @@
         <div class="questionsTicket">
             <div class="registerQuestionsTicket">Función:</div>
             <div class="inputRegisterTicket">
-                <select id="broadcastSelect" class="form-select" name="broadcastId" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                <select id="broadcastSelect"  name="broadcastId" >
                     <option value="" selected>Seleccione la función</option>
                     <option th:each="broadcast : ${broadcasts}"
                             th:value="${broadcast.broadcastId}"
@@ -129,7 +129,8 @@
         <div class="questionsTicket">
             <div class="registerQuestionsTicket">Snacks:</div>
             <div class="inputRegisterTicket">
-                <select id="snackSelect" class="form-select" name="snack">
+
+                <select id="snackSelect" name="snack">
                     <option value="" disabled selected>Seleccione un snack</option>
                     <option value="none">Ninguno</option>
                     <option th:each="snack : ${snacks}"
@@ -143,7 +144,8 @@
         <div class="questionsTicket">
             <div class="registerQuestionsTicket">Combos:</div>
             <div class="inputRegisterTicket">
-                <select id="comboSelect" class="form-select" name="combos">
+
+                <select id="comboSelect"name="combos">
                     <option value="" disabled selected>Seleccione un combo</option>
                     <option value="none">Ninguno</option>
                     <option th:each="combo : ${combos}"

@@ -28,7 +28,7 @@ public class LoginController {
 
     @GetMapping("/log-in")
     public String showLoginForm() {
-        return "login"; // Muestra el formulario de login
+        return "login";
     }
 
     @PostMapping("/log-in")
@@ -36,53 +36,59 @@ public class LoginController {
                         HttpSession session, Model model) throws EntityNotFoundException {
 
 
-        if (email == null || email.trim().isEmpty()) {
-            model.addAttribute("errorEmail", "El correo electrónico no puede estar vacío.");
-            return "login"; // Return to login page with error message
-        }
-
-        if (!email.contains("@")) {
-            model.addAttribute("errorEmail", "El correo electrónico debe ser válido");
-            return "login"; // Return to login page with error message
-        }
-
-        if (password == null || password.trim().isEmpty()) {
-            model.addAttribute("errorPassword", "La contraseña no puede estar vacía.");
-            return "login"; // Return to login page with error message
-        }
-
-        if (password.length() <= 8 ) {
-            model.addAttribute("errorPassword", "La contraseña debe ser 8 o mas caracteres");
-            return "login"; // Return to login page with error message
-        }
-
-
-
         if (!email.endsWith("@wtf.com")) {
-            Client client = clientService.findByEmail(email);
+            Client client;
+            try {
+                client = clientService.findByEmail(email);
+            } catch (EntityNotFoundException e) {
+                model.addAttribute("errorEmail", e.getMessage());
+                return "login";
+            }
+
+
+            try {
             if (client != null && client.getPassword() != null && passwordService.checkPassword(password, client.getPassword())) {
                 session.setAttribute("user", client); // Store user in session
 
                 Boolean purchaseIntent = (Boolean) session.getAttribute("purchaseIntent");
                 if (Boolean.TRUE.equals(purchaseIntent)) {
-                    session.removeAttribute("purchaseIntent"); // Remove purchase intent
-                    return "redirect:/ticket/ticketNew"; // Redirect to ticket page
+                    session.removeAttribute("purchaseIntent");
+                    return "redirect:/ticket/ticketNew";
                 }
 
-                return "redirect:/home"; // Redirect to home page if no purchase intent
+                return "redirect:/home";
+
             } else {
-                model.addAttribute("error", "Correo electrónico o contraseña incorrectos.");
-                return "login"; // Return to login page with error message
+                model.addAttribute("errorPassword", "contraseña incorrecta.");
+                return "login";
+            }
+            }catch (Exception e) {
+                model.addAttribute("errorPassword", "contraseña incorrecta.");
+                return "login";
             }
         } else {
-            Admin admin = adminService.findById(email);
-            if (admin != null && admin.getPassword() != null && passwordService.checkPassword(password, admin.getPassword())) {
-                session.setAttribute("user", admin); // Store admin in session
-                return "redirect:/adminPage"; // Redirect to admin page
-            } else {
-                model.addAttribute("error", "Correo electrónico o contraseña incorrectos.");
-                return "login"; // Return to login page with error message
+            Admin admin;
+            try {
+            admin = adminService.findById(email);
             }
+            catch (EntityNotFoundException e) {
+                model.addAttribute("errorEmail", e.getMessage());
+                return "login";
+            }
+            try {
+
+                if (admin != null && admin.getPassword() != null && passwordService.checkPassword(password, admin.getPassword())) {
+                    session.setAttribute("user", admin);
+                    return "redirect:/adminPage";
+                } else {
+                    model.addAttribute("errorPassword", "contraseña incorrecta.");
+                    return "login";
+                }
+            }catch (Exception e) {
+                model.addAttribute("errorPassword", "contraseña incorrecta.");
+                return "login";
+            }
+
         }
     }
 }

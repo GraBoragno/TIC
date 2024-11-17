@@ -12,6 +12,8 @@
     <title>Lista de Servicios</title>
     <style>
 
+
+
         .navbar {
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra solo en el borde inferior */
             border-bottom: 2px solid rgba(0, 0, 0, 0.1); /* Sombra más ligera */
@@ -412,7 +414,7 @@
                     <div class="registerQuestions">Seleccione Combo:</div>
                     <div class="inputRegister">
                         <select id="comboSelect" name="comboId" required>
-                            <option th:each="combo : ${combos}" th:value="${combo.getComboId()}" th:text="${combo.getComboName()} + ' $' + ${combo.getComboPrice()}">Seleccione un combo</option>
+                            <option th:each="combo : ${combos}" th:value="${combo.getComboId()}" th:text="${combo.getComboName()} + '| Precio: $' + ${combo.getComboPrice()}">Seleccione un combo</option>
                         </select>
                     </div>
                 </div>
@@ -428,10 +430,10 @@
                         <div class="questions">
                             <div class="registerQuestions" th:text="${snack.snackName}+':'">Snack</div>
 
-                            <div>
-                                <button type="button" onclick="this.nextElementSibling.stepDown()">-</button>
-                                <input class="quantity-input custom-input-counter" type="number" name="snackQuantities[]" value="0" min="0">
-                                <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                            <div class="inputRegister">
+                                <button class="client-button" type="button" onclick="this.nextElementSibling.stepDown()">-</button>
+                                <input class="quantity-input custom-input-counter " type="number" name="snackQuantities[]" value="0" min="0">
+                                <button class="client-button" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
                             </div>
                         </div>
                     </div>
