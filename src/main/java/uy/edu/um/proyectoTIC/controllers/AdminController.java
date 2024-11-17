@@ -118,8 +118,6 @@ public class AdminController {
         return "redirect:/adminPage";
     }
 
-    // deleteFilm al final no
-
     // Cinemas
     @PostMapping("/adminCreateCinema")
     public String addCinema(@RequestParam Integer centralIdNewCinema, @RequestParam Integer roomQty, @RequestParam String neighborhood, RedirectAttributes redirectAttributes)

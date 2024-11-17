@@ -10,6 +10,70 @@
     <link rel="stylesheet" href="/static/Buttons.css">
     <link rel="stylesheet" href="/static/PeliculasAdmin.css">
     <title>Lista de Servicios</title>
+    <style>
+
+        .navbar {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra solo en el borde inferior */
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1); /* Sombra más ligera */
+            margin-bottom: 10px;
+        }
+
+        .navbar .nav-link {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .nav-tabs .nav-link {
+            border: none;
+            position: relative;
+            border-bottom: none;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: white;
+        }
+
+        .nav-tabs .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 1.5) 50%, rgba(255, 0, 0, 0));
+            animation: fadeInOut 0.5s ease-out;
+            opacity: 1;
+        }
+
+        .nav-tabs .nav-link:hover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 0.7) 50%, rgba(255, 0, 0, 0));
+            opacity: 0.5; /* Hacer la línea más tenue */
+        }
+
+        .nav-tabs .nav-link::after {
+            content: none;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 1) 50%, rgba(255, 0, 0, 0));
+            }
+            100% {
+                background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 1) 50%, rgba(255, 0, 0, 0));
+            }
+        }
+    </style>
 </head>
 <body class = "bodyHome">
 
@@ -46,9 +110,9 @@
 <div class="container mt-4 ">
     <h2 class = "flex">Servicios</h2>
     <div class="navbar">
-        <ul class="nav nav-tabs d-flex flex-nowrap overflow-auto admin-services-scroll custom-scrollbar" id="myTab" role="tablist">
+        <ul class="nav nav-tabs d-flex justify-content-between w-100" id="myTab" role="tablist">
                 <li class="nav-item nowrap" role="presentation">
-                    <button class="nav-link admin-nav-background" id="createAdmin-tab" data-toggle="tab" data-target="#createAdmin" type="button" role="tab" aria-controls="createAdmin" aria-selected="false" style="color: white;">Crear Admin</button>
+                    <button class="nav-link active admin-nav-background" id="createAdmin-tab" data-toggle="tab" data-target="#createAdmin" type="button" role="tab" aria-controls="createAdmin" aria-selected="false" style="color: white;">Crear Admin</button>
                 </li>
                 <li class="nav-item nowrap" role="presentation">
                     <button class="nav-link admin-nav-background" id="deleteAdmin-tab" data-toggle="tab" data-target="#deleteAdmin" type="button" role="tab" aria-controls="deleteAdmin" aria-selected="true" style="color: white;">Borrar Admin</button>
@@ -82,7 +146,7 @@
                     <button class="nav-link admin-nav-background" id="deleteRoom-tab" data-toggle="tab" data-target="#deleteRoom" type="button" role="tab" aria-controls="deleteRoom" aria-selected="false" style="color: white;">Borrar Sala</button>
                 </li>
                 <li class="nav-item nowrap" role="presentation">
-                    <button class="nav-link active admin-nav-background" id="addSnack-tab" data-toggle="tab" data-target="#addSnack" type="button" role="tab" aria-controls="addSnack" aria-selected="true" style="color: white;">Crear Snack</button>
+                    <button class="nav-link admin-nav-background" id="addSnack-tab" data-toggle="tab" data-target="#addSnack" type="button" role="tab" aria-controls="addSnack" aria-selected="false" style="color: white;">Crear Snack</button>
                 </li>
                 <li class="nav-item nowrap" role="presentation">
                     <button class="nav-link admin-nav-background" id="deleteSnack-tab" data-toggle="tab" data-target="#deleteSnack" type="button" role="tab" aria-controls="deleteSnack" aria-selected="false" style="color: white;">Borrar Snack</button>
@@ -371,24 +435,6 @@
             </form>
         </div>
 
-<!--        <script th:inline="javascript">-->
-<!--            let counter = /*[[${snackCounterValue}]]*/ 0;-->
-
-<!--            document.getElementById('increaseBtn').addEventListener('click', function() {-->
-<!--                counter++;-->
-<!--                document.getElementById('snackCounter').value = counter;-->
-<!--            });-->
-
-<!--            document.getElementById('decreaseBtn').addEventListener('click', function() {-->
-<!--                if (counter > 0) {-->
-<!--                    counter&#45;&#45;;-->
-<!--                    document.getElementById('snackCounter').value = counter;-->
-<!--                }-->
-<!--            });-->
-<!--        </script>-->
-
-
-
 
         <div class="tab-pane fade" id="deleteSnack" role="tabpanel" aria-labelledby="deleteSnack-tab" tabindex="0">
 
@@ -466,7 +512,6 @@
 
 <script> <!-- script para parsear la fecha al formato que queremos -->
 document.addEventListener("DOMContentLoaded", function() {
-    // Obtener todas las opciones del select
     const options = document.querySelectorAll('#broadcastSelect option');
 
     // Formato deseado (por ejemplo, "dd MMM yyyy, HH:mm")
@@ -480,15 +525,12 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     options.forEach(function(option) {
-        // Obtener la fecha desde el atributo data-date
         const dateTimeString = option.getAttribute('data-date');
         if (dateTimeString) {
-            const date = new Date(dateTimeString); // Crear un objeto Date con el string
+            const date = new Date(dateTimeString);
 
-            // Usar Intl.DateTimeFormat para formatear la fecha
             const formattedDate = new Intl.DateTimeFormat('es-ES', optionsDateFormat).format(date);
 
-            // Actualizar el texto del option con el formato de fecha
             option.textContent = `${option.textContent.split(' - ')[0]}  ${formattedDate}`;
         }
     });

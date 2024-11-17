@@ -176,5 +176,4 @@ public class AdminService {
         return adminRepository.findAllAdmins();
     }
 
-    //Ver que en la pagina aparezca la lista de cada una de las entidades en su respectivo metodo (por ahora)
 }
