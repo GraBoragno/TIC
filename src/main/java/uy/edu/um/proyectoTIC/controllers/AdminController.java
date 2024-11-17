@@ -16,10 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uy.edu.um.proyectoTIC.entities.*;
 import uy.edu.um.proyectoTIC.entities.users.Admin;
 import uy.edu.um.proyectoTIC.entities.users.Client;
-import uy.edu.um.proyectoTIC.exceptions.DuplicateEntityException;
-import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
-import uy.edu.um.proyectoTIC.exceptions.InvalidAttributeException;
-import uy.edu.um.proyectoTIC.exceptions.InvalidIdException;
+import uy.edu.um.proyectoTIC.exceptions.*;
 import uy.edu.um.proyectoTIC.repository.BroadcastRepository;
 import uy.edu.um.proyectoTIC.repository.CinemaRepository;
 import uy.edu.um.proyectoTIC.repository.RoomRepository;
@@ -86,7 +83,7 @@ public class AdminController {
         try {
             adminService.createSnack(snackName, snackPrice);
             redirectAttributes.addFlashAttribute("okMessage", "Snack agregado");
-        } catch (DuplicateEntityException e) {
+        } catch (DuplicateEntityException | InvalidIdException | InvalidAttributeException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
         return "redirect:/adminPage";
@@ -125,7 +122,7 @@ public class AdminController {
         try {
             adminService.createCinema(centralIdNewCinema, roomQty, neighborhood);
             redirectAttributes.addFlashAttribute("okMessage", "Cine agregado");
-        } catch (DuplicateEntityException e) {
+        } catch (DuplicateEntityException | InvalidIdException |InvalidRoomQtyException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
         return "redirect:/adminPage";
@@ -150,7 +147,7 @@ public class AdminController {
         try {
             adminService.createRoom(roomNbrRoom, centralIdRoom);
             redirectAttributes.addFlashAttribute("okMessage", "Sala agregada");
-        } catch (EntityNotFoundException e) {
+        } catch (EntityNotFoundException | InvalidRoomQtyException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
         return "redirect:/adminPage";
@@ -191,7 +188,7 @@ public class AdminController {
 
                 adminService.createCombo(comboPrice, selectedSnacks, comboName);
                 redirectAttributes.addFlashAttribute("okMessage", "Combo agregado");
-            } catch (EntityNotFoundException e) {
+            } catch (EntityNotFoundException | InvalidAttributeException e) {
                 redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             }
 
@@ -228,6 +225,7 @@ public class AdminController {
     public String deleteBroadcast(@RequestParam Long broadcastId, RedirectAttributes redirectAttributes) {
         try {
             adminService.deleteBroadcast(broadcastId);
+
             redirectAttributes.addFlashAttribute("okMessage", "Función eliminada");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "No se pudo eliminar la función: " + e.getMessage());
@@ -239,6 +237,8 @@ public class AdminController {
     // Admins
     @PostMapping("/adminAddAdmin")
     public String addAdmin(@RequestParam String email, @RequestParam String name, @RequestParam String address, @RequestParam String birthdate, @RequestParam String password, RedirectAttributes redirectAttributes) {
+
+
         try {
             adminService.createAdmin(email, name, address, birthdate, password);
             redirectAttributes.addFlashAttribute("okMessage", "Administrador creado correctamente.");
