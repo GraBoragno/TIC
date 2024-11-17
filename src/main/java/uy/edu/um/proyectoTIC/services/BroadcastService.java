@@ -10,6 +10,7 @@ import uy.edu.um.proyectoTIC.entities.Film;
 import uy.edu.um.proyectoTIC.entities.Room;
 import uy.edu.um.proyectoTIC.entities.users.Client;
 import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
+import uy.edu.um.proyectoTIC.exceptions.InvalidAttributeException;
 import uy.edu.um.proyectoTIC.repository.BroadcastRepository;
 import uy.edu.um.proyectoTIC.repository.CinemaRepository;
 import uy.edu.um.proyectoTIC.repository.FilmRepository;
@@ -96,6 +97,9 @@ public class BroadcastService {
 
     public boolean isScheduleAvailable(LocalDateTime newStartTime, Long durationMinutes, Integer centralId, Integer roomNbr)
     {
+//        if (durationMinutes == null) {
+//            throw new InvalidAttributeException("La duración no puede ser nula");
+//        }
         LocalDateTime newEndTime = newStartTime.plusMinutes(durationMinutes);
         List<Broadcast> conflictingBroadcasts = broadcastRepository.findConflictingBroadcasts(
                 (long)centralId, roomNbr, newStartTime, newEndTime, durationMinutes);

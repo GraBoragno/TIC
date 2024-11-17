@@ -27,11 +27,7 @@ public class ComboService {
     @Autowired
     private ComboRepository comboRepository;
 
-    @Autowired
-    private SnackRepository snackRepository;
-
-    // (-_-) -> (o_-) -> (0_-) -> (0_o) -> (0_0) -> (T-T)
-    public Combo addCombo(Integer comboPrice, List<Snack> snacks, String comboName) throws EntityNotFoundException
+    public Combo addCombo(Integer comboPrice, List<Snack> snacks, String comboName)
     {
 
         Combo newCombo = Combo.builder()

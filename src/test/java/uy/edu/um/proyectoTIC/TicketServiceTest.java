@@ -12,7 +12,6 @@ import uy.edu.um.proyectoTIC.exceptions.EntityNotFoundException;
 import uy.edu.um.proyectoTIC.repository.*;
 import uy.edu.um.proyectoTIC.services.*;
 
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,12 +33,6 @@ public class TicketServiceTest {
     @Mock
     private SeatRepository seatRepository;
 
-    @Mock
-    private SnackRepository snackRepository;
-
-    @Mock
-    private ComboRepository comboRepository;
-
     @InjectMocks
     private TicketService ticketService;
 
@@ -58,7 +51,7 @@ public class TicketServiceTest {
     }
 
     @Test
-    void testBuyTicketSuccessfully() throws DuplicateEntityException, EntityNotFoundException
+    void testBuyTicketSuccessfully() throws DuplicateEntityException
     {
         int broadcastId = 1;
         int row = 3;

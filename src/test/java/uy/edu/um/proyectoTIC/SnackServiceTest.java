@@ -1,6 +1,5 @@
 package uy.edu.um.proyectoTIC;
 
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -12,7 +11,6 @@ import uy.edu.um.proyectoTIC.exceptions.InvalidIdException;
 import uy.edu.um.proyectoTIC.repository.*;
 import uy.edu.um.proyectoTIC.services.*;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
