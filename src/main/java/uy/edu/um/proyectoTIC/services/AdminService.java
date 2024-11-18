@@ -223,9 +223,9 @@ public class AdminService {
     {
         if (password == null || password.length() < 8)
             throw new InvalidIdException("Contraseña no apta");
-
+        String hashedPassword = passwordService.hashPassword(password);
         Admin admin = this.findByEmail(email);
-        admin.setPassword(password);
+        admin.setPassword(hashedPassword);
         return adminRepository.save(admin);
     }
 
