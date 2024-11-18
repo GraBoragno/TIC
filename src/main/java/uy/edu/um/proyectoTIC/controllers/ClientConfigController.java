@@ -33,7 +33,7 @@ public class ClientConfigController {
     }
 
     @PostMapping("/clientConfig")
-    public String updateClient(@RequestParam String name, @RequestParam String address, @RequestParam String date, @RequestParam String password, @RequestParam Long cardNbr, HttpSession session, Model model) throws EntityNotFoundException {
+    public String updateClient(@RequestParam String name, @RequestParam String address, @RequestParam String date, @RequestParam String password, @RequestParam(required = false) Long cardNbr, HttpSession session, Model model) throws EntityNotFoundException {
 
         Client client = (Client) session.getAttribute("user");
 

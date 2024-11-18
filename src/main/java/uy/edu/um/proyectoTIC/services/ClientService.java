@@ -106,9 +106,9 @@ public class ClientService {
     {
         if (password == null || password.length() < 8)
             throw new InvalidIdException("Contraseña no apta");
-
+        String hashedPassword = passwordService.hashPassword(password);
         Client client = this.findByEmail(email);
-        client.setPassword(password);
+        client.setPassword(hashedPassword);
         return clientRepo.save(client);
     }
 
