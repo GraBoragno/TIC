@@ -143,6 +143,7 @@
                     <option th:each="broadcast : ${broadcasts}"
                             th:value="${broadcast.broadcastId}"
                             th:data-date="${broadcast.dateTime}"
+                            th:data-price="${broadcast.getBroadcastPrice()}"
                             th:text="${cinemaMap[broadcast.centralId].neighborhood} + ' - ' + ${broadcast.dateTime}">
                     </option>
                 </select>
@@ -235,13 +236,15 @@
 document.addEventListener("DOMContentLoaded", function() {
     const snackSelect = document.getElementById("snackSelect");
     const comboSelect = document.getElementById("comboSelect");
+    const broadcastSelect = document.getElementById("broadcastSelect");
     const totalPriceElement = document.getElementById("totalPrice");
     const totalPriceHidden = document.getElementById("totalPriceHidden");
 
     function updateTotalPrice() {
         const snackPrice = parseFloat(snackSelect.options[snackSelect.selectedIndex].getAttribute("data-price")) || 0;
         const comboPrice = parseFloat(comboSelect.options[comboSelect.selectedIndex].getAttribute("data-price")) || 0;
-        const totalPrice = snackPrice + comboPrice;
+        const broadcastPrice = parseFloat(broadcastSelect.options[broadcastSelect.selectedIndex].getAttribute("data-price")) || 0;
+        const totalPrice = snackPrice + comboPrice + broadcastPrice;
 
         totalPriceElement.textContent = `Precio total: $${totalPrice.toFixed(2)}`;
         totalPriceHidden.value = totalPrice.toFixed(2);
@@ -251,7 +254,5 @@ document.addEventListener("DOMContentLoaded", function() {
     comboSelect.addEventListener("change", updateTotalPrice);
 });
 </script>
-
-
 
 </body>
